@@ -4,7 +4,7 @@ Tags: woocommerce, product configurator, neon sign, led neon, custom sign
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.0
+Stable tag: 1.3.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -98,6 +98,10 @@ The build is deterministic: with the versions pinned in `package-lock.json`, it 
 
 == Changelog ==
 
+= 1.3.1 =
+* Translator comments for every string with placeholders.
+* Checked with the Plugin Check plugin: no errors.
+
 = 1.3.0 =
 * Block themes: on the product page, the configurator replaces the "Add to cart" and price blocks (Twenty Twenty-Five and other block themes).
 * A customisable product can no longer be added to the cart without its design: shop list buttons lead to the product page, and direct additions are refused with a notice.
@@ -120,6 +124,9 @@ The build is deterministic: with the versions pinned in `package-lock.json`, it 
 * First version prepared for WordPress.org.
 
 == Upgrade Notice ==
+
+= 1.3.1 =
+Translator comments; no functional change.
 
 = 1.3.0 =
 Block theme support and English source strings.

@@ -78,21 +78,21 @@ class AHNS_Dashboard {
 			array(
 				'done'  => $product > 0,
 				'title' => __( 'Billed product', 'ahime-neon-sign-configurator' ),
-				'hint'  => $product > 0 ? sprintf( __( 'Neons go into the cart as "%s".', 'ahime-neon-sign-configurator' ), get_the_title( $product ) ) : __( 'With no product linked, the configurator runs in demo mode: nothing can be added to the cart.', 'ahime-neon-sign-configurator' ),
+				'hint'  => $product > 0 ? sprintf( /* translators: %s: product name. */ __( 'Neons go into the cart as "%s".', 'ahime-neon-sign-configurator' ), get_the_title( $product ) ) : __( 'With no product linked, the configurator runs in demo mode: nothing can be added to the cart.', 'ahime-neon-sign-configurator' ),
 				'url'   => admin_url( 'admin.php?page=' . AHNS_Configurator::PAGE_SLUG ),
 				'cta'   => __( 'Choose the product', 'ahime-neon-sign-configurator' ),
 			),
 			array(
 				'done'  => $fonts > 0,
 				'title' => __( 'Fonts', 'ahime-neon-sign-configurator' ),
-				'hint'  => sprintf( __( '%d font(s) offered to your customers.', 'ahime-neon-sign-configurator' ), $fonts ),
+				'hint'  => sprintf( /* translators: %d: number of fonts. */ __( '%d font(s) offered to your customers.', 'ahime-neon-sign-configurator' ), $fonts ),
 				'url'   => admin_url( 'admin.php?page=' . AHNS_Fonts::PAGE_SLUG ),
 				'cta'   => __( 'Choose the fonts', 'ahime-neon-sign-configurator' ),
 			),
 			array(
 				'done'  => $colors > 0,
 				'title' => __( 'Colours', 'ahime-neon-sign-configurator' ),
-				'hint'  => sprintf( __( '%d tube colour(s) on offer.', 'ahime-neon-sign-configurator' ), $colors ),
+				'hint'  => sprintf( /* translators: %d: number of colours. */ __( '%d tube colour(s) on offer.', 'ahime-neon-sign-configurator' ), $colors ),
 				'url'   => admin_url( 'admin.php?page=' . AHNS_Catalog::COLORS_SLUG ),
 				'cta'   => __( 'Choose the colours', 'ahime-neon-sign-configurator' ),
 			),
@@ -106,7 +106,7 @@ class AHNS_Dashboard {
 			array(
 				'done'  => '' !== $email,
 				'title' => __( 'Workshop e-mail', 'ahime-neon-sign-configurator' ),
-				'hint'  => '' !== $email ? sprintf( __( 'The specification is sent to %s.', 'ahime-neon-sign-configurator' ), $email ) : __( 'With no address, nobody receives the manufacturing specification.', 'ahime-neon-sign-configurator' ),
+				'hint'  => '' !== $email ? sprintf( /* translators: %s: e-mail address. */ __( 'The specification is sent to %s.', 'ahime-neon-sign-configurator' ), $email ) : __( 'With no address, nobody receives the manufacturing specification.', 'ahime-neon-sign-configurator' ),
 				'url'   => admin_url( 'admin.php?page=' . AHNS_Appearance::PAGE_SLUG ),
 				'cta'   => __( 'Set the address', 'ahime-neon-sign-configurator' ),
 			),
@@ -134,7 +134,7 @@ class AHNS_Dashboard {
 			__( 'Dashboard', 'ahime-neon-sign-configurator' ),
 			$done === $total
 				? __( 'Your configurator is ready to sell.', 'ahime-neon-sign-configurator' )
-				: sprintf( __( 'Setup: %1$d step(s) out of %2$d. %3$d item(s) still to sort out.', 'ahime-neon-sign-configurator' ), $done, $total, $total - $done ),
+				: sprintf( /* translators: 1: steps done, 2: total steps, 3: steps left. */ __( 'Setup: %1$d step(s) out of %2$d. %3$d item(s) still to sort out.', 'ahime-neon-sign-configurator' ), $done, $total, $total - $done ),
 			$actions
 		);
 

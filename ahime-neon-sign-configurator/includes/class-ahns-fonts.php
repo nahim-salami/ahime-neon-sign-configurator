@@ -322,7 +322,7 @@ class AHNS_Fonts {
 		AHNS_Admin_UI::open(
 			__( 'Fonts', 'ahime-neon-sign-configurator' ),
 			sprintf(
-				__( '%d fonts available (SIL Open Font License, bundled with the plugin). Tick the ones you want to offer to your customers.', 'ahime-neon-sign-configurator' ),
+				/* translators: %d: number of fonts. */ __( '%d fonts available (SIL Open Font License, bundled with the plugin). Tick the ones you want to offer to your customers.', 'ahime-neon-sign-configurator' ),
 				count( $available )
 			)
 		);
@@ -385,7 +385,7 @@ class AHNS_Fonts {
 			printf(
 				'<label class="ahnsf-card%1$s"><span class="ahnsf-head"><input type="checkbox" name="fonts[]" value="%2$s"%3$s /> %4$s</span>'
 				. '<span class="ahnsf-prev" style="font-family:\'AHNSPrev_%5$s\';">%6$s</span>'
-				. '<span class="ahnsf-meta">' . esc_html__( '%7$s · %8$d glyphs measured', 'ahime-neon-sign-configurator' ) . '</span></label>',
+				. '<span class="ahnsf-meta">' . /* translators: 7: font style (script or block), 8: number of measured characters. Placeholders 1 to 6 are used by the surrounding markup. */ esc_html__( '%7$s · %8$d glyphs measured', 'ahime-neon-sign-configurator' ) . '</span></label>',
 				$on ? ' on' : '',
 				esc_attr( $id ),
 				checked( $on, true, false ),

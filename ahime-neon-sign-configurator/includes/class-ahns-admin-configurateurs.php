@@ -223,7 +223,7 @@ class AHNS_Admin_Configurateurs {
 				'<td>%s</td>',
 				esc_html(
 					$conf['defaut']
-						/* translators: %d : nombre de produits qui le désignent explicitement. */
+						/* translators: %d: number of products that name this configurator explicitly. */
 						? sprintf( __( '%d + those naming none', 'ahime-neon-sign-configurator' ), $combien )
 						: (string) $combien
 				)
@@ -233,9 +233,9 @@ class AHNS_Admin_Configurateurs {
 			// vont redevenir ordinaires est écrit dans la question ; sans lui,
 			// le marchand apprend la nouvelle par un client.
 			$question = $combien > 0
-				/* translators: 1 : nom du configurateur, 2 : nombre de produits. */
+				/* translators: 1: configurator name, 2: number of products. */
 				? sprintf( __( 'Delete “%1$s”? %2$d products will become ordinary product pages: they stay on sale, but can no longer be customised.', 'ahime-neon-sign-configurator' ), $conf['nom'], $combien )
-				/* translators: %s : nom du configurateur. */
+				/* translators: %s: configurator name. */
 				: sprintf( __( 'Delete “%s”? No product uses it.', 'ahime-neon-sign-configurator' ), $conf['nom'] );
 
 			printf(

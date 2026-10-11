@@ -1026,7 +1026,7 @@ class AHNS_Pricing {
 			} else {
 				$max = $limits['maxWidthCm'];
 				if ( $w > $max || $h > $max ) {
-					$errors[] = sprintf( __( 'Maximum dimension %d cm: beyond that, the panel no longer fits standard shipping.', 'ahime-neon-sign-configurator' ), $max );
+					$errors[] = sprintf( /* translators: %d: maximum dimension in centimetres. */ __( 'Maximum dimension %d cm: beyond that, the panel no longer fits standard shipping.', 'ahime-neon-sign-configurator' ), $max );
 				}
 				if ( $w < 10 || $h < 10 ) {
 					$errors[] = __( 'Minimum dimensions: 10 × 10 cm.', 'ahime-neon-sign-configurator' );
@@ -1040,14 +1040,14 @@ class AHNS_Pricing {
 				? $this->coeff['panels']['materials'][ $mat ]
 				: null;
 			if ( 'outdoor' === ( $config['environment'] ?? 'indoor' ) && $spec && empty( $spec['outdoorReady'] ) ) {
-				$errors[] = sprintf( __( '%s is not suitable outdoors without treatment.', 'ahime-neon-sign-configurator' ), (string) $spec['label'] );
+				$errors[] = sprintf( /* translators: %s: material name. */ __( '%s is not suitable outdoors without treatment.', 'ahime-neon-sign-configurator' ), (string) $spec['label'] );
 			}
 			// Profondeur minimale : 3 cm et non 6 — miroir de validate.ts. Le
 			// motif d'origine vaut pour des modules à entraxe large, pas pour la
 			// gamme BrightLine, faite pour les caissons peu profonds (docs/43 §21).
 			$mini = ( isset( $limits['boxMinDepthCm'] ) && $limits['boxMinDepthCm'] > 0 ) ? (float) $limits['boxMinDepthCm'] : 3.0;
 			if ( 'box-sign' === $kind && isset( $config['boxSign']['depthCm'] ) && (float) $config['boxSign']['depthCm'] < $mini ) {
-				$errors[] = sprintf( __( 'Minimum light box depth: %s cm. Below that, no module spreads light wide enough to light the face without visible hot spots.', 'ahime-neon-sign-configurator' ), rtrim( rtrim( number_format( $mini, 1, ',', '' ), '0' ), ',' ) );
+				$errors[] = sprintf( /* translators: %s: minimum depth in centimetres. */ __( 'Minimum light box depth: %s cm. Below that, no module spreads light wide enough to light the face without visible hot spots.', 'ahime-neon-sign-configurator' ), rtrim( rtrim( number_format( $mini, 1, ',', '' ), '0' ), ',' ) );
 			}
 			return array_values( array_unique( $errors ) );
 		}
@@ -1072,10 +1072,10 @@ class AHNS_Pricing {
 			// continue — les mêmes bornes sont reprises plus bas.
 			if ( ! $avec_texte ) {
 				if ( $m['widthCm'] > $limits['maxWidthCm'] ) {
-					$errors[] = sprintf( __( 'Maximum width: %d cm.', 'ahime-neon-sign-configurator' ), $limits['maxWidthCm'] );
+					$errors[] = sprintf( /* translators: %d: maximum width in centimetres. */ __( 'Maximum width: %d cm.', 'ahime-neon-sign-configurator' ), $limits['maxWidthCm'] );
 				}
 				if ( $m['tubeLengthM'] > $limits['maxTubeM'] ) {
-					$errors[] = sprintf( __( 'Maximum tube length: %d m.', 'ahime-neon-sign-configurator' ), $limits['maxTubeM'] );
+					$errors[] = sprintf( /* translators: %d: maximum tube length in metres. */ __( 'Maximum tube length: %d m.', 'ahime-neon-sign-configurator' ), $limits['maxTubeM'] );
 				}
 				return array_values( array_unique( $errors ) );
 			}
@@ -1098,7 +1098,7 @@ class AHNS_Pricing {
 			}
 			if ( ! empty( $noms ) ) {
 				$errors[] = sprintf(
-					__( '%s: this tube only exists in one colour. Choose an RGB tube, or go back to a fixed colour.', 'ahime-neon-sign-configurator' ),
+					/* translators: %s: tube names. */ __( '%s: this tube only exists in one colour. Choose an RGB tube, or go back to a fixed colour.', 'ahime-neon-sign-configurator' ),
 					implode( ', ', array_unique( $noms ) )
 				);
 			}
@@ -1110,7 +1110,7 @@ class AHNS_Pricing {
 				$all_empty = false;
 			}
 			if ( mb_strlen( (string) $line['text'] ) > $limits['maxCharsPerLine'] ) {
-				$errors[] = sprintf( __( '%d characters maximum per line.', 'ahime-neon-sign-configurator' ), $limits['maxCharsPerLine'] );
+				$errors[] = sprintf( /* translators: %d: maximum number of characters. */ __( '%d characters maximum per line.', 'ahime-neon-sign-configurator' ), $limits['maxCharsPerLine'] );
 			}
 			$manifest = isset( $this->manifests[ $line['fontId'] ] ) ? $this->manifests[ $line['fontId'] ] : null;
 			if ( ! $manifest ) {
@@ -1119,11 +1119,11 @@ class AHNS_Pricing {
 			}
 			$min = 'script' === $manifest['class'] ? $limits['minLetterHeightScriptCm'] : $limits['minLetterHeightBlockCm'];
 			if ( (float) $config['letterHeightCm'] < $min ) {
-				$errors[] = sprintf( __( 'Minimum letter height: %d cm for this font.', 'ahime-neon-sign-configurator' ), $min );
+				$errors[] = sprintf( /* translators: %d: minimum letter height in centimetres. */ __( 'Minimum letter height: %d cm for this font.', 'ahime-neon-sign-configurator' ), $min );
 			}
 			foreach ( mb_str_split( (string) $line['text'] ) as $ch ) {
 				if ( ! isset( $manifest['glyphs'][ $ch ] ) && ! preg_match( '/^\s$/u', $ch ) ) {
-					$errors[] = sprintf( __( 'Character not available in this font: %s', 'ahime-neon-sign-configurator' ), $ch );
+					$errors[] = sprintf( /* translators: %s: the character. */ __( 'Character not available in this font: %s', 'ahime-neon-sign-configurator' ), $ch );
 					break;
 				}
 			}
@@ -1135,7 +1135,7 @@ class AHNS_Pricing {
 		$fab = $this->fabrication_metrics( $config );
 		if ( $fab['minLetterHeightCm'] > 0 && (float) $config['letterHeightCm'] < $fab['minLetterHeightCm'] ) {
 			$errors[] = sprintf(
-				__( 'At this size, the tube (Ø %1$s mm) is wider than the stroke of the letter “%2$s”: the counters would close up. Minimum letter height for this font: %3$s cm.', 'ahime-neon-sign-configurator' ),
+				/* translators: 1: tube diameter in millimetres, 2: the narrowest letter, 3: minimum letter height in centimetres. */ __( 'At this size, the tube (Ø %1$s mm) is wider than the stroke of the letter “%2$s”: the counters would close up. Minimum letter height for this font: %3$s cm.', 'ahime-neon-sign-configurator' ),
 				self::num_courte( $fab['tubeDiameterMm'] ),
 				$fab['narrowestChar'],
 				self::num_courte( $fab['minLetterHeightCm'] )
@@ -1145,13 +1145,13 @@ class AHNS_Pricing {
 			$errors[] = __( 'Type a text for your neon sign.', 'ahime-neon-sign-configurator' );
 		}
 		if ( count( $config['lines'] ) > $limits['maxLines'] ) {
-			$errors[] = sprintf( __( '%d lines maximum.', 'ahime-neon-sign-configurator' ), $limits['maxLines'] );
+			$errors[] = sprintf( /* translators: %d: maximum number of lines. */ __( '%d lines maximum.', 'ahime-neon-sign-configurator' ), $limits['maxLines'] );
 		}
 		if ( $m['widthCm'] > $limits['maxWidthCm'] ) {
-			$errors[] = sprintf( __( 'Maximum width: %d cm.', 'ahime-neon-sign-configurator' ), $limits['maxWidthCm'] );
+			$errors[] = sprintf( /* translators: %d: maximum width in centimetres. */ __( 'Maximum width: %d cm.', 'ahime-neon-sign-configurator' ), $limits['maxWidthCm'] );
 		}
 		if ( $m['tubeLengthM'] > $limits['maxTubeM'] ) {
-			$errors[] = sprintf( __( 'Maximum tube length: %d m.', 'ahime-neon-sign-configurator' ), $limits['maxTubeM'] );
+			$errors[] = sprintf( /* translators: %d: maximum tube length in metres. */ __( 'Maximum tube length: %d m.', 'ahime-neon-sign-configurator' ), $limits['maxTubeM'] );
 		}
 		return array_values( array_unique( $errors ) );
 	}
@@ -1385,19 +1385,19 @@ class AHNS_Pricing {
 
 			$lines[] = array(
 				'key'         => 'material',
-				'label'       => sprintf( __( '%1$s %2$s mm · %3$s m²', 'ahime-neon-sign-configurator' ), $label, $p['thicknessMm'], number_format( $aire, 2, '.', '' ) ),
+				'label'       => sprintf( /* translators: 1: material name, 2: thickness in millimetres, 3: area in square metres. */ __( '%1$s %2$s mm · %3$s m²', 'ahime-neon-sign-configurator' ), $label, $p['thicknessMm'], number_format( $aire, 2, '.', '' ) ),
 				'amountCents' => (int) round( $aire * $this->material_m2_cents( $p['material'], $p['thicknessMm'] ) ),
 			);
 			$ml      = self::panel_cut_length_m( (float) $m['widthCm'], (float) $m['heightCm'], $p['cut'] );
 			$lines[] = array(
 				'key'         => 'cut',
-				'label'       => sprintf( __( 'Cutting %s linear m', 'ahime-neon-sign-configurator' ), number_format( $ml, 2, '.', '' ) ),
+				'label'       => sprintf( /* translators: %s: cutting length in metres. */ __( 'Cutting %s linear m', 'ahime-neon-sign-configurator' ), number_format( $ml, 2, '.', '' ) ),
 				'amountCents' => (int) round( $ml * $pc['cutPerMeterCents'][ $p['cut'] ] ),
 			);
 			if ( 'raw' !== $p['finish'] ) {
 				$lines[] = array(
 					'key'         => 'finish',
-					'label'       => sprintf( __( 'Finish %1$s%2$s', 'ahime-neon-sign-configurator' ), $p['finish'], $faces > 1 ? __( ' (double-sided)', 'ahime-neon-sign-configurator' ) : '' ),
+					'label'       => sprintf( /* translators: 1: finish name, 2: " (double-sided)" or nothing. */ __( 'Finish %1$s%2$s', 'ahime-neon-sign-configurator' ), $p['finish'], $faces > 1 ? __( ' (double-sided)', 'ahime-neon-sign-configurator' ) : '' ),
 					'amountCents' => (int) round( $aire * $faces * $pc['finishPerM2Cents'][ $p['finish'] ] ),
 				);
 			}
@@ -1443,12 +1443,12 @@ class AHNS_Pricing {
 				if ( null !== $palier && $nb > 0 ) {
 					$lines[] = array(
 						'key'         => 'letters',
-						'label'       => sprintf( __( '3D letters %1$s · %2$d letter(s) of %3$s cm', 'ahime-neon-sign-configurator' ), $letters['material'], $nb, $hauteur ),
+						'label'       => sprintf( /* translators: 1: material, 2: number of letters, 3: letter height in centimetres. */ __( '3D letters %1$s · %2$d letter(s) of %3$s cm', 'ahime-neon-sign-configurator' ), $letters['material'], $nb, $hauteur ),
 						'amountCents' => $palier * $nb,
 					);
 				} else {
 					$material_rate = 'metal' === $letters['material'] ? 24000 : ( 'wood' === $letters['material'] ? 13000 : 18000 );
-					$lines[] = array( 'key' => 'letters', 'label' => sprintf( __( '3D letters %1$s · %2$s mm', 'ahime-neon-sign-configurator' ), $letters['material'], $letters['depthMm'] ), 'amountCents' => (int) round( $aire * $material_rate + (float) $letters['depthMm'] * 85 ) );
+					$lines[] = array( 'key' => 'letters', 'label' => sprintf( /* translators: 1: material, 2: depth in millimetres. */ __( '3D letters %1$s · %2$s mm', 'ahime-neon-sign-configurator' ), $letters['material'], $letters['depthMm'] ), 'amountCents' => (int) round( $aire * $material_rate + (float) $letters['depthMm'] * 85 ) );
 				}
 				if ( 'none' !== $letters['lighting'] ) {
 					$lines[] = array( 'key' => 'led', 'label' => __( 'Lighting', 'ahime-neon-sign-configurator' ) . ' ' . $letters['lighting'], 'amountCents' => (int) round( $aire * ( 'front-back' === $letters['lighting'] ? 14000 : 9000 ) ) );
@@ -1456,7 +1456,7 @@ class AHNS_Pricing {
 				foreach ( (array) ( $letters['backboardLayers'] ?? array() ) as $index => $layer ) {
 					$layer_area = $aire * ( 1 + (float) $layer['extensionCm'] / 10 );
 					$layer_rate = 'metal' === $layer['material'] ? 15000 : ( 'wood' === $layer['material'] ? 8000 : 11000 );
-					$lines[] = array( 'key' => 'material', 'label' => sprintf( __( 'Backing layer %1$d · %2$s %3$s mm', 'ahime-neon-sign-configurator' ), $index + 1, $layer['material'], $layer['thicknessMm'] ), 'amountCents' => (int) round( $layer_area * $layer_rate ) );
+					$lines[] = array( 'key' => 'material', 'label' => sprintf( /* translators: 1: layer number, 2: material, 3: thickness in millimetres. */ __( 'Backing layer %1$d · %2$s %3$s mm', 'ahime-neon-sign-configurator' ), $index + 1, $layer['material'], $layer['thicknessMm'] ), 'amountCents' => (int) round( $layer_area * $layer_rate ) );
 				}
 			}
 			return $this->finaliser( $lines, $config, $m );
@@ -1473,12 +1473,12 @@ class AHNS_Pricing {
 
 			$lines[] = array(
 				'key'         => 'body',
-				'label'       => sprintf( __( 'Body %1$s · %2$s m²', 'ahime-neon-sign-configurator' ), $label, number_format( $corps, 2, '.', '' ) ),
+				'label'       => sprintf( /* translators: 1: material name, 2: area in square metres. */ __( 'Body %1$s · %2$s m²', 'ahime-neon-sign-configurator' ), $label, number_format( $corps, 2, '.', '' ) ),
 				'amountCents' => (int) round( $corps * $this->material_m2_cents( $b['material'], 3 ) ),
 			);
 			$lines[] = array(
 				'key'         => 'diffuser',
-				'label'       => sprintf( __( 'Diffusing face%1$s · %3$s m²', 'ahime-neon-sign-configurator' ), (int) $b['faces'] > 1 ? 's' : '', (int) $b['faces'] > 1 ? 's' : '', number_format( $lumineuse, 2, '.', '' ) ),
+				'label'       => sprintf( /* translators: 1: plural mark ("s") or nothing, 3: area in square metres. Placeholder 2 is a second plural mark for languages that need it. */ __( 'Diffusing face%1$s · %3$s m²', 'ahime-neon-sign-configurator' ), (int) $b['faces'] > 1 ? 's' : '', (int) $b['faces'] > 1 ? 's' : '', number_format( $lumineuse, 2, '.', '' ) ),
 				'amountCents' => (int) round( $lumineuse * $pc['diffuserPerM2Cents'] ),
 			);
 			if ( ! empty( $b['printedFace'] ) ) {
@@ -1495,7 +1495,7 @@ class AHNS_Pricing {
 			$watts   = $lumineuse * self::watts_par_m2_effectif( (float) $b['depthCm'], $pc );
 			$lines[] = array(
 				'key'         => 'power',
-				'label'       => sprintf( __( 'Power supply %d W', 'ahime-neon-sign-configurator' ), (int) round( $watts ) ),
+				'label'       => sprintf( /* translators: %d: power in watts. */ __( 'Power supply %d W', 'ahime-neon-sign-configurator' ), (int) round( $watts ) ),
 				'amountCents' => self::watts_cents( $watts ),
 			);
 			$lines[] = array( 'key' => 'build', 'label' => __( 'Box assembly', 'ahime-neon-sign-configurator' ), 'amountCents' => $pc['boxBuildCents'] );
@@ -1577,7 +1577,7 @@ class AHNS_Pricing {
 
 		$lines[] = array(
 			'key'         => 'tube',
-			'label'       => sprintf( __( 'LED tube %s m', 'ahime-neon-sign-configurator' ), number_format( $tube_m, 2, '.', '' ) ),
+			'label'       => sprintf( /* translators: %s: length in metres. */ __( 'LED tube %s m', 'ahime-neon-sign-configurator' ), number_format( $tube_m, 2, '.', '' ) ),
 			'amountCents' => $tube_cents,
 		);
 
@@ -1594,7 +1594,7 @@ class AHNS_Pricing {
 			$finish  = $config['support']['finish'];
 			$lines[] = array(
 				'key'         => 'support',
-				'label'       => sprintf( __( 'Backing %1$s (%2$s)', 'ahime-neon-sign-configurator' ), $support, $finish ),
+				'label'       => sprintf( /* translators: 1: backing type, 2: finish. */ __( 'Backing %1$s (%2$s)', 'ahime-neon-sign-configurator' ), $support, $finish ),
 				'amountCents' => (int) round( $area * $c['supportPerM2Cents'][ $finish ] ),
 			);
 			if ( 'stand' === $support ) {

@@ -301,7 +301,7 @@ class AHNS_Appearance {
 			$vue = sprintf(
 				'<iframe class="ahns-peau__cadre" src="%s" title="%s" loading="lazy" tabindex="-1" scrolling="no"></iframe>',
 				esc_url( AHNS_PLUGIN_URL . $maquette ),
-				/* translators: %s : nom du thème. */
+				/* translators: %s: interface (skin) name. */
 				esc_attr( sprintf( __( 'Mock-up of the %s theme', 'ahime-neon-sign-configurator' ), $nom ) )
 			);
 		} else {
@@ -375,7 +375,7 @@ class AHNS_Appearance {
 				$nom_peau = isset( self::THEMES[ $conf['peau'] ] )
 					? AHNS_I18n::t( self::THEMES[ $conf['peau'] ][0] )
 					: $conf['peau'];
-				/* translators: 1 : nom du configurateur, 2 : nom de l'interface. */
+				/* translators: 1: configurator name, 2: interface (skin) name. */
 				$liste[] = sprintf( __( '%1$s: %2$s', 'ahime-neon-sign-configurator' ), $conf['nom'], $nom_peau );
 			}
 			echo '<p class="ahns-hint">' . esc_html__( 'The skin your customers see is chosen PER CONFIGURATOR: each has its own, and each product names the one it uses.', 'ahime-neon-sign-configurator' ) . '</p>';
@@ -402,7 +402,7 @@ class AHNS_Appearance {
 		// --- En-tête du configurateur ------------------------------------------
 		AHNS_Admin_UI::card_open( __( 'Configurator header', 'ahime-neon-sign-configurator' ) );
 		printf(
-			'<p class="ahns-hint">' . esc_html__( 'At the top of the configurator your site name ("%s") is shown and takes customers back to the home page. Add your logo and choose where it sits.', 'ahime-neon-sign-configurator' ) . '</p>',
+			'<p class="ahns-hint">' . /* translators: %s: site name. */ esc_html__( 'At the top of the configurator your site name ("%s") is shown and takes customers back to the home page. Add your logo and choose where it sits.', 'ahime-neon-sign-configurator' ) . '</p>',
 			esc_html( get_bloginfo( 'name' ) )
 		);
 		printf(

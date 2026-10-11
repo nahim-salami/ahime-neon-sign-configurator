@@ -728,12 +728,12 @@ class AHNS_Settings {
 			esc_html(
 				$urgent
 					? sprintf(
-						/* translators: %d : nombre de postes. */
+						/* translators: %d: number of items. */
 						_n( '%d price in your scale comes from a value we could not verify.', '%d prices in your scale come from values we could not verify.', count( $douteux ), 'ahime-neon-sign-configurator' ),
 						count( $douteux )
 					)
 					: sprintf(
-						/* translators: %d : nombre de postes. */
+						/* translators: %d: number of items. */
 						_n( '%d item still follows the general settings rather than your purchases.', '%d items still follow the general settings rather than your purchases.', count( $manque ), 'ahime-neon-sign-configurator' ),
 						count( $manque )
 					)
@@ -951,7 +951,7 @@ class AHNS_Settings {
 			. esc_html__( 'CAN DO: a “single colour” spool makes an RGB order be REFUSED; better said here than on the phone three days later. Left on “-”, nothing is refused. The CONTROLLER replaces the flat RGB fee for this spool: an addressable pixel controller does not cost the same as a three-channel RGB one.', 'ahime-neon-sign-configurator' )
 			. '<br />'
 			. sprintf(
-				/* translators: %d : seuil en lumens par mètre. */
+				/* translators: %d: threshold in lumens per metre. */
 				esc_html__( 'LUMINOUS FLUX decides the “shop window” label: from %d lm/m up, the spool holds its own behind a sunlit window. Left empty, no label: we don’t promise a brightness we haven’t measured. For reference: a common 6 × 12 runs between 145 and 360 lm/m, the brightest on the market around 1,500.', 'ahime-neon-sign-configurator' ),
 				(int) AHNS_Pricing::COEFF['vitrineLumensPerMeter']
 			)

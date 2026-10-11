@@ -80,7 +80,7 @@ class AHNS_Help {
 			array(
 				'label'  => __( 'Fonts', 'ahime-neon-sign-configurator' ),
 				'ok'     => $enabled > 0,
-				'detail' => sprintf( __( '%d font(s) offered to customers.', 'ahime-neon-sign-configurator' ), $enabled ),
+				'detail' => sprintf( /* translators: %d: number of fonts. */ __( '%d font(s) offered to customers.', 'ahime-neon-sign-configurator' ), $enabled ),
 			),
 			array(
 				'label'  => __( 'Fonts folder', 'ahime-neon-sign-configurator' ),
@@ -117,7 +117,7 @@ class AHNS_Help {
 
 		AHNS_Admin_UI::open(
 			__( 'Help & setup wizard', 'ahime-neon-sign-configurator' ),
-			0 === $ko ? __( 'Every check is green.', 'ahime-neon-sign-configurator' ) : sprintf( __( '%d item(s) need your attention.', 'ahime-neon-sign-configurator' ), $ko ),
+			0 === $ko ? __( 'Every check is green.', 'ahime-neon-sign-configurator' ) : sprintf( /* translators: %d: number of checks to fix. */ __( '%d item(s) need your attention.', 'ahime-neon-sign-configurator' ), $ko ),
 			$actions
 		);
 

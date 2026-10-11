@@ -318,7 +318,7 @@ class AHNS_Order {
 				if ( $spec['elec'] ) {
 					$e = $spec['elec'];
 					printf(
-						'<div>' . esc_html__( 'Electrical: %1$s W drawn → %2$s W power supply · %3$s branch(es) at %4$s V', 'ahime-neon-sign-configurator' ) . '</div>',
+						'<div>' . /* translators: 1: power drawn in watts, 2: power supply rating in watts, 3: number of branches, 4: voltage. */ esc_html__( 'Electrical: %1$s W drawn → %2$s W power supply · %3$s branch(es) at %4$s V', 'ahime-neon-sign-configurator' ) . '</div>',
 						esc_html( self::num_o( $e['demandW'] ) ),
 						esc_html( (string) $e['psuW'] ),
 						esc_html( (string) $e['branches'] ),
@@ -332,7 +332,7 @@ class AHNS_Order {
 					// alors c'est un retour.
 					if ( isset( $e['cableDropRatio'] ) && $e['cableDropRatio'] > 0.03 ) {
 						printf(
-							'<div style="margin-top:4px;padding:6px 10px;background:#fff7ed;border:1px solid #fed7aa;border-radius:6px;color:#9a3412;">' . esc_html__( 'Cable: %1$s V lost in the supplied cable, i.e. %2$s %% · above the 3 %% allowed, the end of the tube gets darker. Use %3$s mm² or switch to 24 V.', 'ahime-neon-sign-configurator' ) . '</div>',
+							'<div style="margin-top:4px;padding:6px 10px;background:#fff7ed;border:1px solid #fed7aa;border-radius:6px;color:#9a3412;">' . /* translators: 1: voltage lost in volts, 2: loss as a percentage, 3: recommended cable section in mm². */ esc_html__( 'Cable: %1$s V lost in the supplied cable, i.e. %2$s %% · above the 3 %% allowed, the end of the tube gets darker. Use %3$s mm² or switch to 24 V.', 'ahime-neon-sign-configurator' ) . '</div>',
 							esc_html( self::num_o( $e['cableDropV'] ) ),
 							esc_html( self::num_o( round( $e['cableDropRatio'] * 100, 1 ) ) ),
 							esc_html( self::num_o( $e['cableSectionNeededMm2'] ) )
@@ -566,7 +566,7 @@ class AHNS_Order {
 						$bouts[] = self::num_o( $pm['epaisseur'] ) . ' mm';
 					}
 					if ( isset( $pm['profondeur'] ) ) {
-						$bouts[] = sprintf( __( '%s cm deep', 'ahime-neon-sign-configurator' ), self::num_o( $pm['profondeur'] ) );
+						$bouts[] = sprintf( /* translators: %s: depth in centimetres. */ __( '%s cm deep', 'ahime-neon-sign-configurator' ), self::num_o( $pm['profondeur'] ) );
 					}
 					echo '<div><strong>' . esc_html( $pm['famille'] ) . '</strong> : ' . esc_html( implode( ' · ', $bouts ) ) . '</div>';
 				} else {
@@ -594,7 +594,7 @@ class AHNS_Order {
 							'<div><strong>%s</strong> : %s</div>',
 							esc_html__( 'Power supply', 'ahime-neon-sign-configurator' ),
 							esc_html( sprintf(
-								/* translators: 1: puissance appelée, 2: calibre, 3: branches */
+								/* translators: 1: power drawn in watts, 2: power supply rating in watts, 3: number of branches. */
 								__( '%1$s W drawn → %2$s W rating · %3$s branch(es)', 'ahime-neon-sign-configurator' ),
 								self::num_o( $e['demandW'] ),
 								$e['psuW'],

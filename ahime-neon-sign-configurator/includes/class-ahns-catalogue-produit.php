@@ -105,7 +105,7 @@ class AHNS_Catalogue_Produit {
 				// marchand réordonne ses tailles sans s'apercevoir qu'il vient
 				// de changer ce que chaque produit propose.
 				$tailles[ (string) $taille['label'] ] = sprintf(
-					/* translators: 1 : nom de la taille, 2 : hauteur en centimètres. */
+					/* translators: 1: size name, 2: letter height in centimetres. */
 					__( '%1$s - %2$s cm', 'ahime-neon-sign-configurator' ),
 					$taille['label'],
 					rtrim( rtrim( number_format( (float) $taille['letterHeightCm'], 1, ',', ' ' ), '0' ), ',' )
@@ -214,7 +214,7 @@ class AHNS_Catalogue_Produit {
 			'<p class="ahns-hint" style="margin-top:0;">%s</p>',
 			esc_html(
 				$conf
-					/* translators: %s : nom du configurateur. */
+					/* translators: %s: configurator name. */
 					? sprintf( __( 'This product is composed with “%s”. Below is what it offers from the shop catalogue - untick what you do not want to sell on THIS product.', 'ahime-neon-sign-configurator' ), $conf['nom'] )
 					: __( 'This product no longer has a configurator: its page shows as an ordinary one, and this catalogue serves no purpose for now.', 'ahime-neon-sign-configurator' )
 			)
@@ -233,7 +233,7 @@ class AHNS_Catalogue_Produit {
 				$restreint ? '#8a6d00' : '#646970',
 				esc_html(
 					$restreint
-						/* translators: 1 : nombre retenu, 2 : nombre total. */
+						/* translators: 1: number selected, 2: total number. */
 						? sprintf( __( '%1$d of %2$d', 'ahime-neon-sign-configurator' ), count( $retenus ), count( $tous ) )
 						: __( 'the whole catalogue', 'ahime-neon-sign-configurator' )
 				)

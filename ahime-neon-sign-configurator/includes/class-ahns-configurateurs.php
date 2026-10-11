@@ -231,7 +231,7 @@ class AHNS_Configurateurs {
 		$copie           = $source;
 		$copie['id']     = self::nouvel_id();
 		$copie['defaut'] = false;
-		/* translators: %s : nom du configurateur d'origine. */
+		/* translators: %s: name of the original configurator. */
 		$copie['nom'] = sprintf( __( '%s (copy)', 'ahime-neon-sign-configurator' ), $source['nom'] );
 		return self::enregistrer( $copie );
 	}

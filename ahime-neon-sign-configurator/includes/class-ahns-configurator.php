@@ -169,7 +169,7 @@ class AHNS_Configurator {
 				esc_url( (string) get_edit_post_link( $page_id ) )
 			);
 		} else {
-			printf( '<p>' . esc_html__( '%s No dedicated page yet.', 'ahime-neon-sign-configurator' ) . '</p>', AHNS_Admin_UI::badge( __( 'To do', 'ahime-neon-sign-configurator' ), 'todo' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			printf( '<p>' . /* translators: %s: status badge ("To do"). */ esc_html__( '%s No dedicated page yet.', 'ahime-neon-sign-configurator' ) . '</p>', AHNS_Admin_UI::badge( __( 'To do', 'ahime-neon-sign-configurator' ), 'todo' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			echo '<p><label><input type="checkbox" name="create_page" value="1" checked /> ' . esc_html__( 'Create the page when saving', 'ahime-neon-sign-configurator' ) . '</label></p>';
 		}
 		AHNS_Admin_UI::card_close();

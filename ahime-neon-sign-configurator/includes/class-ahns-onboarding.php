@@ -482,7 +482,7 @@ class AHNS_Onboarding {
 			printf(
 				'<label class="ahns-setup__choice"><input type="radio" name="product_choice" value="%d" checked /><span><strong>%s</strong><em>%s</em></span></label>',
 				(int) $current,
-				esc_html( sprintf( __( 'Keep "%s"', 'ahime-neon-sign-configurator' ), get_the_title( $current ) ) ),
+				esc_html( sprintf( /* translators: %s: product name. */ __( 'Keep "%s"', 'ahime-neon-sign-configurator' ), get_the_title( $current ) ) ),
 				esc_html__( 'This product is already linked to the configurator.', 'ahime-neon-sign-configurator' )
 			);
 		}
@@ -533,7 +533,7 @@ class AHNS_Onboarding {
 				esc_html__( 'We will publish a "Neon builder" page containing the configurator.', 'ahime-neon-sign-configurator' )
 			);
 		}
-		echo '<p class="description">' . sprintf( esc_html__( 'You can also place the configurator anywhere with the shortcode %s.', 'ahime-neon-sign-configurator' ), '<code>[ahns_configurator]</code>' ) . '</p>';
+		echo '<p class="description">' . sprintf( /* translators: %s: the shortcode. */ esc_html__( 'You can also place the configurator anywhere with the shortcode %s.', 'ahime-neon-sign-configurator' ), '<code>[ahns_configurator]</code>' ) . '</p>';
 
 		$this->form_open( 4 );
 		$this->footer( 4, $exists ? __( 'Continue', 'ahime-neon-sign-configurator' ) : __( 'Create the page', 'ahime-neon-sign-configurator' ) );
@@ -616,7 +616,7 @@ class AHNS_Onboarding {
 			$m = $pricing->measure( $w['config'] );
 			$p = $pricing->price( $w['config'], $m );
 			printf(
-				'<tr><td>%s<br /><span class="description">' . esc_html__( '%s m of tube', 'ahime-neon-sign-configurator' ) . '</span></td><td style="text-align:right;width:120px;"><strong>%s</strong></td></tr>',
+				'<tr><td>%s<br /><span class="description">' . /* translators: %s: length of LED tube in metres. */ esc_html__( '%s m of tube', 'ahime-neon-sign-configurator' ) . '</span></td><td style="text-align:right;width:120px;"><strong>%s</strong></td></tr>',
 				esc_html( $w['label'] ),
 				esc_html( number_format( (float) $m['tubeLengthM'], 2, ',', ' ' ) ),
 				wp_kses_post( wc_price( $p['displayTotalCents'] / 100 ) )
