@@ -1,0 +1,2991 @@
+# Ahime Neon Sign Configurator for WooCommerce.
+# Copyright (C) Ahime. This file is distributed under the GPL-2.0-or-later license.
+msgid ""
+msgstr ""
+"Project-Id-Version: Ahime Neon Sign Configurator for WooCommerce 1.3.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/ahime-neon-sign-configurator\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Domain: ahime-neon-sign-configurator\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: includes/class-ahns-admin-configurateurs.php:35
+msgid "Configurators - Ahime Neon"
+msgstr ""
+
+#: includes/class-ahns-admin-configurateurs.php:36, includes/class-ahns-admin-configurateurs.php:178, includes/class-ahns-admin-ui.php:181
+msgid "Configurators"
+msgstr ""
+
+#: includes/class-ahns-admin-configurateurs.php:55, includes/class-ahns-admin-configurateurs.php:109, includes/class-ahns-annonces.php:467
+msgid "You are not allowed to do that."
+msgstr ""
+
+#: includes/class-ahns-admin-configurateurs.php:118, includes/class-ahns-admin-configurateurs.php:180
+msgid "New configurator"
+msgstr ""
+
+#: includes/class-ahns-admin-configurateurs.php:179
+msgid "Each configurator has its own interface, options and display. Your products name the one they use."
+msgstr ""
+
+#: includes/class-ahns-admin-configurateurs.php:192
+msgid "Configurator deleted. The products that used it now show as ordinary product pages."
+msgstr ""
+
+#: includes/class-ahns-admin-configurateurs.php:193
+msgid "Cannot delete: at least one configurator must remain."
+msgstr ""
+
+#: includes/class-ahns-admin-configurateurs.php:200, includes/class-ahns-admin-configurateurs.php:291, includes/class-ahns-profiles.php:336
+msgid "Name"
+msgstr ""
+
+#: includes/class-ahns-admin-configurateurs.php:201
+msgid "Interface"
+msgstr ""
+
+#: includes/class-ahns-admin-configurateurs.php:202, includes/class-ahns-product.php:232
+msgid "Display"
+msgstr ""
+
+#: includes/class-ahns-admin-configurateurs.php:203
+msgid "Products"
+msgstr ""
+
+#: includes/class-ahns-admin-configurateurs.php:218, includes/class-ahns-catalog.php:194, includes/class-ahns-product.php:217
+msgid "default"
+msgstr ""
+
+#: includes/class-ahns-admin-configurateurs.php:227
+msgid "%d + those naming none"
+msgstr ""
+
+#: includes/class-ahns-admin-configurateurs.php:237
+msgid "Delete “%1$s”? %2$d products will become ordinary product pages: they stay on sale, but can no longer be customised."
+msgstr ""
+
+#: includes/class-ahns-admin-configurateurs.php:239
+msgid "Delete “%s”? No product uses it."
+msgstr ""
+
+#: includes/class-ahns-admin-configurateurs.php:244, includes/class-ahns-annonces.php:364, includes/class-ahns-profiles.php:310
+msgid "Edit"
+msgstr ""
+
+#: includes/class-ahns-admin-configurateurs.php:246
+msgid "Duplicate"
+msgstr ""
+
+#: includes/class-ahns-admin-configurateurs.php:253, includes/class-ahns-annonces.php:367, includes/class-ahns-profiles.php:318
+msgid "Delete"
+msgstr ""
+
+#: includes/class-ahns-admin-configurateurs.php:259
+msgid "A product naming no configurator takes the one marked “default”. The price scale stays the shop’s - it is set in Pricing."
+msgstr ""
+
+#: includes/class-ahns-admin-configurateurs.php:276
+msgid "Its interface, what it offers, and how it sits on a product page."
+msgstr ""
+
+#: includes/class-ahns-admin-configurateurs.php:277
+msgid "← All configurators"
+msgstr ""
+
+#: includes/class-ahns-admin-configurateurs.php:282
+msgid "Configurator saved."
+msgstr ""
+
+#: includes/class-ahns-admin-configurateurs.php:292
+msgid "It is not shown on the shop: this is the name you will see in the list and on your product pages."
+msgstr ""
+
+#: includes/class-ahns-admin-configurateurs.php:301
+msgid "This is the default configurator - the one used by products naming none."
+msgstr ""
+
+#: includes/class-ahns-admin-configurateurs.php:307
+msgid "To change the default, tick the box on the one you want: it will take this one’s place."
+msgstr ""
+
+#: includes/class-ahns-admin-configurateurs.php:312
+msgid "The interface"
+msgstr ""
+
+#: includes/class-ahns-admin-configurateurs.php:313
+msgid "The skin your customers see: same engine, same prices, same settings - only the presentation changes. Each preview below is the mock-up itself, live."
+msgstr ""
+
+#: includes/class-ahns-admin-configurateurs.php:318, includes/class-ahns-configurator.php:178, includes/class-ahns-dashboard.php:80
+msgid "Billed product"
+msgstr ""
+
+#: includes/class-ahns-admin-configurateurs.php:319
+msgid "The WooCommerce product used when this configurator sits outside a product page (dedicated page, shortcode). On a product page, it is always that page’s product."
+msgstr ""
+
+#: includes/class-ahns-admin-configurateurs.php:321, includes/class-ahns-configurator.php:181
+msgid "- None (demo mode, no cart) -"
+msgstr ""
+
+#: includes/class-ahns-admin-configurateurs.php:337, includes/class-ahns-product.php:242
+msgid "Dedicated page:"
+msgstr ""
+
+#: includes/class-ahns-admin-configurateurs.php:341
+msgid "edit it"
+msgstr ""
+
+#: includes/class-ahns-admin-configurateurs.php:346
+msgid "Create the dedicated page on save"
+msgstr ""
+
+#: includes/class-ahns-admin-configurateurs.php:352
+msgid "Display on a product page"
+msgstr ""
+
+#: includes/class-ahns-admin-configurateurs.php:353
+msgid "The mode used by products with this configurator. Each product may then override it."
+msgstr ""
+
+#: includes/class-ahns-admin-configurateurs.php:365
+msgid "What this configurator offers"
+msgstr ""
+
+#: includes/class-ahns-admin-configurateurs.php:369
+msgid "An unticked option <strong>disappears</strong> from this configurator and is refused at add-to-cart - you will never receive an order you cannot make."
+msgstr ""
+
+#: includes/class-ahns-admin-configurateurs.php:384, includes/class-ahns-configurator.php:227
+msgid "Maximum number of text lines:"
+msgstr ""
+
+#: includes/class-ahns-admin-configurateurs.php:401, includes/class-ahns-configurator.php:244
+msgid "Preview backgrounds"
+msgstr ""
+
+#: includes/class-ahns-admin-configurateurs.php:405
+msgid "The scenes your customer sees their sign in - one click switches between them. Tick the ones THIS configurator offers."
+msgstr ""
+
+#: includes/class-ahns-admin-configurateurs.php:407
+msgid "Add your own scenes"
+msgstr ""
+
+#: includes/class-ahns-admin-configurateurs.php:437, includes/class-ahns-admin-ui.php:210, includes/class-ahns-dashboard.php:190
+msgid "Pricing"
+msgstr ""
+
+#: includes/class-ahns-admin-configurateurs.php:440
+msgid "The scale is the shop’s - setup, tube metre, backing, power supply, options. A workshop has one cost price, not one per configurator."
+msgstr ""
+
+#: includes/class-ahns-admin-configurateurs.php:442
+msgid "Edit the price scale"
+msgstr ""
+
+#: includes/class-ahns-admin-configurateurs.php:448, includes/class-ahns-configurator.php:256, includes/class-ahns-fonds.php:312
+msgid "Save"
+msgstr ""
+
+#: includes/class-ahns-admin-ui.php:178, includes/class-ahns-dashboard.php:40, includes/class-ahns-dashboard.php:134
+msgid "Dashboard"
+msgstr ""
+
+#: includes/class-ahns-admin-ui.php:191, includes/class-ahns-profiles.php:51, includes/class-ahns-profiles.php:272
+msgid "Trades"
+msgstr ""
+
+#: includes/class-ahns-admin-ui.php:194, includes/class-ahns-dashboard.php:87, includes/class-ahns-dashboard.php:188
+msgid "Fonts"
+msgstr ""
+
+#: includes/class-ahns-admin-ui.php:197, includes/class-ahns-catalog.php:71, includes/class-ahns-catalog.php:175
+msgid "Colours"
+msgstr ""
+
+#: includes/class-ahns-admin-ui.php:198, includes/class-ahns-catalog.php:72, includes/class-ahns-catalog.php:320
+msgid "Backings"
+msgstr ""
+
+#: includes/class-ahns-admin-ui.php:201, includes/class-ahns-materials.php:36, includes/class-ahns-materials.php:182
+msgid "Materials"
+msgstr ""
+
+#: includes/class-ahns-admin-ui.php:207, includes/class-ahns-fonds.php:106, includes/class-ahns-fonds.php:267
+msgid "Scenes"
+msgstr ""
+
+#: includes/class-ahns-admin-ui.php:213, includes/class-ahns-appearance.php:128, includes/class-ahns-appearance.php:347
+msgid "Appearance"
+msgstr ""
+
+#: includes/class-ahns-admin-ui.php:223, includes/class-ahns-annonces.php:289, includes/class-ahns-annonces.php:315
+msgid "Announcements"
+msgstr ""
+
+#: includes/class-ahns-admin-ui.php:236, includes/class-ahns-help.php:30
+msgid "Help"
+msgstr ""
+
+#: includes/class-ahns-admin-ui.php:272
+msgid "Ahime Neon navigation"
+msgstr ""
+
+#: includes/class-ahns-annonces.php:288
+msgid "Announcements - Ahime Neon"
+msgstr ""
+
+#: includes/class-ahns-annonces.php:316
+msgid "Banners, popups and countdowns - on your shop, whatever the theme."
+msgstr ""
+
+#: includes/class-ahns-annonces.php:320
+msgid "Announcement saved."
+msgstr ""
+
+#: includes/class-ahns-annonces.php:324
+msgid "Your announcements"
+msgstr ""
+
+#: includes/class-ahns-annonces.php:326
+msgid "No announcement yet. Compose the first one just below - it stays off until you switch it on."
+msgstr ""
+
+#: includes/class-ahns-annonces.php:329, includes/class-ahns-annonces.php:396
+msgid "Message"
+msgstr ""
+
+#: includes/class-ahns-annonces.php:330, includes/class-ahns-annonces.php:389
+msgid "Type"
+msgstr ""
+
+#: includes/class-ahns-annonces.php:331
+msgid "End"
+msgstr ""
+
+#: includes/class-ahns-annonces.php:332, includes/class-ahns-annonces.php:437
+msgid "Status"
+msgstr ""
+
+#: includes/class-ahns-annonces.php:339
+msgid "Popup"
+msgstr ""
+
+#: includes/class-ahns-annonces.php:339
+msgid "Banner"
+msgstr ""
+
+#: includes/class-ahns-annonces.php:340
+msgid "No end date"
+msgstr ""
+
+#: includes/class-ahns-annonces.php:343
+msgid "Expired"
+msgstr ""
+
+#: includes/class-ahns-annonces.php:345, includes/class-ahns-settings.php:908
+msgid "On"
+msgstr ""
+
+#: includes/class-ahns-annonces.php:347, includes/class-ahns-settings.php:910
+msgid "Off"
+msgstr ""
+
+#: includes/class-ahns-annonces.php:362
+msgid "Switch off"
+msgstr ""
+
+#: includes/class-ahns-annonces.php:362
+msgid "Switch on"
+msgstr ""
+
+#: includes/class-ahns-annonces.php:366
+msgid "Delete this announcement?"
+msgstr ""
+
+#: includes/class-ahns-annonces.php:378
+msgid "Edit the announcement"
+msgstr ""
+
+#: includes/class-ahns-annonces.php:379
+msgid "New announcement"
+msgstr ""
+
+#: includes/class-ahns-annonces.php:391
+msgid "Banner - one line at the top of the page"
+msgstr ""
+
+#: includes/class-ahns-annonces.php:392
+msgid "Popup - a card over the page"
+msgstr ""
+
+#: includes/class-ahns-annonces.php:399
+msgid "Bold and italics allowed (<b>, <em>). Everything else is stripped."
+msgstr ""
+
+#: includes/class-ahns-annonces.php:403
+msgid "Link (optional)"
+msgstr ""
+
+#: includes/class-ahns-annonces.php:406
+msgid "Link label - “Count me in”"
+msgstr ""
+
+#: includes/class-ahns-annonces.php:410
+msgid "End of the announcement"
+msgstr ""
+
+#: includes/class-ahns-annonces.php:413
+msgid "Show the countdown"
+msgstr ""
+
+#: includes/class-ahns-annonces.php:414
+msgid "Your shop’s local time. No date: the announcement never ends, and the countdown has nothing to count. Past date: the announcement removes itself."
+msgstr ""
+
+#: includes/class-ahns-annonces.php:418
+msgid "Opening (popup)"
+msgstr ""
+
+#: includes/class-ahns-annonces.php:421
+msgid "When the page loads"
+msgstr ""
+
+#: includes/class-ahns-annonces.php:422
+msgid "On exit intent (on touch screens: after 30 s)"
+msgstr ""
+
+#: includes/class-ahns-annonces.php:427
+msgid "On which pages"
+msgstr ""
+
+#: includes/class-ahns-annonces.php:430
+msgid "The whole site"
+msgstr ""
+
+#: includes/class-ahns-annonces.php:431
+msgid "The home page"
+msgstr ""
+
+#: includes/class-ahns-annonces.php:432
+msgid "The shop (catalogue, product pages, cart)"
+msgstr ""
+
+#: includes/class-ahns-annonces.php:439
+msgid "On - visible on the shop"
+msgstr ""
+
+#: includes/class-ahns-annonces.php:440
+msgid "Off by default: nothing reaches the storefront without a deliberate action."
+msgstr ""
+
+#: includes/class-ahns-annonces.php:445
+msgid "Save changes"
+msgstr ""
+
+#: includes/class-ahns-annonces.php:445
+msgid "Create the announcement"
+msgstr ""
+
+#: includes/class-ahns-annonces.php:447, includes/class-ahns-profiles.php:428
+msgid "Cancel"
+msgstr ""
+
+#: includes/class-ahns-annonces.php:454
+msgid "What this screen does not do"
+msgstr ""
+
+#: includes/class-ahns-annonces.php:455
+msgid "The cookie consent banner is not an announcement: it is a legal matter, handled separately. The “added to cart” popup with suggestions will come in a later version."
+msgstr ""
+
+#: includes/class-ahns-annonces.php:608, includes/class-ahns-bareme-produit.php (const LIGNES), includes/class-ahns-bareme-produit.php (const LIGNES)
+msgid "days"
+msgstr ""
+
+#: includes/class-ahns-annonces.php:609
+msgid "hours"
+msgstr ""
+
+#: includes/class-ahns-annonces.php:610
+msgid "minutes"
+msgstr ""
+
+#: includes/class-ahns-annonces.php:611
+msgid "seconds"
+msgstr ""
+
+#: includes/class-ahns-annonces.php:613
+msgid "End of the offer"
+msgstr ""
+
+#: includes/class-ahns-annonces.php:631, includes/class-ahns-annonces.php:653
+msgid "Count me in"
+msgstr ""
+
+#: includes/class-ahns-annonces.php:633
+msgid "Close the banner"
+msgstr ""
+
+#: includes/class-ahns-annonces.php:649, includes/class-ahns-cart.php:865, includes/class-ahns-order.php:456
+msgid "Close"
+msgstr ""
+
+#: includes/class-ahns-appearance.php:127
+msgid "Appearance - Ahime Neon"
+msgstr ""
+
+#: includes/class-ahns-appearance.php:305
+msgid "Mock-up of the %s theme"
+msgstr ""
+
+#: includes/class-ahns-appearance.php:324
+msgid "Soon"
+msgstr ""
+
+#: includes/class-ahns-appearance.php:347
+msgid "Your colour, your words, your logo - and the language of this admin."
+msgstr ""
+
+#: includes/class-ahns-appearance.php:349
+msgid "Appearance saved."
+msgstr ""
+
+#: includes/class-ahns-appearance.php:370
+msgid "The configurator interface"
+msgstr ""
+
+#: includes/class-ahns-appearance.php:379
+msgid "%1$s: %2$s"
+msgstr ""
+
+#: includes/class-ahns-appearance.php:381
+msgid "The skin your customers see is chosen PER CONFIGURATOR: each has its own, and each product names the one it uses."
+msgstr ""
+
+#: includes/class-ahns-appearance.php:384
+msgid "Choose the interfaces"
+msgstr ""
+
+#: includes/class-ahns-appearance.php:393, includes/class-ahns-onboarding.php:644
+msgid "Brand colour"
+msgstr ""
+
+#: includes/class-ahns-appearance.php:394
+msgid "It colours the configurator buttons, the cart and order buttons, and the accents of this admin."
+msgstr ""
+
+#: includes/class-ahns-appearance.php:403
+msgid "Configurator header"
+msgstr ""
+
+#: includes/class-ahns-appearance.php:405
+msgid "At the top of the configurator your site name (\"%s\") is shown and takes customers back to the home page. Add your logo and choose where it sits."
+msgstr ""
+
+#: includes/class-ahns-appearance.php:411, includes/class-ahns-onboarding.php:658
+msgid "Choose a logo"
+msgstr ""
+
+#: includes/class-ahns-appearance.php:412, includes/class-ahns-fonds.php:342, includes/class-ahns-onboarding.php:659
+msgid "Remove"
+msgstr ""
+
+#: includes/class-ahns-appearance.php:422
+msgid "With no logo, the site name is shown on its own."
+msgstr ""
+
+#: includes/class-ahns-appearance.php:426
+msgid "Button wording"
+msgstr ""
+
+#: includes/class-ahns-appearance.php:427
+msgid "An empty field falls back to the default wording, translated into the visitor's language."
+msgstr ""
+
+#: includes/class-ahns-appearance.php:442
+msgid "Language and notifications"
+msgstr ""
+
+#: includes/class-ahns-appearance.php:444
+msgid "Language of this admin"
+msgstr ""
+
+#: includes/class-ahns-appearance.php:446, includes/class-ahns-appearance.php:463
+msgid "Follow the site language"
+msgstr ""
+
+#: includes/class-ahns-appearance.php:448
+msgid "Independent of your site's language and of what your customers see."
+msgstr ""
+
+#: includes/class-ahns-appearance.php:461
+msgid "Configurator language"
+msgstr ""
+
+#: includes/class-ahns-appearance.php:465
+msgid "What your CUSTOMERS read in the configurator. “Follow the site language” suits a multilingual shop: the page being visited decides. Force a language if your site is in one language and your customers speak another."
+msgstr ""
+
+#: includes/class-ahns-appearance.php:467, includes/class-ahns-dashboard.php:108, includes/class-ahns-help.php:101
+msgid "Workshop e-mail"
+msgstr ""
+
+#: includes/class-ahns-appearance.php:468
+msgid "Receives the full specification with every order. Empty = nothing is sent."
+msgstr ""
+
+#: includes/class-ahns-appearance.php:474
+msgid "Save appearance"
+msgstr ""
+
+#: includes/class-ahns-appearance.php (const LAYOUTS)
+msgid "Site name only"
+msgstr ""
+
+#: includes/class-ahns-appearance.php (const LAYOUTS)
+msgid "Logo only"
+msgstr ""
+
+#: includes/class-ahns-appearance.php (const LAYOUTS)
+msgid "Logo left of the name"
+msgstr ""
+
+#: includes/class-ahns-appearance.php (const LAYOUTS)
+msgid "Logo right of the name"
+msgstr ""
+
+#: includes/class-ahns-appearance.php (const LAYOUTS)
+msgid "Logo above the name"
+msgstr ""
+
+#: includes/class-ahns-appearance.php (const LAYOUTS)
+msgid "Logo below the name"
+msgstr ""
+
+#: includes/class-ahns-appearance.php (const THEMES)
+msgid "Bright shop"
+msgstr ""
+
+#: includes/class-ahns-appearance.php (const THEMES)
+msgid "The original theme: white background, your brand colour, scrolling panel."
+msgstr ""
+
+#: includes/class-ahns-appearance.php (const LABELS)
+msgid "Configurator title"
+msgstr ""
+
+#: includes/class-ahns-appearance.php (const LABELS)
+msgid "\"Add to cart\" button"
+msgstr ""
+
+#: includes/class-ahns-appearance.php (const LABELS)
+msgid "Add to cart"
+msgstr ""
+
+#: includes/class-ahns-appearance.php (const LABELS)
+msgid "\"Checkout\" button"
+msgstr ""
+
+#: includes/class-ahns-appearance.php (const LABELS)
+msgid "Checkout"
+msgstr ""
+
+#: includes/class-ahns-appearance.php (const LABELS)
+msgid "\"Make another\" button"
+msgstr ""
+
+#: includes/class-ahns-appearance.php (const LABELS)
+msgid "Make another"
+msgstr ""
+
+#: includes/class-ahns-ar.php:122, includes/class-ahns-cart.php:411
+msgid "Invalid security token. Reload the page."
+msgstr ""
+
+#: includes/class-ahns-ar.php:134, includes/class-ahns-ar.php:138
+msgid "Model missing or too large."
+msgstr ""
+
+#: includes/class-ahns-ar.php:143
+msgid "Unrecognised model format."
+msgstr ""
+
+#: includes/class-ahns-ar.php:148
+msgid "The upload folder is not accessible."
+msgstr ""
+
+#: includes/class-ahns-ar.php:163
+msgid "The model could not be saved."
+msgstr ""
+
+#: includes/class-ahns-bareme-produit.php:115
+msgid "This sign’s price"
+msgstr ""
+
+#: includes/class-ahns-bareme-produit.php:132
+msgid "This product is not sold through the configurator yet: the WooCommerce price applies."
+msgstr ""
+
+#: includes/class-ahns-bareme-produit.php:147
+msgid "Same as the shop"
+msgstr ""
+
+#: includes/class-ahns-bareme-produit.php:149
+msgid "Price scale of its own"
+msgstr ""
+
+#: includes/class-ahns-bareme-produit.php:155
+msgid "The shop’s price scale - setup, tube, options - is set once and for all."
+msgstr ""
+
+#: includes/class-ahns-bareme-produit.php:157
+msgid "Edit it"
+msgstr ""
+
+#: includes/class-ahns-bareme-produit.php:167
+msgid "These values start from the shop’s. What you change here applies to this product only - and the whole scale becomes this one, nothing is inherited any more."
+msgstr ""
+
+#: includes/class-ahns-bareme-produit.php:189
+msgid "Round prices (€39, €49…)"
+msgstr ""
+
+#: includes/class-ahns-bareme-produit.php:193
+msgid "Panel materials keep their own screen and stay shared across the shop: their price depends on thickness and square metre, not on the range."
+msgstr ""
+
+#: includes/class-ahns-bareme-produit.php (const LIGNES), includes/class-ahns-dashboard.php:161
+msgid "Getting started"
+msgstr ""
+
+#: includes/class-ahns-bareme-produit.php (const LIGNES)
+msgid "The production flat fee, whatever the size."
+msgstr ""
+
+#: includes/class-ahns-bareme-produit.php (const LIGNES)
+msgid "Metre of LED tube"
+msgstr ""
+
+#: includes/class-ahns-bareme-produit.php (const LIGNES)
+msgid "The price of one metre of installed tube."
+msgstr ""
+
+#: includes/class-ahns-bareme-produit.php (const LIGNES), includes/class-ahns-configurator.php (const FEATURES), includes/class-ahns-order.php:551
+msgid "Remote + dimmer"
+msgstr ""
+
+#: includes/class-ahns-bareme-produit.php (const LIGNES)
+msgid "Added when the customer takes the option."
+msgstr ""
+
+#: includes/class-ahns-bareme-produit.php (const LIGNES), includes/class-ahns-pricing.php:1655, includes/class-ahns-settings.php:161
+msgid "Night timer"
+msgstr ""
+
+#: includes/class-ahns-bareme-produit.php (const LIGNES)
+msgid "BOUGHT-IN part: the default is not sourced, enter your supplier's price."
+msgstr ""
+
+#: includes/class-ahns-bareme-produit.php (const LIGNES)
+msgid "Commercial warranty, indoor (months)"
+msgstr ""
+
+#: includes/class-ahns-bareme-produit.php (const LIGNES)
+msgid "ADDS to the legal guarantee, does not replace it. Under 24 months, it is not shown to consumers."
+msgstr ""
+
+#: includes/class-ahns-bareme-produit.php (const LIGNES)
+msgid "Commercial warranty, outdoor (months)"
+msgstr ""
+
+#: includes/class-ahns-bareme-produit.php (const LIGNES)
+msgid "Same. This setting is mostly used between businesses."
+msgstr ""
+
+#: includes/class-ahns-bareme-produit.php (const LIGNES)
+msgid "Parcel: max length (cm)"
+msgstr ""
+
+#: includes/class-ahns-bareme-produit.php (const LIGNES)
+msgid "Beyond that, the piece ships in panels. A SHIPPING rule, not a material one."
+msgstr ""
+
+#: includes/class-ahns-bareme-produit.php (const LIGNES)
+msgid "Parcel: max width (cm)"
+msgstr ""
+
+#: includes/class-ahns-bareme-produit.php (const LIGNES)
+msgid "Same. The defaults come from market practice, not from a data sheet."
+msgstr ""
+
+#: includes/class-ahns-bareme-produit.php (const LIGNES)
+msgid "RGB: flat fee"
+msgstr ""
+
+#: includes/class-ahns-bareme-produit.php (const LIGNES)
+msgid "Added when the customer chooses colour-changing."
+msgstr ""
+
+#: includes/class-ahns-bareme-produit.php (const LIGNES)
+msgid "Outdoor: multiplier"
+msgstr ""
+
+#: includes/class-ahns-bareme-produit.php (const LIGNES)
+msgid "Multiplies the total for outdoor installation (1 = no effect)."
+msgstr ""
+
+#: includes/class-ahns-bareme-produit.php (const LIGNES)
+msgid "Express: multiplier"
+msgstr ""
+
+#: includes/class-ahns-bareme-produit.php (const LIGNES)
+msgid "Multiplies the total for rush production."
+msgstr ""
+
+#: includes/class-ahns-bareme-produit.php (const LIGNES)
+msgid "Standard lead time: minimum"
+msgstr ""
+
+#: includes/class-ahns-bareme-produit.php (const LIGNES), includes/class-ahns-bareme-produit.php (const LIGNES)
+msgid "Working days shown to the customer."
+msgstr ""
+
+#: includes/class-ahns-bareme-produit.php (const LIGNES)
+msgid "Standard lead time: maximum"
+msgstr ""
+
+#: includes/class-ahns-bareme-produit.php (const LIGNES)
+msgid "Express lead time: minimum"
+msgstr ""
+
+#: includes/class-ahns-bareme-produit.php (const LIGNES), includes/class-ahns-bareme-produit.php (const LIGNES)
+msgid "Working days when the customer takes the option."
+msgstr ""
+
+#: includes/class-ahns-bareme-produit.php (const LIGNES)
+msgid "Express lead time: maximum"
+msgstr ""
+
+#: includes/class-ahns-cart.php:419, includes/class-ahns-cart.php:521
+msgid "Product unavailable."
+msgstr ""
+
+#: includes/class-ahns-cart.php:430
+msgid "Invalid configuration."
+msgstr ""
+
+#: includes/class-ahns-cart.php:486, includes/class-ahns-order.php:178, includes/class-ahns-profiles.php (const FAMILIES)
+msgid "Panel"
+msgstr ""
+
+#: includes/class-ahns-cart.php:487, includes/class-ahns-order.php:178, includes/class-ahns-profiles.php (const FAMILIES)
+msgid "Light box"
+msgstr ""
+
+#: includes/class-ahns-cart.php:488, includes/class-ahns-dashboard.php:261
+msgid "Custom logo"
+msgstr ""
+
+#: includes/class-ahns-cart.php:547
+msgid "Could not add to cart."
+msgstr ""
+
+#: includes/class-ahns-cart.php:620, includes/class-ahns-cart.php:740, includes/class-ahns-order.php:275
+msgid "Text"
+msgstr ""
+
+#: includes/class-ahns-cart.php:622, includes/class-ahns-cart.php:741, includes/class-ahns-order.php:276
+msgid "Dimensions"
+msgstr ""
+
+#: includes/class-ahns-cart.php:627, includes/class-ahns-order.php:279, includes/class-ahns-order.php:573
+msgid "Backing"
+msgstr ""
+
+#: includes/class-ahns-cart.php:633, includes/class-ahns-order.php:69
+msgid "RGB"
+msgstr ""
+
+#: includes/class-ahns-cart.php:639
+msgid "Outdoor (drained IP65 box, IP67 tube and driver)"
+msgstr ""
+
+#: includes/class-ahns-cart.php:642, includes/class-ahns-order.php:75, includes/class-ahns-order.php:291
+msgid "Dimmer"
+msgstr ""
+
+#: includes/class-ahns-cart.php:645
+msgid "Express"
+msgstr ""
+
+#: includes/class-ahns-cart.php:648, includes/class-ahns-order.php:297, includes/class-ahns-order.php:577
+msgid "Options"
+msgstr ""
+
+#: includes/class-ahns-cart.php:661, includes/class-ahns-order.php:414
+msgid "Preview"
+msgstr ""
+
+#: includes/class-ahns-cart.php:669
+msgid "Edit design"
+msgstr ""
+
+#: includes/class-ahns-cart.php:805, includes/class-ahns-cart.php:824, includes/class-ahns-cart.php:825
+msgid "Neon preview"
+msgstr ""
+
+#: includes/class-ahns-cart.php:866, includes/class-ahns-cart.php:867, includes/class-ahns-order.php:400
+msgid "Preview of your neon"
+msgstr ""
+
+#: includes/class-ahns-catalog.php:71
+msgid "Colours - Ahime Neon"
+msgstr ""
+
+#: includes/class-ahns-catalog.php:72
+msgid "Backings - Ahime Neon"
+msgstr ""
+
+#: includes/class-ahns-catalog.php:175
+msgid "The tube palette you offer. Every colour is shown lit and unlit, just like the finished product."
+msgstr ""
+
+#: includes/class-ahns-catalog.php:177
+msgid "Palette saved."
+msgstr ""
+
+#: includes/class-ahns-catalog.php:184
+msgid "Palette on offer"
+msgstr ""
+
+#: includes/class-ahns-catalog.php:185
+msgid "Untick a colour and it disappears from the configurator. It is refused at cart time too."
+msgstr ""
+
+#: includes/class-ahns-catalog.php:205
+msgid "Your own colours"
+msgstr ""
+
+#: includes/class-ahns-catalog.php:206
+msgid "Add a shade you keep in stock that is not in the bundled palette."
+msgstr ""
+
+#: includes/class-ahns-catalog.php:207
+msgid "Colour"
+msgstr ""
+
+#: includes/class-ahns-catalog.php:217
+msgid "A row with no name is ignored: clear the name to remove a colour."
+msgstr ""
+
+#: includes/class-ahns-catalog.php:232
+msgid "Save palette"
+msgstr ""
+
+#: includes/class-ahns-catalog.php:320
+msgid "The cuts and finishes your workshop can actually make."
+msgstr ""
+
+#: includes/class-ahns-catalog.php:322
+msgid "Backings saved."
+msgstr ""
+
+#: includes/class-ahns-catalog.php:329
+msgid "Cut types"
+msgstr ""
+
+#: includes/class-ahns-catalog.php:330
+msgid "Anything unticked disappears from the configurator. An outdoor neon always forces the box."
+msgstr ""
+
+#: includes/class-ahns-catalog.php:341, includes/class-ahns-materials.php:251
+msgid "Finishes"
+msgstr ""
+
+#: includes/class-ahns-catalog.php:351
+msgid "Default light box depth:"
+msgstr ""
+
+#: includes/class-ahns-catalog.php:356
+msgid "Save backings"
+msgstr ""
+
+#: includes/class-ahns-catalog.php (const PALETTE)
+msgid "Warm white"
+msgstr ""
+
+#: includes/class-ahns-catalog.php (const PALETTE)
+msgid "Cool white"
+msgstr ""
+
+#: includes/class-ahns-catalog.php (const PALETTE)
+msgid "Pink"
+msgstr ""
+
+#: includes/class-ahns-catalog.php (const PALETTE)
+msgid "Light pink"
+msgstr ""
+
+#: includes/class-ahns-catalog.php (const PALETTE)
+msgid "Red"
+msgstr ""
+
+#: includes/class-ahns-catalog.php (const PALETTE)
+msgid "Orange"
+msgstr ""
+
+#: includes/class-ahns-catalog.php (const PALETTE)
+msgid "Yellow"
+msgstr ""
+
+#: includes/class-ahns-catalog.php (const PALETTE)
+msgid "Lime green"
+msgstr ""
+
+#: includes/class-ahns-catalog.php (const PALETTE)
+msgid "Green"
+msgstr ""
+
+#: includes/class-ahns-catalog.php (const PALETTE)
+msgid "Turquoise"
+msgstr ""
+
+#: includes/class-ahns-catalog.php (const PALETTE)
+msgid "Ice blue"
+msgstr ""
+
+#: includes/class-ahns-catalog.php (const PALETTE)
+msgid "Blue"
+msgstr ""
+
+#: includes/class-ahns-catalog.php (const PALETTE)
+msgid "Purple"
+msgstr ""
+
+#: includes/class-ahns-catalog.php (const PALETTE)
+msgid "Lilac"
+msgstr ""
+
+#: includes/class-ahns-catalog.php (const PALETTE)
+msgid "Pastel pink"
+msgstr ""
+
+#: includes/class-ahns-catalog.php (const SUPPORT_TYPES)
+msgid "Cut around (follows the artwork)"
+msgstr ""
+
+#: includes/class-ahns-catalog.php (const SUPPORT_TYPES)
+msgid "Rectangle"
+msgstr ""
+
+#: includes/class-ahns-catalog.php (const SUPPORT_TYPES)
+msgid "Cut to letter"
+msgstr ""
+
+#: includes/class-ahns-catalog.php (const SUPPORT_TYPES), includes/class-ahns-pricing.php:1589
+msgid "Box"
+msgstr ""
+
+#: includes/class-ahns-catalog.php (const SUPPORT_TYPES), includes/class-ahns-pricing.php:1601
+msgid "Free-standing base"
+msgstr ""
+
+#: includes/class-ahns-catalog.php (const SUPPORT_TYPES)
+msgid "Direct mount (no backing plate)"
+msgstr ""
+
+#: includes/class-ahns-catalog.php (const SUPPORT_FINISHES)
+msgid "Clear"
+msgstr ""
+
+#: includes/class-ahns-catalog.php (const SUPPORT_FINISHES)
+msgid "Black"
+msgstr ""
+
+#: includes/class-ahns-catalog.php (const SUPPORT_FINISHES)
+msgid "White"
+msgstr ""
+
+#: includes/class-ahns-catalog.php (const SUPPORT_FINISHES)
+msgid "Coloured"
+msgstr ""
+
+#: includes/class-ahns-catalog.php (const SUPPORT_FINISHES)
+msgid "Mirror"
+msgstr ""
+
+#: includes/class-ahns-catalog.php (const SUPPORT_FINISHES)
+msgid "UV printed"
+msgstr ""
+
+#: includes/class-ahns-catalogue-produit.php:60
+msgid "The tube colours offered for this product."
+msgstr ""
+
+#: includes/class-ahns-catalogue-produit.php:65
+msgid "Backing cuts"
+msgstr ""
+
+#: includes/class-ahns-catalogue-produit.php:66
+msgid "The shape of the plate carrying the tube."
+msgstr ""
+
+#: includes/class-ahns-catalogue-produit.php:70
+msgid "Backing finishes"
+msgstr ""
+
+#: includes/class-ahns-catalogue-produit.php:71
+msgid "The look of that plate."
+msgstr ""
+
+#: includes/class-ahns-catalogue-produit.php:82
+msgid "Typefaces"
+msgstr ""
+
+#: includes/class-ahns-catalogue-produit.php:83
+msgid "The fonts offered for the text."
+msgstr ""
+
+#: includes/class-ahns-catalogue-produit.php:95
+msgid "Panel materials"
+msgstr ""
+
+#: includes/class-ahns-catalogue-produit.php:96
+msgid "For panel or light-box products."
+msgstr ""
+
+#: includes/class-ahns-catalogue-produit.php:109
+msgid "%1$s - %2$s cm"
+msgstr ""
+
+#: includes/class-ahns-catalogue-produit.php:115, includes/class-ahns-settings.php:825
+msgid "Sizes on offer"
+msgstr ""
+
+#: includes/class-ahns-catalogue-produit.php:116
+msgid "The height shortcuts. The slider stays free between the shop’s bounds."
+msgstr ""
+
+#: includes/class-ahns-catalogue-produit.php:183
+msgid "What this sign offers"
+msgstr ""
+
+#: includes/class-ahns-catalogue-produit.php:207
+msgid "This product is not sold through the configurator yet. Tick “Sell this product through the configurator” in the right-hand column, save, and this catalogue takes effect."
+msgstr ""
+
+#: includes/class-ahns-catalogue-produit.php:218
+msgid "This product is composed with “%s”. Below is what it offers from the shop catalogue - untick what you do not want to sell on THIS product."
+msgstr ""
+
+#: includes/class-ahns-catalogue-produit.php:219
+msgid "This product no longer has a configurator: its page shows as an ordinary one, and this catalogue serves no purpose for now."
+msgstr ""
+
+#: includes/class-ahns-catalogue-produit.php:237
+msgid "%1$d of %2$d"
+msgstr ""
+
+#: includes/class-ahns-catalogue-produit.php:238
+msgid "the whole catalogue"
+msgstr ""
+
+#: includes/class-ahns-catalogue-produit.php:244
+msgid "The shop offers none for now."
+msgstr ""
+
+#: includes/class-ahns-catalogue-produit.php:276
+msgid "Unticking everything means offering everything: a product without a single colour would not sell. To remove a colour from the WHOLE shop, use the Colours screen."
+msgstr ""
+
+#: includes/class-ahns-configurateurs.php:235
+msgid "%s (copy)"
+msgstr ""
+
+#: includes/class-ahns-configurateurs.php:293, includes/class-ahns-fonds.php:222
+msgid "Untitled"
+msgstr ""
+
+#: includes/class-ahns-configurateurs.php:316
+msgid "Default"
+msgstr ""
+
+#: includes/class-ahns-configurator.php:50
+msgid "Configurator - Ahime Neon"
+msgstr ""
+
+#: includes/class-ahns-configurator.php:51, includes/class-ahns-configurator.php:148, includes/class-ahns-product.php:210
+msgid "Configurator"
+msgstr ""
+
+#: includes/class-ahns-configurator.php:149
+msgid "Where your configurator lives, which product it bills, and what it offers your customers."
+msgstr ""
+
+#: includes/class-ahns-configurator.php:150
+msgid "View page"
+msgstr ""
+
+#: includes/class-ahns-configurator.php:153
+msgid "Settings saved."
+msgstr ""
+
+#: includes/class-ahns-configurator.php:161, includes/class-ahns-dashboard.php:73, includes/class-ahns-help.php:91
+msgid "Configurator page"
+msgstr ""
+
+#: includes/class-ahns-configurator.php:162
+msgid "A blank-canvas page with no theme chrome: no conflict is possible. The configurator header takes your customers back to the home page."
+msgstr ""
+
+#: includes/class-ahns-configurator.php:165
+msgid "Edit page"
+msgstr ""
+
+#: includes/class-ahns-configurator.php:166
+msgid "Created"
+msgstr ""
+
+#: includes/class-ahns-configurator.php:172
+msgid "%s No dedicated page yet."
+msgstr ""
+
+#: includes/class-ahns-configurator.php:172
+msgid "To do"
+msgstr ""
+
+#: includes/class-ahns-configurator.php:173
+msgid "Create the page when saving"
+msgstr ""
+
+#: includes/class-ahns-configurator.php:179
+msgid "The WooCommerce product used when the configurator is placed outside a product page (dedicated page, shortcode). On a product page, it is always that page's product."
+msgstr ""
+
+#: includes/class-ahns-configurator.php:194
+msgid "Default display on a product page"
+msgstr ""
+
+#: includes/class-ahns-configurator.php:195
+msgid "Offered when you create a customisable product. Each product can then have its own mode."
+msgstr ""
+
+#: includes/class-ahns-configurator.php:207
+msgid "What the configurator offers"
+msgstr ""
+
+#: includes/class-ahns-configurator.php:213
+msgid "An option you untick <strong>disappears</strong> from the configurator and is refused at cart time - you will never receive an order you cannot make."
+msgstr ""
+
+#: includes/class-ahns-configurator.php:245
+msgid "The settings your customer sees their neon against."
+msgstr ""
+
+#: includes/class-ahns-configurator.php (const FEATURES), includes/class-ahns-order.php:284, includes/class-ahns-order.php:545
+msgid "RGB colour-changing"
+msgstr ""
+
+#: includes/class-ahns-configurator.php (const FEATURES)
+msgid "7 animated colours, controller included."
+msgstr ""
+
+#: includes/class-ahns-configurator.php (const FEATURES), includes/class-ahns-materials.php:204
+msgid "Outdoor"
+msgstr ""
+
+#: includes/class-ahns-configurator.php (const FEATURES)
+msgid "Drained IP65 box, IP67 tube and driver, UV-proof. Requires an equipped workshop."
+msgstr ""
+
+#: includes/class-ahns-configurator.php (const FEATURES)
+msgid "Brightness and modes."
+msgstr ""
+
+#: includes/class-ahns-configurator.php (const FEATURES), includes/class-ahns-order.php:554, includes/class-ahns-pricing.php:1716
+msgid "Rush production"
+msgstr ""
+
+#: includes/class-ahns-configurator.php (const FEATURES)
+msgid "Surcharge for a shortened lead time."
+msgstr ""
+
+#: includes/class-ahns-configurator.php (const FEATURES)
+msgid "Logo upload"
+msgstr ""
+
+#: includes/class-ahns-configurator.php (const FEATURES)
+msgid "The customer drops in a vector SVG and gets an instant price."
+msgstr ""
+
+#: includes/class-ahns-configurator.php (const FEATURES)
+msgid "3D view"
+msgstr ""
+
+#: includes/class-ahns-configurator.php (const FEATURES)
+msgid "Extruded tubes, plate and box at true thickness."
+msgstr ""
+
+#: includes/class-ahns-configurator.php (const BACKGROUNDS), includes/class-ahns-fonds.php (const LIVRES)
+msgid "Dark wall"
+msgstr ""
+
+#: includes/class-ahns-configurator.php (const BACKGROUNDS), includes/class-ahns-fonds.php (const LIVRES)
+msgid "Brick wall"
+msgstr ""
+
+#: includes/class-ahns-configurator.php (const BACKGROUNDS), includes/class-ahns-fonds.php (const LIVRES)
+msgid "Bedroom"
+msgstr ""
+
+#: includes/class-ahns-dashboard.php:28, includes/class-ahns-dashboard.php:29, includes/class-ahns-dashboard.php:48
+msgid "Ahime Neon"
+msgstr ""
+
+#: includes/class-ahns-dashboard.php:39
+msgid "Dashboard - Ahime Neon"
+msgstr ""
+
+#: includes/class-ahns-dashboard.php:74
+msgid "Your dedicated page is live."
+msgstr ""
+
+#: includes/class-ahns-dashboard.php:74
+msgid "Create the page where your customers will design their neon."
+msgstr ""
+
+#: includes/class-ahns-dashboard.php:76, includes/class-ahns-onboarding.php:539
+msgid "Create the page"
+msgstr ""
+
+#: includes/class-ahns-dashboard.php:81
+msgid "Neons go into the cart as \"%s\"."
+msgstr ""
+
+#: includes/class-ahns-dashboard.php:81
+msgid "With no product linked, the configurator runs in demo mode: nothing can be added to the cart."
+msgstr ""
+
+#: includes/class-ahns-dashboard.php:83
+msgid "Choose the product"
+msgstr ""
+
+#: includes/class-ahns-dashboard.php:88
+msgid "%d font(s) offered to your customers."
+msgstr ""
+
+#: includes/class-ahns-dashboard.php:90
+msgid "Choose the fonts"
+msgstr ""
+
+#: includes/class-ahns-dashboard.php:95
+msgid "%d tube colour(s) on offer."
+msgstr ""
+
+#: includes/class-ahns-dashboard.php:97
+msgid "Choose the colours"
+msgstr ""
+
+#: includes/class-ahns-dashboard.php:101
+msgid "Pricing checked"
+msgstr ""
+
+#: includes/class-ahns-dashboard.php:102
+msgid "Your coefficients are saved."
+msgstr ""
+
+#: includes/class-ahns-dashboard.php:102
+msgid "Open the simulator and confirm your pricing before you open the shop."
+msgstr ""
+
+#: includes/class-ahns-dashboard.php:104
+msgid "Check the pricing"
+msgstr ""
+
+#: includes/class-ahns-dashboard.php:109
+msgid "The specification is sent to %s."
+msgstr ""
+
+#: includes/class-ahns-dashboard.php:109
+msgid "With no address, nobody receives the manufacturing specification."
+msgstr ""
+
+#: includes/class-ahns-dashboard.php:111
+msgid "Set the address"
+msgstr ""
+
+#: includes/class-ahns-dashboard.php:127
+msgid "Run the wizard"
+msgstr ""
+
+#: includes/class-ahns-dashboard.php:130, includes/class-ahns-onboarding.php:720
+msgid "View the configurator"
+msgstr ""
+
+#: includes/class-ahns-dashboard.php:136
+msgid "Your configurator is ready to sell."
+msgstr ""
+
+#: includes/class-ahns-dashboard.php:137
+msgid "Setup: %1$d step(s) out of %2$d. %3$d item(s) still to sort out."
+msgstr ""
+
+#: includes/class-ahns-dashboard.php:187
+msgid "One interface, one set of options and one billed product per configurator."
+msgstr ""
+
+#: includes/class-ahns-dashboard.php:188
+msgid "The five bundled fonts."
+msgstr ""
+
+#: includes/class-ahns-dashboard.php:189
+msgid "The tube palette you offer."
+msgstr ""
+
+#: includes/class-ahns-dashboard.php:190
+msgid "Coefficients, sizes, tiers and simulator."
+msgstr ""
+
+#: includes/class-ahns-dashboard.php:191
+msgid "Brand colour, wording, logo and language."
+msgstr ""
+
+#: includes/class-ahns-dashboard.php:192
+msgid "Banners, popups and countdowns on your shop."
+msgstr ""
+
+#: includes/class-ahns-dashboard.php:208
+msgid "Latest custom orders"
+msgstr ""
+
+#: includes/class-ahns-dashboard.php:210
+msgid "No orders yet. The first neon you sell will show up here."
+msgstr ""
+
+#: includes/class-ahns-fonds.php:105
+msgid "Scenes - Ahime Neon"
+msgstr ""
+
+#: includes/class-ahns-fonds.php:268
+msgid "The scenes your customers see their sign in. Add your own; each configurator then picks the ones it offers."
+msgstr ""
+
+#: includes/class-ahns-fonds.php:272
+msgid "Scenes saved."
+msgstr ""
+
+#: includes/class-ahns-fonds.php:280
+msgid "The scenes we ship"
+msgstr ""
+
+#: includes/class-ahns-fonds.php:281
+msgid "Drawn by the configurator itself: they weigh nothing and cannot go missing. They cannot be deleted - a shop must always have something to show a sign in."
+msgstr ""
+
+#: includes/class-ahns-fonds.php:294
+msgid "Your scenes"
+msgstr ""
+
+#: includes/class-ahns-fonds.php:295
+msgid "A photo of your window, your workshop, a customer’s wall. Frame wide: the sign sits in the middle, and the scene is cropped to fill the frame."
+msgstr ""
+
+#: includes/class-ahns-fonds.php:306
+msgid "+ Add a scene"
+msgstr ""
+
+#: includes/class-ahns-fonds.php:340
+msgid "Scene name (seen by your customers)"
+msgstr ""
+
+#: includes/class-ahns-fonds.php:341
+msgid "Choose an image"
+msgstr ""
+
+#: includes/class-ahns-fonds.php:384
+msgid "Choose a scene"
+msgstr ""
+
+#: includes/class-ahns-fonds.php (const LIVRES)
+msgid "Cream wall"
+msgstr ""
+
+#: includes/class-ahns-fonds.php (const LIVRES)
+msgid "Living room"
+msgstr ""
+
+#: includes/class-ahns-fonds.php (const LIVRES)
+msgid "Office"
+msgstr ""
+
+#: includes/class-ahns-fonds.php (const LIVRES)
+msgid "Counter"
+msgstr ""
+
+#: includes/class-ahns-fonds.php (const LIVRES)
+msgid "Workshop"
+msgstr ""
+
+#: includes/class-ahns-fonds.php (const LIVRES)
+msgid "Workbench"
+msgstr ""
+
+#: includes/class-ahns-fonds.php (const LIVRES)
+msgid "Shopfront"
+msgstr ""
+
+#: includes/class-ahns-fonds.php (const LIVRES)
+msgid "Lobby"
+msgstr ""
+
+#: includes/class-ahns-fonds.php (const LIVRES)
+msgid "Night"
+msgstr ""
+
+#: includes/class-ahns-fonds.php (const LIVRES)
+msgid "Paper"
+msgstr ""
+
+#: includes/class-ahns-fonds.php (const LIVRES)
+msgid "Barber shop"
+msgstr ""
+
+#: includes/class-ahns-fonds.php (const LIVRES)
+msgid "Beauty salon"
+msgstr ""
+
+#: includes/class-ahns-fonds.php (const LIVRES)
+msgid "Kitchen"
+msgstr ""
+
+#: includes/class-ahns-fonds.php (const LIVRES)
+msgid "Bar"
+msgstr ""
+
+#: includes/class-ahns-fonds.php (const LIVRES)
+msgid "Grocery"
+msgstr ""
+
+#: includes/class-ahns-fonds.php (const LIVRES)
+msgid "Concrete"
+msgstr ""
+
+#: includes/class-ahns-fonds.php (const LIVRES)
+msgid "Planks"
+msgstr ""
+
+#: includes/class-ahns-fonds.php (const LIVRES)
+msgid "Tracing paper"
+msgstr ""
+
+#: includes/class-ahns-fonds.php (const LIVRES)
+msgid "Slate"
+msgstr ""
+
+#: includes/class-ahns-fonds.php (const LIVRES)
+msgid "Street"
+msgstr ""
+
+#: includes/class-ahns-fonds.php (const LIVRES)
+msgid "Podium"
+msgstr ""
+
+#: includes/class-ahns-fonds.php (const LIVRES)
+msgid "Reception"
+msgstr ""
+
+#: includes/class-ahns-fonds.php (const LIVRES)
+msgid "Boardroom"
+msgstr ""
+
+#: includes/class-ahns-fonds.php (const LIVRES)
+msgid "Club"
+msgstr ""
+
+#: includes/class-ahns-fonds.php (const LIVRES)
+msgid "Concrete at night"
+msgstr ""
+
+#: includes/class-ahns-fonds.php (const LIVRES)
+msgid "Skyscraper"
+msgstr ""
+
+#: includes/class-ahns-fonds.php (const LIVRES)
+msgid "Linen"
+msgstr ""
+
+#: includes/class-ahns-fonds.php (const LIVRES)
+msgid "Plaster"
+msgstr ""
+
+#: includes/class-ahns-fonts.php:127
+msgid "Fonts - Ahime Neon"
+msgstr ""
+
+#: includes/class-ahns-fonts.php:325
+msgid "%d fonts available (SIL Open Font License, bundled with the plugin). Tick the ones you want to offer to your customers."
+msgstr ""
+
+#: includes/class-ahns-fonts.php:330
+msgid "Selection saved - the configurator now offers these fonts only."
+msgstr ""
+
+#: includes/class-ahns-fonts.php:333
+msgid "Font deleted."
+msgstr ""
+
+#: includes/class-ahns-fonts.php:348
+msgid "Every font is %s: it is the outline length of its letters that gives the metres of tube, and therefore the price. An unmeasured font cannot be offered."
+msgstr ""
+
+#: includes/class-ahns-fonts.php:349
+msgid "measured"
+msgstr ""
+
+#: includes/class-ahns-fonts.php:377
+msgid "Preview text:"
+msgstr ""
+
+#: includes/class-ahns-fonts.php:388
+msgid "%7$s · %8$d glyphs measured"
+msgstr ""
+
+#: includes/class-ahns-fonts.php:395
+msgid "Script"
+msgstr ""
+
+#: includes/class-ahns-fonts.php:395
+msgid "Sans"
+msgstr ""
+
+#: includes/class-ahns-fonts.php:401
+msgid "If you tick nothing, the configurator falls back to a default set - it is never left without a font."
+msgstr ""
+
+#: includes/class-ahns-fonts.php:402
+msgid "Save fonts"
+msgstr ""
+
+#: includes/class-ahns-help.php:29
+msgid "Help - Ahime Neon"
+msgstr ""
+
+#: includes/class-ahns-help.php:76
+msgid "Plugin version"
+msgstr ""
+
+#: includes/class-ahns-help.php:83
+msgid "%d font(s) offered to customers."
+msgstr ""
+
+#: includes/class-ahns-help.php:86
+msgid "Fonts folder"
+msgstr ""
+
+#: includes/class-ahns-help.php:93
+msgid "No page published."
+msgstr ""
+
+#: includes/class-ahns-help.php:98
+msgid "None: the configurator is running in demo mode."
+msgstr ""
+
+#: includes/class-ahns-help.php:103
+msgid "Not set: nobody receives the manufacturing specification."
+msgstr ""
+
+#: includes/class-ahns-help.php:115
+msgid "Run the wizard again"
+msgstr ""
+
+#: includes/class-ahns-help.php:119
+msgid "Help & setup wizard"
+msgstr ""
+
+#: includes/class-ahns-help.php:120
+msgid "Every check is green."
+msgstr ""
+
+#: includes/class-ahns-help.php:120
+msgid "%d item(s) need your attention."
+msgstr ""
+
+#: includes/class-ahns-help.php:125
+msgid "Getting started in four steps"
+msgstr ""
+
+#: includes/class-ahns-help.php:127
+msgid "Create the configurator page"
+msgstr ""
+
+#: includes/class-ahns-help.php:127
+msgid "Configurator screen: one button creates and publishes it for you."
+msgstr ""
+
+#: includes/class-ahns-help.php:128
+msgid "Link the billed product"
+msgstr ""
+
+#: includes/class-ahns-help.php:128
+msgid "It is the one that carries the calculated price when the neon is added to the cart."
+msgstr ""
+
+#: includes/class-ahns-help.php:129
+msgid "Choose fonts, colours and backings"
+msgstr ""
+
+#: includes/class-ahns-help.php:129
+msgid "The customer only sees what you offer - and the server refuses the rest."
+msgstr ""
+
+#: includes/class-ahns-help.php:130
+msgid "Check your pricing"
+msgstr ""
+
+#: includes/class-ahns-help.php:130
+msgid "The simulator breaks the calculation down: tube, material, power supply, options."
+msgstr ""
+
+#: includes/class-ahns-help.php:144, includes/class-ahns-onboarding.php:718
+msgid "Go to the dashboard"
+msgstr ""
+
+#: includes/class-ahns-help.php:145
+msgid "Contact support"
+msgstr ""
+
+#: includes/class-ahns-help.php:162
+msgid "Compliance: what falls to you"
+msgstr ""
+
+#: includes/class-ahns-help.php:164
+msgid "By selling under your own name you are the MANUFACTURER in the regulatory sense: you affix the CE marking, you sign the EU declaration of conformity, and you keep a technical file for ten years. This plugin gives you the production parts and the dimensions; it does not sign on your behalf."
+msgstr ""
+
+#: includes/class-ahns-help.php:168
+msgid "Declare your components"
+msgstr ""
+
+#: includes/class-ahns-help.php:169
+msgid "Spools, drivers, timers: without identified part numbers, no declaration holds up."
+msgstr ""
+
+#: includes/class-ahns-help.php:172
+msgid "Gather your suppliers’ datasheets"
+msgstr ""
+
+#: includes/class-ahns-help.php:173
+msgid "Including the photobiological risk group (EN 62471): it is read off their documentation, it cannot be inferred."
+msgstr ""
+
+#: includes/class-ahns-help.php:176
+msgid "Write your risk assessment"
+msgstr ""
+
+#: includes/class-ahns-help.php:177
+msgid "Electrical, thermal, mechanical, photobiological: this is what an inspection asks for first."
+msgstr ""
+
+#: includes/class-ahns-help.php:180
+msgid "Buy the standards at the right time"
+msgstr ""
+
+#: includes/class-ahns-help.php:181
+msgid "Nine standards, none of them free to download. There is no rush until you open the declaration; at that point, five are unavoidable."
+msgstr ""
+
+#: includes/class-ahns-help.php:184
+msgid "Get the three open points settled"
+msgstr ""
+
+#: includes/class-ahns-help.php:185
+msgid "EPREL labelling, photobiological risk group, EU declaration: they come out of the datasheet marked “TO BE SETTLED”, and that is the right answer for them."
+msgstr ""
+
+#: includes/class-ahns-help.php:188
+msgid "Don’t forget French law"
+msgstr ""
+
+#: includes/class-ahns-help.php:189
+msgid "Mayoral authorisation, night switch-off (1 a.m. to 6 a.m.), local outdoor advertising tax, two-year statutory warranty."
+msgstr ""
+
+#: includes/class-ahns-help.php:203
+msgid "This is not legal advice: it is what the source documents allow us to state, and what they do not. The three open points need a certification body, not a careful re-read."
+msgstr ""
+
+#: includes/class-ahns-help.php:208
+msgid "Diagnostics"
+msgstr ""
+
+#: includes/class-ahns-help.php:209
+msgid "Copy this table if you write to us: it holds everything needed to understand your setup."
+msgstr ""
+
+#: includes/class-ahns-help.php:215
+msgid "Check"
+msgstr ""
+
+#: includes/class-ahns-identite.php:53
+msgid "Settings"
+msgstr ""
+
+#: includes/class-ahns-identite.php:79
+msgid "All fonts, interfaces and workshop tools: Neon Light"
+msgstr ""
+
+#: includes/class-ahns-materials.php:35
+msgid "Materials - Ahime Neon"
+msgstr ""
+
+#: includes/class-ahns-materials.php:115, includes/class-ahns-profiles.php:180, includes/class-ahns-profiles.php:244
+msgid "Access denied."
+msgstr ""
+
+#: includes/class-ahns-materials.php:183
+msgid "The prices of your panels and light boxes. What you set here is shown to the customer AND billed by your server - never one without the other."
+msgstr ""
+
+#: includes/class-ahns-materials.php:187
+msgid "Prices saved."
+msgstr ""
+
+#: includes/class-ahns-materials.php:196
+msgid "A sheet’s price is not proportional to its thickness: a fixed part per m² (handling, offcuts, shaping) and a part that follows thickness. A purely proportional model under-charges thin sheets."
+msgstr ""
+
+#: includes/class-ahns-materials.php:199
+msgid "Offered"
+msgstr ""
+
+#: includes/class-ahns-materials.php:200
+msgid "Material"
+msgstr ""
+
+#: includes/class-ahns-materials.php:201
+msgid "Thicknesses (mm)"
+msgstr ""
+
+#: includes/class-ahns-materials.php:202
+msgid "Fixed part / m²"
+msgstr ""
+
+#: includes/class-ahns-materials.php:203
+msgid "Per mm / m²"
+msgstr ""
+
+#: includes/class-ahns-materials.php:226
+msgid "suitable"
+msgstr ""
+
+#: includes/class-ahns-materials.php:230
+msgid "Unticking “Outdoor” makes this material REFUSED for outdoor fitting - that is the mistake that comes back as after-sales six months later."
+msgstr ""
+
+#: includes/class-ahns-materials.php:244
+msgid "Cut"
+msgstr ""
+
+#: includes/class-ahns-materials.php:245
+msgid "Straight cut"
+msgstr ""
+
+#: includes/class-ahns-materials.php:246
+msgid "Rounded corners"
+msgstr ""
+
+#: includes/class-ahns-materials.php:247
+msgid "Free shape"
+msgstr ""
+
+#: includes/class-ahns-materials.php:248
+msgid "A free shape is not cut along the rectangle’s perimeter: the path winds, and the calculation adds 40 % for it."
+msgstr ""
+
+#: includes/class-ahns-materials.php:252
+msgid "Printing"
+msgstr ""
+
+#: includes/class-ahns-materials.php:253
+msgid "Printing + varnish (outdoor)"
+msgstr ""
+
+#: includes/class-ahns-materials.php:254
+msgid "Raised cut-out letters"
+msgstr ""
+
+#: includes/class-ahns-materials.php:255
+msgid "Engraving"
+msgstr ""
+
+#: includes/class-ahns-materials.php:256, includes/class-ahns-pricing.php:1404, includes/class-ahns-pricing.php:1502
+msgid "Drilling and fixings"
+msgstr ""
+
+#: includes/class-ahns-materials.php:259
+msgid "Light boxes"
+msgstr ""
+
+#: includes/class-ahns-materials.php:260
+msgid "Diffusing face"
+msgstr ""
+
+#: includes/class-ahns-materials.php:261, includes/class-ahns-pricing.php:1491
+msgid "Internal lighting"
+msgstr ""
+
+#: includes/class-ahns-materials.php:262
+msgid "Assembly"
+msgstr ""
+
+#: includes/class-ahns-materials.php:265
+msgid "Power to light"
+msgstr ""
+
+#: includes/class-ahns-materials.php:268
+msgid "Leave EMPTY: the power draw is calculated from the box depth, which is how the product actually behaves: module rows spread further apart as they move away from the face, so a deep box needs FEWER watts per m². From 41.7 W/m² at 6 cm down to 29.1 W/m² beyond 12 cm, from the SloanLED datasheets. A value here replaces that calculation, for a merchant whose modules differ."
+msgstr ""
+
+#: includes/class-ahns-materials.php:269
+msgid "It then goes through the same driver brackets as a neon sign: it is the same hardware."
+msgstr ""
+
+#: includes/class-ahns-materials.php:272, includes/class-ahns-settings.php:1161
+msgid "Save pricing"
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:94
+msgid "Setup - Ahime Neon"
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:95
+msgid "Setup"
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:115
+msgid "Finish setting up your neon configurator."
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:116
+msgid "The wizard creates the product, the page and the basic settings in two minutes."
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:117
+msgid "Resume the wizard"
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:119
+msgid "Don't show this again"
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:199
+msgid "Custom neon"
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:205
+msgid "Design your neon: text, font, colour, size and backing. The price updates live."
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:333
+msgid "Leave the wizard"
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:349, includes/class-ahns-onboarding.php:539
+msgid "Continue"
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:357
+msgid "Skip this step"
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:405, includes/class-ahns-onboarding.php (const STEPS)
+msgid "Welcome"
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:406
+msgid "Two minutes to make your shop able to sell made-to-measure neons."
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:410
+msgid "A 2D and 3D configurator"
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:410
+msgid "Your customer types their text, picks a font, a colour, a size and a backing - and sees the result."
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:411
+msgid "A fair price, calculated on your own server"
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:411
+msgid "Tube length is measured on the real outline of the letters. The price is recalculated on the server: the browser decides nothing."
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:412
+msgid "An order the workshop can actually use"
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:412
+msgid "Every order carries the full specification: text, font, colours, dimensions, backing, power supply."
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:424
+msgid "Let's go"
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:432
+msgid "Your shop"
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:433
+msgid "This information comes from WooCommerce. We only need to know where to send the production sheets."
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:442
+msgid "Currency and country"
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:445
+msgid "Set in WooCommerce; the configurator prices follow them."
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:453
+msgid "Recipient of the full specification with every order. Leave empty to send nothing."
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:465
+msgid "The billed product"
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:466
+msgid "It is the one that carries the calculated price when a customer adds their neon to the cart."
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:470
+msgid "WooCommerce is not active: a product cannot be created for now."
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:485
+msgid "Keep \"%s\""
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:486
+msgid "This product is already linked to the configurator."
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:493
+msgid "Create a \"Custom neon\" product"
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:494
+msgid "Published, priced at 0 - the configurator sets the amount at cart time."
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:499
+msgid "Use an existing product"
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:501
+msgid "- choose -"
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:519
+msgid "The configurator page"
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:520
+msgid "A blank-canvas page: no menu, no footer, nothing to fight the configurator."
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:526
+msgid "Your page already exists - we will not create a second one."
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:533
+msgid "We will publish a \"Neon builder\" page containing the configurator."
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:536
+msgid "You can also place the configurator anywhere with the shortcode %s."
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:547
+msgid "Fonts and colours"
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:548
+msgid "What you tick here is everything your customer will be able to pick. You can refine it later."
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:567
+msgid "Tube colours"
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:588
+msgid "Your pricing"
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:589
+msgid "Two coefficients are enough to frame your prices. The three examples below use your current values."
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:601, includes/class-ahns-pricing.php:1375, includes/class-ahns-settings.php (const FIELDS)
+msgid "Setup fee"
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:603
+msgid "What every piece costs whatever its size: cutting, wiring, testing, packing."
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:607, includes/class-ahns-order.php:277, includes/class-ahns-order.php:586
+msgid "LED tube"
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:609
+msgid "Price per metre of fitted tube. The length is measured on the real outline of the letters."
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:613
+msgid "Three examples"
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:619
+msgid "%s m of tube"
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:626
+msgid "Save to watch these prices move. Sizes, tiers and options are set later on the Pricing screen."
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:637
+msgid "Your brand"
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:638
+msgid "A single colour dresses the configurator, the cart, the orders and this admin."
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:654
+msgid "Header logo"
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:660
+msgid "Optional. With no logo, the configurator shows the site name."
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:698
+msgid "You're ready"
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:699
+msgid "Your shop can sell made-to-measure neons. Here is what is left, if anything."
+msgstr ""
+
+#: includes/class-ahns-onboarding.php:721
+msgid "Add the page to a menu"
+msgstr ""
+
+#: includes/class-ahns-onboarding.php (const STEPS)
+msgid "Shop"
+msgstr ""
+
+#: includes/class-ahns-onboarding.php (const STEPS)
+msgid "Product"
+msgstr ""
+
+#: includes/class-ahns-onboarding.php (const STEPS), includes/class-ahns-profiles.php:288
+msgid "Page"
+msgstr ""
+
+#: includes/class-ahns-onboarding.php (const STEPS)
+msgid "Catalogue"
+msgstr ""
+
+#: includes/class-ahns-onboarding.php (const STEPS)
+msgid "Done"
+msgstr ""
+
+#: includes/class-ahns-order.php:72, includes/class-ahns-order.php:548
+msgid "Outdoor (drained box, IP67 tube and driver)"
+msgstr ""
+
+#: includes/class-ahns-order.php:78, includes/class-ahns-order.php:294
+msgid "EXPRESS"
+msgstr ""
+
+#: includes/class-ahns-order.php:184
+msgid "straight cut"
+msgstr ""
+
+#: includes/class-ahns-order.php:185
+msgid "rounded corners"
+msgstr ""
+
+#: includes/class-ahns-order.php:186
+msgid "free shape (path following)"
+msgstr ""
+
+#: includes/class-ahns-order.php:189
+msgid "bare"
+msgstr ""
+
+#: includes/class-ahns-order.php:190
+msgid "digital printing"
+msgstr ""
+
+#: includes/class-ahns-order.php:191
+msgid "printing + anti-UV lamination"
+msgstr ""
+
+#: includes/class-ahns-order.php:192
+msgid "raised cut-out letters"
+msgstr ""
+
+#: includes/class-ahns-order.php:193
+msgid "engraving"
+msgstr ""
+
+#: includes/class-ahns-order.php:206
+msgid "unlit"
+msgstr ""
+
+#: includes/class-ahns-order.php:207
+msgid "front lighting"
+msgstr ""
+
+#: includes/class-ahns-order.php:208
+msgid "back lighting"
+msgstr ""
+
+#: includes/class-ahns-order.php:209
+msgid "front + back lighting"
+msgstr ""
+
+#: includes/class-ahns-order.php:267
+msgid "Custom neon sign: workshop specification"
+msgstr ""
+
+#: includes/class-ahns-order.php:279, includes/class-ahns-order.php:606, includes/class-ahns-settings.php:827
+msgid "Letter height"
+msgstr ""
+
+#: includes/class-ahns-order.php:288
+msgid "Outdoor (drained IP65 box, IP67 tube and power supply)"
+msgstr ""
+
+#: includes/class-ahns-order.php:314
+msgid "depth"
+msgstr ""
+
+#: includes/class-ahns-order.php:321
+msgid "Electrical: %1$s W drawn → %2$s W power supply · %3$s branch(es) at %4$s V"
+msgstr ""
+
+#: includes/class-ahns-order.php:335
+msgid "Cable: %1$s V lost in the supplied cable, i.e. %2$s %% · above the 3 %% allowed, the end of the tube gets darker. Use %3$s mm² or switch to 24 V."
+msgstr ""
+
+#: includes/class-ahns-order.php:343
+msgid "Customer logo: tube length reported by the browser: CHECK it before production."
+msgstr ""
+
+#: includes/class-ahns-order.php:346
+msgid "Download the SVG"
+msgstr ""
+
+#: includes/class-ahns-order.php:355
+msgid "Price breakdown"
+msgstr ""
+
+#: includes/class-ahns-order.php:422
+msgid "Download"
+msgstr ""
+
+#: includes/class-ahns-order.php:524
+msgid "manufacturing specification"
+msgstr ""
+
+#: includes/class-ahns-order.php:525
+msgid "your custom neon"
+msgstr ""
+
+#: includes/class-ahns-order.php:569
+msgid "%s cm deep"
+msgstr ""
+
+#: includes/class-ahns-order.php:595, includes/class-ahns-pricing.php:1618, includes/class-ahns-settings.php:175
+msgid "Power supply"
+msgstr ""
+
+#: includes/class-ahns-order.php:598
+msgid "%1$s W drawn → %2$s W rating · %3$s branch(es)"
+msgstr ""
+
+#: includes/class-ahns-order.php:610
+msgid "Lines"
+msgstr ""
+
+#: includes/class-ahns-order.php:627
+msgid "Customer logo: tube length reported by the browser - check before manufacturing."
+msgstr ""
+
+#: includes/class-ahns-page.php:129, includes/class-ahns-profiles.php:78
+msgid "Neon builder"
+msgstr ""
+
+#: includes/class-ahns-pricing.php:1025
+msgid "Enter the width and the height."
+msgstr ""
+
+#: includes/class-ahns-pricing.php:1029
+msgid "Maximum dimension %d cm: beyond that, the panel no longer fits standard shipping."
+msgstr ""
+
+#: includes/class-ahns-pricing.php:1032
+msgid "Minimum dimensions: 10 × 10 cm."
+msgstr ""
+
+#: includes/class-ahns-pricing.php:1043
+msgid "%s is not suitable outdoors without treatment."
+msgstr ""
+
+#: includes/class-ahns-pricing.php:1050
+msgid "Minimum light box depth: %s cm. Below that, no module spreads light wide enough to light the face without visible hot spots."
+msgstr ""
+
+#: includes/class-ahns-pricing.php:1069
+msgid "Logo without a tube measurement."
+msgstr ""
+
+#: includes/class-ahns-pricing.php:1075, includes/class-ahns-pricing.php:1151
+msgid "Maximum width: %d cm."
+msgstr ""
+
+#: includes/class-ahns-pricing.php:1078, includes/class-ahns-pricing.php:1154
+msgid "Maximum tube length: %d m."
+msgstr ""
+
+#: includes/class-ahns-pricing.php:1101
+msgid "%s: this tube only exists in one colour. Choose an RGB tube, or go back to a fixed colour."
+msgstr ""
+
+#: includes/class-ahns-pricing.php:1113
+msgid "%d characters maximum per line."
+msgstr ""
+
+#: includes/class-ahns-pricing.php:1117
+msgid "Unknown font."
+msgstr ""
+
+#: includes/class-ahns-pricing.php:1122
+msgid "Minimum letter height: %d cm for this font."
+msgstr ""
+
+#: includes/class-ahns-pricing.php:1126
+msgid "Character not available in this font: %s"
+msgstr ""
+
+#: includes/class-ahns-pricing.php:1138
+msgid "At this size, the tube (Ø %1$s mm) is wider than the stroke of the letter “%2$s”: the counters would close up. Minimum letter height for this font: %3$s cm."
+msgstr ""
+
+#: includes/class-ahns-pricing.php:1145
+msgid "Type a text for your neon sign."
+msgstr ""
+
+#: includes/class-ahns-pricing.php:1148
+msgid "%d lines maximum."
+msgstr ""
+
+#: includes/class-ahns-pricing.php:1388
+msgid "%1$s %2$s mm · %3$s m²"
+msgstr ""
+
+#: includes/class-ahns-pricing.php:1394
+msgid "Cutting %s linear m"
+msgstr ""
+
+#: includes/class-ahns-pricing.php:1400
+msgid "Finish %1$s%2$s"
+msgstr ""
+
+#: includes/class-ahns-pricing.php:1400
+msgid " (double-sided)"
+msgstr ""
+
+#: includes/class-ahns-pricing.php:1446
+msgid "3D letters %1$s · %2$d letter(s) of %3$s cm"
+msgstr ""
+
+#: includes/class-ahns-pricing.php:1451
+msgid "3D letters %1$s · %2$s mm"
+msgstr ""
+
+#: includes/class-ahns-pricing.php:1454
+msgid "Lighting"
+msgstr ""
+
+#: includes/class-ahns-pricing.php:1459
+msgid "Backing layer %1$d · %2$s %3$s mm"
+msgstr ""
+
+#: includes/class-ahns-pricing.php:1476
+msgid "Body %1$s · %2$s m²"
+msgstr ""
+
+#: includes/class-ahns-pricing.php:1481
+msgid "Diffusing face%1$s · %3$s m²"
+msgstr ""
+
+#: includes/class-ahns-pricing.php:1487
+msgid "Face printing"
+msgstr ""
+
+#: includes/class-ahns-pricing.php:1498
+msgid "Power supply %d W"
+msgstr ""
+
+#: includes/class-ahns-pricing.php:1501
+msgid "Box assembly"
+msgstr ""
+
+#: includes/class-ahns-pricing.php:1580
+msgid "LED tube %s m"
+msgstr ""
+
+#: includes/class-ahns-pricing.php:1597
+msgid "Backing %1$s (%2$s)"
+msgstr ""
+
+#: includes/class-ahns-pricing.php:1633
+msgid "RGB colour-changing (controller included)"
+msgstr ""
+
+#: includes/class-ahns-pricing.php:1662
+msgid "Fixings"
+msgstr ""
+
+#: includes/class-ahns-pricing.php:1701
+msgid "Size surcharge"
+msgstr ""
+
+#: includes/class-ahns-pricing.php:1701
+msgid "Minimum price (size)"
+msgstr ""
+
+#: includes/class-ahns-pricing.php:1711
+msgid "Outdoor (drained box, IP67 tube and power supply, UV-proof)"
+msgstr ""
+
+#: includes/class-ahns-product.php:108, includes/class-ahns-product.php:390, includes/class-ahns-product.php:401
+msgid "Customise this neon"
+msgstr ""
+
+#: includes/class-ahns-product.php:136
+msgid "This product is made to order: design your sign in the configurator on its product page."
+msgstr ""
+
+#: includes/class-ahns-product.php:185
+msgid "Custom neon sign"
+msgstr ""
+
+#: includes/class-ahns-product.php:201
+msgid "Sell this product through the configurator"
+msgstr ""
+
+#: includes/class-ahns-product.php:202
+msgid "The native purchase form (and the variation selector) is replaced by the configurator. The price shown to the customer is the one calculated by the configurator."
+msgstr ""
+
+#: includes/class-ahns-product.php:227
+msgid "This product’s configurator was deleted: the page shows as an ordinary one. Choose another above."
+msgstr ""
+
+#: includes/class-ahns-product.php:242, includes/class-ahns-profiles.php:306
+msgid "view"
+msgstr ""
+
+#: includes/class-ahns-product.php (const MODES)
+msgid "Embedded in the product page"
+msgstr ""
+
+#: includes/class-ahns-product.php (const MODES)
+msgid "Button + modal"
+msgstr ""
+
+#: includes/class-ahns-product.php (const MODES)
+msgid "Button + dedicated page"
+msgstr ""
+
+#: includes/class-ahns-profiles.php:50
+msgid "Trades - Ahime Neon"
+msgstr ""
+
+#: includes/class-ahns-profiles.php:273
+msgid "What your workshop makes, and on which page. Signs and panels are two trades: piling them into one interface would force your customers to sort through what does not concern them. Skin, options and billed product are set in Configurators."
+msgstr ""
+
+#: includes/class-ahns-profiles.php:274
+msgid "New trade"
+msgstr ""
+
+#: includes/class-ahns-profiles.php:287
+msgid "Offers"
+msgstr ""
+
+#: includes/class-ahns-profiles.php:289
+msgid "Shortcode"
+msgstr ""
+
+#: includes/class-ahns-profiles.php:315
+msgid "Delete this configurator? Its page stays online but will show nothing."
+msgstr ""
+
+#: includes/class-ahns-profiles.php:340
+msgid "Sign maker, PVC panels, Light boxes…"
+msgstr ""
+
+#: includes/class-ahns-profiles.php:344
+msgid "What it offers"
+msgstr ""
+
+#: includes/class-ahns-profiles.php:345
+msgid "Tick only what you make. A customer shown three families when you produce one hesitates instead of buying."
+msgstr ""
+
+#: includes/class-ahns-profiles.php:357
+msgid "Sign lighting style"
+msgstr ""
+
+#: includes/class-ahns-profiles.php:358
+msgid "Sets the visual construction offered to customers for this configurator."
+msgstr ""
+
+#: includes/class-ahns-profiles.php:359
+msgid "Inner tube"
+msgstr ""
+
+#: includes/class-ahns-profiles.php:359
+msgid "A continuous tube follows the centre of the letters, like a real bent sign."
+msgstr ""
+
+#: includes/class-ahns-profiles.php:360
+msgid "Lit outline"
+msgstr ""
+
+#: includes/class-ahns-profiles.php:360
+msgid "The lit tube traces the outer edge of the letters."
+msgstr ""
+
+#: includes/class-ahns-profiles.php:375
+msgid "Text lines at most"
+msgstr ""
+
+#: includes/class-ahns-profiles.php:380
+msgid "Preview scenes"
+msgstr ""
+
+#: includes/class-ahns-profiles.php:391
+msgid "Where it lives"
+msgstr ""
+
+#: includes/class-ahns-profiles.php:395
+msgid "- None (demonstration, no cart) -"
+msgstr ""
+
+#: includes/class-ahns-profiles.php:411
+msgid "Its page:"
+msgstr ""
+
+#: includes/class-ahns-profiles.php:418
+msgid "Create its dedicated page"
+msgstr ""
+
+#: includes/class-ahns-profiles.php:421
+msgid "You can also place it anywhere with its shortcode."
+msgstr ""
+
+#: includes/class-ahns-profiles.php (const FAMILIES)
+msgid "Neon"
+msgstr ""
+
+#: includes/class-ahns-profiles.php (const FAMILIES)
+msgid "Text or logo in LED tube, on a cut backing."
+msgstr ""
+
+#: includes/class-ahns-profiles.php (const FAMILIES)
+msgid "Cut and printed panel · PVC, dibond, aluminium, acrylic, wood."
+msgstr ""
+
+#: includes/class-ahns-profiles.php (const FAMILIES)
+msgid "Box lit from the inside, single or double-sided."
+msgstr ""
+
+#: includes/class-ahns-settings.php:163
+msgid "The default price has no source, and a night switch-off can be a legal requirement: this is the worst place in the price list for a figure nobody has checked."
+msgstr ""
+
+#: includes/class-ahns-settings.php:168, includes/class-ahns-settings.php:1125
+msgid "Carrier"
+msgstr ""
+
+#: includes/class-ahns-settings.php:170
+msgid "The default parcel limits come from a competitor, taken from their site. A pallet and a parcel service do not have the same limits."
+msgstr ""
+
+#: includes/class-ahns-settings.php:177
+msgid "The power brackets hold up, but they don’t follow what you actually buy, and nothing checks that a 24 V driver isn’t shipped with a 12 V tube."
+msgstr ""
+
+#: includes/class-ahns-settings.php:182
+msgid "Tube spools"
+msgstr ""
+
+#: includes/class-ahns-settings.php:184
+msgid "The general setting applies to every colour. A pink and a warm white have neither the same efficiency nor the same purchase price."
+msgstr ""
+
+#: includes/class-ahns-settings.php:230
+msgid "Pricing - Ahime Neon"
+msgstr ""
+
+#: includes/class-ahns-settings.php:458
+msgid "Rows filled in: add more, then click again for the rest"
+msgstr ""
+
+#: includes/class-ahns-settings.php:459
+msgid "Part numbers loaded: read them over, add your prices, then save"
+msgstr ""
+
+#: includes/class-ahns-settings.php:684
+msgid "Base prices"
+msgstr ""
+
+#: includes/class-ahns-settings.php:685
+msgid "Sizes and brackets"
+msgstr ""
+
+#: includes/class-ahns-settings.php:686
+msgid "Component inventory"
+msgstr ""
+
+#: includes/class-ahns-settings.php:687
+msgid "Channel letters"
+msgstr ""
+
+#: includes/class-ahns-settings.php:688
+msgid "Delivery"
+msgstr ""
+
+#: includes/class-ahns-settings.php:751
+msgid "These defaults come from the plugin, not from your suppliers. Enter the parts you actually buy below: nothing changes until you have declared something."
+msgstr ""
+
+#: includes/class-ahns-settings.php:757
+msgid "These defaults come from the plugin, not from your suppliers. Nothing changes until you have declared something."
+msgstr ""
+
+#: includes/class-ahns-settings.php:759
+msgid "Enter my parts"
+msgstr ""
+
+#: includes/class-ahns-settings.php:775
+msgid "Your coefficients, your sizes and your price tiers. The configurator shows the customer EXACTLY what the server will charge."
+msgstr ""
+
+#: includes/class-ahns-settings.php:778
+msgid "Settings saved - the simulator below reflects the new pricing."
+msgstr ""
+
+#: includes/class-ahns-settings.php:781
+msgid "A field left empty falls back to the default, calibrated against the market."
+msgstr ""
+
+#: includes/class-ahns-settings.php:816
+msgid "Marketing rounding"
+msgstr ""
+
+#: includes/class-ahns-settings.php:816
+msgid "Round the displayed price up to the next amount ending in 9"
+msgstr ""
+
+#: includes/class-ahns-settings.php:826
+msgid "The configurator's size buttons (letter height) and the bounds of the free slider."
+msgstr ""
+
+#: includes/class-ahns-settings.php:827
+msgid "Label"
+msgstr ""
+
+#: includes/class-ahns-settings.php:838
+msgid "An empty row is ignored: clear the label to remove a size."
+msgstr ""
+
+#: includes/class-ahns-settings.php:840
+msgid "Free slider: from"
+msgstr ""
+
+#: includes/class-ahns-settings.php:841
+msgid "to"
+msgstr ""
+
+#: includes/class-ahns-settings.php:847
+msgid "Price tiers by size"
+msgstr ""
+
+#: includes/class-ahns-settings.php:848
+msgid "IN ADDITION to per-metre tube pricing. The first band that covers the design width applies."
+msgstr ""
+
+#: includes/class-ahns-settings.php:849, includes/class-ahns-settings.php:857
+msgid "Minimum price"
+msgstr ""
+
+#: includes/class-ahns-settings.php:849
+msgid "the total does not go below this amount."
+msgstr ""
+
+#: includes/class-ahns-settings.php:849, includes/class-ahns-settings.php:857
+msgid "Surcharge"
+msgstr ""
+
+#: includes/class-ahns-settings.php:849
+msgid "this amount is added."
+msgstr ""
+
+#: includes/class-ahns-settings.php:850
+msgid "Maximum width"
+msgstr ""
+
+#: includes/class-ahns-settings.php:850
+msgid "Effect"
+msgstr ""
+
+#: includes/class-ahns-settings.php:850
+msgid "Amount"
+msgstr ""
+
+#: includes/class-ahns-settings.php:877
+msgid "Tube catalogue"
+msgstr ""
+
+#: includes/class-ahns-settings.php:879
+msgid "A colour is not a hex code: it is a spool, with its purchase price, its power draw and its unlit appearance. This table is OPTIONAL: as long as it is empty, or as long as a column stays empty, the general setting applies and no price moves."
+msgstr ""
+
+#: includes/class-ahns-settings.php:880
+msgid "Unlit colour"
+msgstr ""
+
+#: includes/class-ahns-settings.php:881
+msgid "to be taken from a photo of the unlit spool. Left empty, it is worked out by washing out the lit colour, which is fair but less faithful than your own silicone."
+msgstr ""
+
+#: includes/class-ahns-settings.php:904, includes/class-ahns-settings.php:993, includes/class-ahns-settings.php:1039
+msgid "Part number"
+msgstr ""
+
+#: includes/class-ahns-settings.php:906
+msgid "Customer-facing name"
+msgstr ""
+
+#: includes/class-ahns-settings.php:912
+msgid "Price per metre"
+msgstr ""
+
+#: includes/class-ahns-settings.php:914, includes/class-ahns-settings.php:997
+msgid "Power"
+msgstr ""
+
+#: includes/class-ahns-settings.php:916
+msgid "Diameter"
+msgstr ""
+
+#: includes/class-ahns-settings.php:918
+msgid "Luminous flux"
+msgstr ""
+
+#: includes/class-ahns-settings.php:920
+msgid "Can do"
+msgstr ""
+
+#: includes/class-ahns-settings.php:923
+msgid "Single colour"
+msgstr ""
+
+#: includes/class-ahns-settings.php:925
+msgid "Pixel (SPI)"
+msgstr ""
+
+#: includes/class-ahns-settings.php:927
+msgid "Controller"
+msgstr ""
+
+#: includes/class-ahns-settings.php:929
+msgid "Profile"
+msgstr ""
+
+#: includes/class-ahns-settings.php:949
+msgid "A row with no part number or no lit colour is ignored: clear both fields to remove a spool."
+msgstr ""
+
+#: includes/class-ahns-settings.php:951
+msgid "CAN DO: a “single colour” spool makes an RGB order be REFUSED; better said here than on the phone three days later. Left on “-”, nothing is refused. The CONTROLLER replaces the flat RGB fee for this spool: an addressable pixel controller does not cost the same as a three-channel RGB one."
+msgstr ""
+
+#: includes/class-ahns-settings.php:955
+msgid "LUMINOUS FLUX decides the “shop window” label: from %d lm/m up, the spool holds its own behind a sunlit window. Left empty, no label: we don’t promise a brightness we haven’t measured. For reference: a common 6 × 12 runs between 145 and 360 lm/m, the brightest on the market around 1,500."
+msgstr ""
+
+#: includes/class-ahns-settings.php:961
+msgid "Driver catalogue"
+msgstr ""
+
+#: includes/class-ahns-settings.php:963
+msgid "A driver is a part YOU buy: its part number, its power, its voltage and its price are yours. This table is OPTIONAL: as long as it is empty, the power brackets above apply and no price moves."
+msgstr ""
+
+#: includes/class-ahns-settings.php:964
+msgid "The voltage is checked"
+msgstr ""
+
+#: includes/class-ahns-settings.php:965
+msgid "a 24 V driver will never ship with a 12 V tube. Until now it was up to you to check that on every sheet."
+msgstr ""
+
+#: includes/class-ahns-settings.php:982
+msgid "Load the common Mean Well part numbers"
+msgstr ""
+
+#: includes/class-ahns-settings.php:983
+msgid "Power ratings taken from the manufacturer’s datasheets. Without prices: those depend on your distributor."
+msgstr ""
+
+#: includes/class-ahns-settings.php:995, includes/class-ahns-settings.php:1040
+msgid "Workshop name"
+msgstr ""
+
+#: includes/class-ahns-settings.php:999, includes/class-ahns-settings.php:1042
+msgid "Voltage"
+msgstr ""
+
+#: includes/class-ahns-settings.php:1005
+msgid "IP rating"
+msgstr ""
+
+#: includes/class-ahns-settings.php:1007, includes/class-ahns-settings.php:1041
+msgid "Price"
+msgstr ""
+
+#: includes/class-ahns-settings.php:1009
+msgid "Dimmable"
+msgstr ""
+
+#: includes/class-ahns-settings.php:1024
+msgid "A row with no part number, no power or no voltage is ignored: clear the part number to remove a driver."
+msgstr ""
+
+#: includes/class-ahns-settings.php:1026
+msgid "The PRICE replaces the power bracket for this driver. Left empty, the part number only serves the bill of materials and the voltage check, and the price does not move."
+msgstr ""
+
+#: includes/class-ahns-settings.php:1028
+msgid "The IP RATING decides what goes outdoors: IP65 as a minimum. A missing rating is not a sufficient rating; a silent datasheet does not say “weatherproof”, it says nothing."
+msgstr ""
+
+#: includes/class-ahns-settings.php:1030
+msgid "DIMMABLE left unticked means “I said nothing”, not “not dimmable”: the driver can still be offered with a dimmer."
+msgstr ""
+
+#: includes/class-ahns-settings.php:1034
+msgid "Night timers"
+msgstr ""
+
+#: includes/class-ahns-settings.php:1036
+msgid "The default price for this option has NO source: there is no timer datasheet in the reference library, and it was aligned with the dimmer price for want of anything better. Yet a night switch-off can be a legal requirement, and this is the worst place in the price list for an invented figure."
+msgstr ""
+
+#: includes/class-ahns-settings.php:1043
+msgid "Astronomical"
+msgstr ""
+
+#: includes/class-ahns-settings.php:1061
+msgid "follows the sun"
+msgstr ""
+
+#: includes/class-ahns-settings.php:1074
+msgid "The first part number carrying a PRICE sets the rate. Naming a part without its price serves the bill of materials and moves nothing."
+msgstr ""
+
+#: includes/class-ahns-settings.php:1080
+msgid "Channel letters: price per letter"
+msgstr ""
+
+#: includes/class-ahns-settings.php:1082
+msgid "The market, the workshop and the customer all count in LETTERS and centimetres of height, not in square metres: two 50 cm “I”s and one 50 cm “M” cover very different areas, but the workshop bends three returns and fits three trim caps either way."
+msgstr ""
+
+#: includes/class-ahns-settings.php:1083
+msgid "This table is OPTIONAL: as long as it is empty, the area-based calculation applies and no price moves."
+msgstr ""
+
+#: includes/class-ahns-settings.php:1086
+msgid "Up to (height)"
+msgstr ""
+
+#: includes/class-ahns-settings.php:1087
+msgid "Price per letter"
+msgstr ""
+
+#: includes/class-ahns-settings.php:1088
+msgid "Construction"
+msgstr ""
+
+#: includes/class-ahns-settings.php:1100
+msgid "all"
+msgstr ""
+
+#: includes/class-ahns-settings.php:1101
+msgid "channel (illuminated)"
+msgstr ""
+
+#: includes/class-ahns-settings.php:1102
+msgid "solid (non-illuminated)"
+msgstr ""
+
+#: includes/class-ahns-settings.php:1103
+msgid "flat (cut-out)"
+msgstr ""
+
+#: includes/class-ahns-settings.php:1116
+msgid "The first bracket that covers the requested height wins, whatever order you typed them in. BEYOND the last bracket the grid does not apply: better to fall back on area than to extrapolate onto a two-metre sign, which is a different trade."
+msgstr ""
+
+#: includes/class-ahns-settings.php:1118
+msgid "CONSTRUCTION “all” covers all three: start with a single grid, refine later. A non-illuminated letter is treated as “solid”."
+msgstr ""
+
+#: includes/class-ahns-settings.php:1127
+msgid "Beyond these limits, a piece ships as several panels. The defaults come from a COMPETITOR, taken from their site: they do not describe your contract. A pallet shipment and a parcel service do not have the same limits."
+msgstr ""
+
+#: includes/class-ahns-settings.php:1128
+msgid "This setting touches no price: the split warns, it does not charge."
+msgstr ""
+
+#: includes/class-ahns-settings.php:1138
+msgid "Max length"
+msgstr ""
+
+#: includes/class-ahns-settings.php:1139
+msgid "Max width"
+msgstr ""
+
+#: includes/class-ahns-settings.php:1140
+msgid "Max weight"
+msgstr ""
+
+#: includes/class-ahns-settings.php:1147
+msgid "Length AND width are both needed: one alone bounds nothing. Clear both to go back to the defaults."
+msgstr ""
+
+#: includes/class-ahns-settings.php:1149
+msgid "Max WEIGHT is optional, and left empty it is not checked at all: inventing a ceiling would split pieces that ship perfectly well."
+msgstr ""
+
+#: includes/class-ahns-settings.php:1333
+msgid "Dedicated configurator page"
+msgstr ""
+
+#: includes/class-ahns-settings.php:1334
+msgid "A “blank canvas” page, without the theme's header and footer (no conflict possible): the configurator header takes your customers back to the home page:"
+msgstr ""
+
+#: includes/class-ahns-settings.php:1342
+msgid "Simulator - reference designs at current pricing"
+msgstr ""
+
+#: includes/class-ahns-settings.php:1344
+msgid "Design"
+msgstr ""
+
+#: includes/class-ahns-settings.php:1344
+msgid "Tube"
+msgstr ""
+
+#: includes/class-ahns-settings.php:1344
+msgid "Customer price"
+msgstr ""
+
+#: includes/class-ahns-settings.php:1358
+msgid "Typical market ranges: small size $80-250, medium RGB $250-1,500, outdoor $500-3,000+."
+msgstr ""
+
+#: includes/class-ahns-settings.php:732
+msgid "%d price in your scale comes from a value we could not verify."
+msgid_plural "%d prices in your scale come from values we could not verify."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-ahns-settings.php:737
+msgid "%d item still follows the general settings rather than your purchases."
+msgid_plural "%d items still follow the general settings rather than your purchases."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-ahns-settings.php (const FIELDS)
+msgid "Commercial warranty, indoor"
+msgstr ""
+
+#: includes/class-ahns-settings.php (const FIELDS), includes/class-ahns-settings.php (const FIELDS)
+msgid "months"
+msgstr ""
+
+#: includes/class-ahns-settings.php (const FIELDS)
+msgid "Commercial warranty, outdoor"
+msgstr ""
+
+#: includes/class-ahns-settings.php (const FIELDS)
+msgid "Parcel: max length"
+msgstr ""
+
+#: includes/class-ahns-settings.php (const FIELDS), includes/class-ahns-settings.php (const FIELDS)
+msgid "cm"
+msgstr ""
+
+#: includes/class-ahns-settings.php (const FIELDS)
+msgid "Parcel: max width"
+msgstr ""
+
+#: includes/class-ahns-settings.php (const FIELDS)
+msgid "RGB option"
+msgstr ""
+
+#: includes/class-ahns-settings.php (const FIELDS)
+msgid "Outdoor IP67 multiplier"
+msgstr ""
+
+#: includes/class-ahns-settings.php (const FIELDS)
+msgid "Rush multiplier"
+msgstr ""
+
+#: includes/class-ahns-settings.php (const FIELDS)
+msgid "Standard lead time: min"
+msgstr ""
+
+#: includes/class-ahns-settings.php (const FIELDS)
+msgid "Standard lead time: max"
+msgstr ""
+
+#: includes/class-ahns-settings.php (const FIELDS)
+msgid "Express lead time: min"
+msgstr ""
+
+#: includes/class-ahns-settings.php (const FIELDS)
+msgid "Express lead time: max"
+msgstr ""

@@ -1,0 +1,3 @@
+node_modules/
+ahime-neon-sign-configurator/assets/neon-*.js
+*.timestamp-*.mjs
