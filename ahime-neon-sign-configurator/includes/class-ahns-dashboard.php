@@ -173,9 +173,9 @@ class AHNS_Dashboard {
 				esc_html( $step['hint'] )
 			);
 			if ( $step['done'] ) {
-				echo AHNS_Admin_UI::badge( 'OK', 'ok' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo wp_kses( AHNS_Admin_UI::badge( 'OK', 'ok' ), AHNS_Admin_UI::allowed_html() );
 			} else {
-				echo AHNS_Admin_UI::button( $step['cta'], $step['url'], 'primary' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo wp_kses( AHNS_Admin_UI::button( $step['cta'], $step['url'], 'primary' ), AHNS_Admin_UI::allowed_html() );
 			}
 			echo '</li>';
 		}
@@ -196,7 +196,7 @@ class AHNS_Dashboard {
 			printf(
 				'<a class="ahns-card ahns-card--link" href="%s"><span class="ahns-card__icon">%s</span><h2>%s</h2><p class="ahns-hint" style="margin:0;">%s</p></a>',
 				esc_url( admin_url( 'admin.php?page=' . $card[3] ) ),
-				AHNS_Admin_UI::icon( $card[0] ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				wp_kses( AHNS_Admin_UI::icon( $card[0] ), AHNS_Admin_UI::allowed_html() ),
 				esc_html( $card[1] ),
 				esc_html( $card[2] )
 			);
@@ -212,7 +212,7 @@ class AHNS_Dashboard {
 			echo '<table class="widefat striped"><tbody>';
 			foreach ( $recent as $row ) {
 				echo '<tr>';
-				printf( '<td style="width:120px;">%s</td>', $row['thumb'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				printf( '<td style="width:120px;">%s</td>', wp_kses( $row['thumb'], AHNS_Admin_UI::allowed_html() ) );
 				printf(
 					'<td><a href="%s"><strong>#%s</strong></a> · %s<br /><span style="color:#6b7280;">%s</span></td>',
 					esc_url( $row['url'] ),

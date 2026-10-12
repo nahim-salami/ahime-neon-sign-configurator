@@ -315,7 +315,11 @@ class AHNS_Product {
 		// redirection, la fiche garde son image : le configurateur n'y est pas.
 		if ( 'inline' === self::display_mode( $product_id ) ) {
 			remove_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_images', 20 );
-			add_action( 'wp_head', array( $this, 'print_fullwidth_css' ), 30 );
+			add_action( 'wp_enqueue_scripts', array( $this, 'print_fullwidth_css' ) );
+		}
+		// Fenêtre : sa feuille et son script partent dans la file AVANT le contenu.
+		if ( 'modal' === self::display_mode( $product_id ) ) {
+			add_action( 'wp_enqueue_scripts', array( $this, 'print_modal_assets' ) );
 		}
 
 		/*
@@ -400,21 +404,23 @@ class AHNS_Product {
 				'<p><button type="button" class="button alt ahns-open-modal" data-ahns-modal="1">%s</button></p>',
 				esc_html__( 'Customise this neon', 'ahime-neon-sign-configurator' )
 			);
-			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- markup interne.
-			echo '<div class="ahns-modal" id="ahns-modal" aria-hidden="true"><div class="ahns-modal__dialog" role="dialog" aria-modal="true">'
-				. '<button type="button" class="ahns-modal__close" aria-label="' . esc_attr__( 'Close', 'ahime-neon-sign-configurator' ) . '">&times;</button>'
-				// L'interface est celle du configurateur DE CE PRODUIT, comme
-				// partout ailleurs. La fenêtre garde sa hauteur : elle EST
-				// l'écran le temps qu'elle est ouverte, il n'y a rien derrière
-				// elle à faire défiler.
-				. '<ahns-config data-peau="' . esc_attr( AHNS_Embed::configurateur( $product_id )['peau'] ) . '" style="display:block;height:82vh;min-height:520px;"></ahns-config>'
-				. '</div></div>';
+			// L'interface est celle du configurateur DE CE PRODUIT, comme
+			// partout ailleurs. La fenêtre garde sa hauteur : elle EST
+			// l'écran le temps qu'elle est ouverte, il n'y a rien derrière
+			// elle à faire défiler.
+			printf(
+				'<div class="ahns-modal" id="ahns-modal" aria-hidden="true"><div class="ahns-modal__dialog" role="dialog" aria-modal="true">'
+				. '<button type="button" class="ahns-modal__close" aria-label="%1$s">&times;</button>'
+				. '<ahns-config data-peau="%2$s" style="display:block;height:82vh;min-height:520px;"></ahns-config>'
+				. '</div></div>',
+				esc_attr__( 'Close', 'ahime-neon-sign-configurator' ),
+				esc_attr( AHNS_Embed::configurateur( $product_id )['peau'] )
+			);
 			$this->print_modal_assets();
 			return;
 		}
 
 		// Intégré : le configurateur EST le formulaire d'achat.
-		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- markup construit par ATC_Embed.
 		// LA COLONNE DE DROITE N'EST PLUS LIMITÉE. Une boîte de 78 % de l'écran
 		// posait un deuxième ascenseur à l'intérieur de celui de la page : le
 		// client attrapait le mauvais, et sur téléphone le geste devenait une
@@ -430,8 +436,9 @@ class AHNS_Product {
 	 * @return void
 	 */
 	public function print_fullwidth_css() {
-		echo '<style id="ahns-fullwidth">'
-			. '.woocommerce div.product div.images,.woocommerce div.product .woocommerce-product-gallery,'
+		AHNS_Admin_UI::inline_css(
+			'ahns-fullwidth',
+			'.woocommerce div.product div.images,.woocommerce div.product .woocommerce-product-gallery,'
 			. '.wp-block-woocommerce-product-image-gallery{display:none !important;}'
 			. '.woocommerce div.product div.summary,.woocommerce div.product .entry-summary{'
 			. 'float:none !important;width:100% !important;max-width:100% !important;margin:0 !important;clear:both;}'
@@ -440,7 +447,7 @@ class AHNS_Product {
 			// configurateur prend toute la largeur.
 			. '.wp-block-columns:has(.ahns-inline)>.wp-block-column:not(:has(.ahns-inline)){display:none !important;}'
 			. '.wp-block-columns:has(.ahns-inline)>.wp-block-column:has(.ahns-inline){flex-basis:100% !important;max-width:100% !important;}'
-			. '</style>';
+		);
 	}
 
 	/**
@@ -448,35 +455,35 @@ class AHNS_Product {
 	 *
 	 * @return void
 	 */
-	private function print_modal_assets() {
+	public function print_modal_assets() {
 		static $done = false;
 		if ( $done ) {
 			return;
 		}
 		$done = true;
-		?>
-		<style id="ahns-modal-css">
-			.ahns-modal{position:fixed;inset:0;z-index:99999;display:none;align-items:center;justify-content:center;background:rgba(12,14,18,.72);padding:16px}
+		AHNS_Admin_UI::inline_css(
+			'ahns-modal',
+			'			.ahns-modal{position:fixed;inset:0;z-index:99999;display:none;align-items:center;justify-content:center;background:rgba(12,14,18,.72);padding:16px}
 			.ahns-modal.is-open{display:flex}
 			.ahns-modal__dialog{position:relative;width:min(1180px,96vw);background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.35)}
 			.ahns-modal__close{position:absolute;right:10px;top:10px;z-index:2;box-sizing:border-box;width:36px;height:36px;min-width:36px;padding:0;margin:0;border:0;outline:0;box-shadow:none;border-radius:999px;background:#111827;color:#fff;font-size:20px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
 			.ahns-modal__close:hover{background:#000;color:#fff}
-			.ahns-modal__close:focus,.ahns-modal__close:focus-visible{outline:0;box-shadow:0 0 0 2px #fff,0 0 0 4px rgba(17,24,39,.4)}
-		</style>
-		<script id="ahns-modal-js">
-		(function(){
-			var modal = document.getElementById('ahns-modal');
+			.ahns-modal__close:focus,.ahns-modal__close:focus-visible{outline:0;box-shadow:0 0 0 2px #fff,0 0 0 4px rgba(17,24,39,.4)}'
+		);
+		AHNS_Admin_UI::inline_js(
+			'ahns-modal',
+			'		(function(){
+			var modal = document.getElementById(\'ahns-modal\');
 			if (!modal) return;
-			var closeBtn = modal.querySelector('.ahns-modal__close');
-			function open(){ modal.classList.add('is-open'); modal.setAttribute('aria-hidden','false'); closeBtn.focus(); }
-			function close(){ modal.classList.remove('is-open'); modal.setAttribute('aria-hidden','true'); }
-			document.addEventListener('click', function(e){
-				if (e.target.closest && e.target.closest('[data-ahns-modal]')) { e.preventDefault(); open(); return; }
+			var closeBtn = modal.querySelector(\'.ahns-modal__close\');
+			function open(){ modal.classList.add(\'is-open\'); modal.setAttribute(\'aria-hidden\',\'false\'); closeBtn.focus(); }
+			function close(){ modal.classList.remove(\'is-open\'); modal.setAttribute(\'aria-hidden\',\'true\'); }
+			document.addEventListener(\'click\', function(e){
+				if (e.target.closest && e.target.closest(\'[data-ahns-modal]\')) { e.preventDefault(); open(); return; }
 				if (e.target === modal || e.target === closeBtn) { e.preventDefault(); close(); }
 			});
-			document.addEventListener('keydown', function(e){ if (e.key === 'Escape') close(); });
-		}());
-		</script>
-		<?php
+			document.addEventListener(\'keydown\', function(e){ if (e.key === \'Escape\') close(); });
+		}());'
+		);
 	}
 }

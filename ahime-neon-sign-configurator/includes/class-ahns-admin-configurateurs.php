@@ -180,9 +180,9 @@ class AHNS_Admin_Configurateurs {
 			AHNS_Admin_UI::button( __( 'New configurator', 'ahime-neon-sign-configurator' ), self::lien( 'creer' ), 'on-accent' )
 		);
 
-		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- lecture d'un paramètre d'affichage ou de navigation, aucune écriture.
 		if ( isset( $_GET['supprime'] ) ) {
-			// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- lecture d'un paramètre d'affichage ou de navigation, aucune écriture.
 			$ok = '1' === sanitize_key( wp_unslash( $_GET['supprime'] ) );
 			printf(
 				'<div class="notice notice-%s"><p>%s</p></div>',
@@ -215,7 +215,7 @@ class AHNS_Admin_Configurateurs {
 				'<td><strong><a href="%s">%s</a></strong>%s</td>',
 				esc_url( self::url( array( 'conf' => $conf['id'] ) ) ),
 				esc_html( $conf['nom'] ),
-				$conf['defaut'] ? ' ' . AHNS_Admin_UI::badge( __( 'default', 'ahime-neon-sign-configurator' ), 'ok' ) : '' // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				wp_kses( $conf['defaut'] ? ' ' . AHNS_Admin_UI::badge( __( 'default', 'ahime-neon-sign-configurator' ), 'ok' ) : '', AHNS_Admin_UI::allowed_html() )
 			);
 			printf( '<td>%s</td>', esc_html( $peau ) );
 			printf( '<td>%s</td>', esc_html( isset( $modes[ $conf['mode'] ] ) ? $modes[ $conf['mode'] ] : $conf['mode'] ) );
@@ -277,7 +277,7 @@ class AHNS_Admin_Configurateurs {
 			AHNS_Admin_UI::button( __( '← All configurators', 'ahime-neon-sign-configurator' ), self::url(), 'on-accent' )
 		);
 
-		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- lecture d'un paramètre d'affichage ou de navigation, aucune écriture.
 		if ( isset( $_GET['saved'] ) ) {
 			echo '<div class="notice notice-success"><p>' . esc_html__( 'Configurator saved.', 'ahime-neon-sign-configurator' ) . '</p></div>';
 		}
@@ -426,9 +426,9 @@ class AHNS_Admin_Configurateurs {
 			// LE CHOIX DE L'APPARENCE CHOISIT AUSSI SES TROIS LIEUX. Le retour
 			// visuel est immédiat ; la même règle est rejouée dans enregistrer(),
 			// donc elle tient aussi si le navigateur bloque JavaScript.
-			printf(
-				'<script>(function(){var domaines=%s;function appliquer(peau){var ids=domaines[peau]||domaines["clair-boutique"]||[];document.querySelectorAll("input[name^=backgrounds][data-fond-livre=\"1\"]").forEach(function(c){c.checked=ids.indexOf(c.name.slice(12,-1))!==-1;});}document.addEventListener("change",function(e){if(e.target&&e.target.matches("input[name=peau]"))appliquer(e.target.value);});})();</script>',
-				wp_json_encode( AHNS_Fonds::DOMAINES )
+			AHNS_Admin_UI::inline_js(
+				'ahns-admin-configurateurs',
+				'(function(){var domaines=' . wp_json_encode( AHNS_Fonds::DOMAINES ) . ';function appliquer(peau){var ids=domaines[peau]||domaines["clair-boutique"]||[];document.querySelectorAll("input[name^=backgrounds][data-fond-livre=\"1\"]").forEach(function(c){c.checked=ids.indexOf(c.name.slice(12,-1))!==-1;});}document.addEventListener("change",function(e){if(e.target&&e.target.matches("input[name=peau]"))appliquer(e.target.value);});})();'
 			);
 		}
 		AHNS_Admin_UI::card_close();

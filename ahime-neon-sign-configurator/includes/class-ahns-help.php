@@ -141,8 +141,8 @@ class AHNS_Help {
 		echo '</ul>';
 		printf(
 			'<p style="margin:14px 0 0;">%s %s</p>',
-			AHNS_Admin_UI::button( __( 'Go to the dashboard', 'ahime-neon-sign-configurator' ), admin_url( 'admin.php?page=' . AHNS_Dashboard::PAGE_SLUG ), 'primary' ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			AHNS_Admin_UI::button( __( 'Contact support', 'ahime-neon-sign-configurator' ), self::SUPPORT_URL, 'ghost', array( 'target' => '_blank', 'rel' => 'noopener' ) ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			wp_kses( AHNS_Admin_UI::button( __( 'Go to the dashboard', 'ahime-neon-sign-configurator' ), admin_url( 'admin.php?page=' . AHNS_Dashboard::PAGE_SLUG ), 'primary' ), AHNS_Admin_UI::allowed_html() ),
+			wp_kses( AHNS_Admin_UI::button( __( 'Contact support', 'ahime-neon-sign-configurator' ), self::SUPPORT_URL, 'ghost', array( 'target' => '_blank', 'rel' => 'noopener' ) ), AHNS_Admin_UI::allowed_html() )
 		);
 		AHNS_Admin_UI::card_close();
 
@@ -212,7 +212,7 @@ class AHNS_Help {
 			printf(
 				'<tr><td style="width:210px;"><strong>%s</strong></td><td style="width:90px;">%s</td><td style="word-break:break-all;color:#4b5563;">%s</td></tr>',
 				esc_html( $check['label'] ),
-				AHNS_Admin_UI::badge( $check['ok'] ? 'OK' : __( 'Check', 'ahime-neon-sign-configurator' ), $check['ok'] ? 'ok' : 'todo' ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				wp_kses( AHNS_Admin_UI::badge( $check['ok'] ? 'OK' : __( 'Check', 'ahime-neon-sign-configurator' ), $check['ok'] ? 'ok' : 'todo' ), AHNS_Admin_UI::allowed_html() ),
 				esc_html( $check['detail'] )
 			);
 		}

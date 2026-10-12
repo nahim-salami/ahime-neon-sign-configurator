@@ -16,28 +16,6 @@ defined( 'ABSPATH' ) || exit;
 	<meta charset="<?php bloginfo( 'charset' ); ?>" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<?php wp_head(); ?>
-	<style id="ahns-canvas-css">
-		html, body {
-			margin: 0 !important;
-			padding: 0 !important;
-			width: 100%;
-			min-height: 100dvh;
-			background: #fff;
-			overflow-x: hidden;
-		}
-		.ahns-canvas__main {
-			width: 100%;
-			/* Laisse la place à la barre d'admin quand le marchand est connecté. */
-			height: calc( 100dvh - var( --wp-admin--admin-bar--height, 0px ) );
-			min-height: 520px;
-		}
-		.ahns-canvas__main ahns-config {
-			display: block !important;
-			width: 100% !important;
-			height: 100% !important;
-			min-height: 0 !important;
-		}
-	</style>
 </head>
 <body <?php body_class( 'ahns-canvas' ); ?>>
 <?php wp_body_open(); ?>

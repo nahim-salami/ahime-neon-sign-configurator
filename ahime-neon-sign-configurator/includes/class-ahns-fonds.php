@@ -208,9 +208,9 @@ class AHNS_Fonds {
 		check_admin_referer( self::NONCE );
 
 		$fonds = array();
-		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- assaini par map_deep( …, 'sanitize_text_field' ).
 		$noms   = isset( $_POST['fond_nom'] ) ? map_deep( (array) wp_unslash( $_POST['fond_nom'] ), 'sanitize_text_field' ) : array();
-		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- assaini par map_deep( …, 'esc_url_raw' ).
 		$images = isset( $_POST['fond_image'] ) ? map_deep( (array) wp_unslash( $_POST['fond_image'] ), 'esc_url_raw' ) : array();
 
 		foreach ( $images as $rang => $url ) {
@@ -267,7 +267,7 @@ class AHNS_Fonds {
 			__( 'Scenes', 'ahime-neon-sign-configurator' ),
 			__( 'The scenes your customers see their sign in. Add your own; each configurator then picks the ones it offers.', 'ahime-neon-sign-configurator' )
 		);
-		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- lecture d'un paramètre d'affichage ou de navigation, aucune écriture.
 		if ( isset( $_GET['saved'] ) ) {
 			echo '<div class="notice notice-success"><p>' . esc_html__( 'Scenes saved.', 'ahime-neon-sign-configurator' ) . '</p></div>';
 		}
@@ -297,7 +297,7 @@ class AHNS_Fonds {
 		echo '<div id="ahns-fonds">';
 		$rang = 0;
 		foreach ( $boutique as $fond ) {
-			echo self::ligne( $rang, $fond['nom'], $fond['image'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- assemblé et échappé dans la méthode.
+			echo wp_kses( self::ligne( $rang, $fond['nom'], $fond['image'] ), AHNS_Admin_UI::allowed_html() );
 			$rang++;
 		}
 		echo '</div>';
@@ -349,19 +349,22 @@ class AHNS_Fonds {
 	 * @param int $rang Prochain rang libre.
 	 */
 	private static function styles_et_script( $rang ) {
-		echo '<style>'
-			. '.ahns-fond{display:flex;align-items:center;gap:10px;margin:10px 0;}'
+		AHNS_Admin_UI::inline_css(
+			'ahns-fonds',
+			'.ahns-fond{display:flex;align-items:center;gap:10px;margin:10px 0;}'
 			. '.ahns-fond__vue{width:88px;height:58px;border-radius:8px;border:1px solid #dcdcde;'
 			. 'background-color:#f1f1f3;background-size:cover;background-position:center;flex:none;}'
 			. '.ahns-fond-livre{display:inline-block;padding:5px 11px;margin-right:6px;border-radius:999px;'
 			. 'border:1px solid #dcdcde;background:#f6f7f7;font-size:12.5px;font-weight:700;}'
-			. '</style>';
+		);
 
 		// « Retirer » VIDE l'URL au lieu d'enlever la ligne du formulaire :
 		// l'enregistrement ignore les lignes sans image, et les rangs des autres
 		// ne bougent pas — un rang qui glisse, c'est un fond qui change de nom.
-		printf(
-			'<script>(function(){'
+		AHNS_Admin_UI::inline_js(
+			'ahns-fonds',
+			sprintf(
+			'(function(){'
 			. 'var liste=document.getElementById("ahns-fonds"),rang=%d;'
 			. 'function brancher(n){'
 			. 'n.querySelector(".ahns-fond__choisir").addEventListener("click",function(){'
@@ -379,10 +382,11 @@ class AHNS_Fonds {
 			. 'document.getElementById("ahns-fond-ajouter").addEventListener("click",function(){'
 			. 'var d=document.createElement("div");d.innerHTML=%s.replace(/__R__/g,rang);'
 			. 'var n=d.firstChild;liste.appendChild(n);brancher(n);rang++;});'
-			. '})();</script>',
+			. '})();',
 			(int) $rang,
 			wp_json_encode( __( 'Choose a scene', 'ahime-neon-sign-configurator' ) ),
 			wp_json_encode( str_replace( array( '[0]', 'name="fond_nom[__R__]"' ), array( '[__R__]', 'name="fond_nom[__R__]"' ), self::ligne( 0 ) ) )
+			)
 		);
 	}
 }

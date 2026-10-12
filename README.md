@@ -1,6 +1,6 @@
 # Ahime Neon Sign Configurator for WooCommerce
 
-Source code of the WordPress plugin **Ahime Neon Sign Configurator for WooCommerce** (slug `ahime-neon-sign-configurator`), version 1.3.1.
+Source code of the WordPress plugin **Ahime Neon Sign Configurator for WooCommerce** (slug `ahime-neon-sign-configurator`), version 1.3.2.
 
 The plugin adds a custom LED neon sign configurator to a WooCommerce store: customers type their text, choose a font, a colour, a size and a backboard, see the sign in 2D and 3D, and see the price as they go. The store checks the configuration and recalculates the price on the server before writing the order. No external service is called.
 

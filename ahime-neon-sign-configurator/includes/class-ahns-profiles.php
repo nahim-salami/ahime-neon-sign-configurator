@@ -265,8 +265,8 @@ class AHNS_Profiles {
 			return;
 		}
 		$tous    = self::all();
-		$edite   = isset( $_GET['edit'] ) ? sanitize_key( wp_unslash( $_GET['edit'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		$nouveau = isset( $_GET['new'] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$edite   = isset( $_GET['edit'] ) ? sanitize_key( wp_unslash( $_GET['edit'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- lecture d'un paramètre d'affichage ou de navigation, aucune écriture.
+		$nouveau = isset( $_GET['new'] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- lecture d'un paramètre d'affichage ou de navigation, aucune écriture.
 
 		AHNS_Admin_UI::open(
 			__( 'Trades', 'ahime-neon-sign-configurator' ),
@@ -307,7 +307,7 @@ class AHNS_Profiles {
 			);
 			printf( '<td><code>[ahns_configurator profile="%s"]</code></td>', esc_attr( $slug ) );
 			echo '<td style="text-align:right;white-space:nowrap;">';
-			echo AHNS_Admin_UI::button( __( 'Edit', 'ahime-neon-sign-configurator' ), admin_url( 'admin.php?page=' . self::PAGE_SLUG . '&edit=' . $slug ), 'primary' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo wp_kses( AHNS_Admin_UI::button( __( 'Edit', 'ahime-neon-sign-configurator' ), admin_url( 'admin.php?page=' . self::PAGE_SLUG . '&edit=' . $slug ), 'primary' ), AHNS_Admin_UI::allowed_html() );
 			if ( count( $tous ) > 1 ) {
 				printf(
 					' <form method="post" action="%s" style="display:inline;" onsubmit="return confirm(%s);">%s<input type="hidden" name="action" value="ahns_delete_profile" /><input type="hidden" name="slug" value="%s" /><button type="submit" class="ahns-btn ahns-btn--ghost">%s</button></form>',

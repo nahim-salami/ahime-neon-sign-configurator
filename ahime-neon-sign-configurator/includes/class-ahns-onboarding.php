@@ -38,6 +38,7 @@ class AHNS_Onboarding {
 
 	public function hooks() {
 		add_action( 'admin_menu', array( $this, 'add_menu' ), 20 );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue' ) );
 		add_action( 'admin_notices', array( $this, 'banner' ) );
 		add_action( 'admin_post_ahns_setup', array( $this, 'handle' ) );
 		add_action( 'admin_post_ahns_setup_dismiss', array( $this, 'handle_dismiss' ) );
@@ -114,7 +115,7 @@ class AHNS_Onboarding {
 			'<div class="notice notice-info is-dismissible"><p><strong>%s</strong> %s</p><p>%s &nbsp; <a href="%s">%s</a></p></div>',
 			esc_html__( 'Finish setting up your neon configurator.', 'ahime-neon-sign-configurator' ),
 			esc_html__( 'The wizard creates the product, the page and the basic settings in two minutes.', 'ahime-neon-sign-configurator' ),
-			AHNS_Admin_UI::button( __( 'Resume the wizard', 'ahime-neon-sign-configurator' ), self::url( $state['step'] ), 'primary' ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			wp_kses( AHNS_Admin_UI::button( __( 'Resume the wizard', 'ahime-neon-sign-configurator' ), self::url( $state['step'] ), 'primary' ), AHNS_Admin_UI::allowed_html() ),
 			esc_url( wp_nonce_url( admin_url( 'admin-post.php?action=ahns_setup_dismiss' ), self::NONCE ) ),
 			esc_html__( 'Don\'t show this again', 'ahime-neon-sign-configurator' )
 		);
@@ -191,7 +192,7 @@ class AHNS_Onboarding {
 
 	/** Étape 3 : relier un produit existant, ou en créer un. */
 	private function save_product() {
-		$choice = isset( $_POST['product_choice'] ) ? sanitize_text_field( wp_unslash( $_POST['product_choice'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		$choice = isset( $_POST['product_choice'] ) ? sanitize_text_field( wp_unslash( $_POST['product_choice'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing -- nonce vérifié par check_admin_referer() dans handle(), avant cet appel.
 		$id     = 0;
 
 		if ( 'new' === $choice && class_exists( 'WC_Product_Simple' ) ) {
@@ -241,7 +242,7 @@ class AHNS_Onboarding {
 	/** Étape 5 : polices et couleurs proposées. */
 	private function save_catalog() {
 		$fonts = array();
-		foreach ( isset( $_POST['fonts'] ) ? map_deep( (array) wp_unslash( $_POST['fonts'] ), 'sanitize_text_field' ) : array() as $id ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		foreach ( isset( $_POST['fonts'] ) ? map_deep( (array) wp_unslash( $_POST['fonts'] ), 'sanitize_text_field' ) : array() as $id ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing -- nonce vérifié par check_admin_referer() dans handle(), avant cet appel.
 			$id = sanitize_key( (string) $id );
 			if ( isset( AHNS_Fonts::available()[ $id ] ) ) {
 				$fonts[] = $id;
@@ -254,7 +255,7 @@ class AHNS_Onboarding {
 		}
 
 		$colors = array();
-		foreach ( isset( $_POST['colors'] ) ? map_deep( (array) wp_unslash( $_POST['colors'] ), 'sanitize_text_field' ) : array() as $hex ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		foreach ( isset( $_POST['colors'] ) ? map_deep( (array) wp_unslash( $_POST['colors'] ), 'sanitize_text_field' ) : array() as $hex ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing -- nonce vérifié par check_admin_referer() dans handle(), avant cet appel.
 			$hex = sanitize_hex_color( (string) $hex );
 			if ( $hex ) {
 				$colors[] = strtolower( $hex );
@@ -277,10 +278,10 @@ class AHNS_Onboarding {
 	private function save_prices() {
 		$scalars = array();
 		foreach ( array( 'baseCents' => 100, 'tubePerMeterCents' => 100 ) as $key => $factor ) {
-			if ( ! isset( $_POST[ $key ] ) || '' === trim( sanitize_text_field( wp_unslash( $_POST[ $key ] ) ) ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+			if ( ! isset( $_POST[ $key ] ) || '' === trim( sanitize_text_field( wp_unslash( $_POST[ $key ] ) ) ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing -- nonce vérifié par check_admin_referer() dans handle(), avant cet appel.
 				continue;
 			}
-			$value           = (float) str_replace( ',', '.', sanitize_text_field( wp_unslash( $_POST[ $key ] ) ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
+			$value           = (float) str_replace( ',', '.', sanitize_text_field( wp_unslash( $_POST[ $key ] ) ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing -- nonce vérifié par check_admin_referer() dans handle(), avant cet appel.
 			$scalars[ $key ] = (int) round( $value * $factor );
 		}
 		if ( ! $scalars ) {
@@ -298,7 +299,7 @@ class AHNS_Onboarding {
 		if ( ! current_user_can( 'manage_woocommerce' ) ) {
 			return;
 		}
-		$step = isset( $_GET['step'] ) ? max( 1, min( 8, absint( wp_unslash( $_GET['step'] ) ) ) ) : 1; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$step = isset( $_GET['step'] ) ? max( 1, min( 8, absint( wp_unslash( $_GET['step'] ) ) ) ) : 1; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- lecture d'un paramètre d'affichage ou de navigation, aucune écriture.
 		if ( 8 === $step ) {
 			self::set_state( array( 'done' => true, 'step' => 8 ) );
 		}
@@ -306,7 +307,6 @@ class AHNS_Onboarding {
 			wp_enqueue_media(); // sélecteur de logo.
 		}
 
-		echo '<style>' . self::css() . '</style>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo '<div class="ahns-setup">';
 
 		// --- Rail des étapes ---------------------------------------------------
@@ -662,32 +662,33 @@ class AHNS_Onboarding {
 		echo '</tbody></table>';
 		$this->footer( 7 );
 		echo '</form>';
-		?>
-		<script>
-		( function () {
-			var pick = document.getElementById( 'ahns-logo-pick' );
-			var clear = document.getElementById( 'ahns-logo-clear' );
-			var field = document.getElementById( 'ahns-logo' );
-			var img = document.getElementById( 'ahns-logo-preview' );
+		AHNS_Admin_UI::inline_js(
+			'ahns-setup-logo',
+			'		( function () {
+			var pick = document.getElementById( \'ahns-logo-pick\' );
+			var clear = document.getElementById( \'ahns-logo-clear\' );
+			var field = document.getElementById( \'ahns-logo\' );
+			var img = document.getElementById( \'ahns-logo-preview\' );
 			var frame;
 			if ( ! pick || ! window.wp || ! window.wp.media ) { return; }
-			pick.addEventListener( 'click', function () {
-				frame = frame || wp.media( { title: 'Logo', multiple: false, library: { type: 'image' } } );
-				frame.off( 'select' ).on( 'select', function () {
-					var a = frame.state().get( 'selection' ).first().toJSON();
+			pick.addEventListener( \'click\', function () {
+				frame = frame || wp.media( { title: '
+			. wp_json_encode( __( 'Logo', 'ahime-neon-sign-configurator' ) )
+			. ', multiple: false, library: { type: \'image\' } } );
+				frame.off( \'select\' ).on( \'select\', function () {
+					var a = frame.state().get( \'selection\' ).first().toJSON();
 					field.value = a.url;
 					img.src = a.url;
-					img.style.display = 'block';
+					img.style.display = \'block\';
 				} );
 				frame.open();
 			} );
-			clear.addEventListener( 'click', function () {
-				field.value = '';
-				img.style.display = 'none';
+			clear.addEventListener( \'click\', function () {
+				field.value = \'\';
+				img.style.display = \'none\';
 			} );
-		}() );
-		</script>
-		<?php
+		}() );'
+		);
 	}
 
 	// --- Étape 8 : terminé --------------------------------------------------
@@ -708,17 +709,17 @@ class AHNS_Onboarding {
 				esc_html( $step['title'] ),
 				esc_html( $step['hint'] ),
 				$step['done']
-					? AHNS_Admin_UI::badge( 'OK', 'ok' ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-					: AHNS_Admin_UI::button( $step['cta'], $step['url'], 'primary' ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					? wp_kses( AHNS_Admin_UI::badge( 'OK', 'ok' ), AHNS_Admin_UI::allowed_html() )
+					: wp_kses( AHNS_Admin_UI::button( $step['cta'], $step['url'], 'primary' ), AHNS_Admin_UI::allowed_html() )
 			);
 		}
 		echo '</ul>';
 
 		echo '<div class="ahns-setup__actions" style="margin-top:20px;">';
-		echo AHNS_Admin_UI::button( __( 'Go to the dashboard', 'ahime-neon-sign-configurator' ), admin_url( 'admin.php?page=' . AHNS_Dashboard::PAGE_SLUG ), 'primary' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo wp_kses( AHNS_Admin_UI::button( __( 'Go to the dashboard', 'ahime-neon-sign-configurator' ), admin_url( 'admin.php?page=' . AHNS_Dashboard::PAGE_SLUG ), 'primary' ), AHNS_Admin_UI::allowed_html() );
 		if ( $page_id > 0 && 'publish' === get_post_status( $page_id ) ) {
-			echo ' ' . AHNS_Admin_UI::button( __( 'View the configurator', 'ahime-neon-sign-configurator' ), (string) get_permalink( $page_id ), 'ghost', array( 'target' => '_blank', 'rel' => 'noopener' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			echo ' ' . AHNS_Admin_UI::button( __( 'Add the page to a menu', 'ahime-neon-sign-configurator' ), admin_url( 'nav-menus.php' ), 'ghost' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo wp_kses( ' ' . AHNS_Admin_UI::button( __( 'View the configurator', 'ahime-neon-sign-configurator' ), (string) get_permalink( $page_id ), 'ghost', array( 'target' => '_blank', 'rel' => 'noopener' ) ), AHNS_Admin_UI::allowed_html() );
+			echo wp_kses( ' ' . AHNS_Admin_UI::button( __( 'Add the page to a menu', 'ahime-neon-sign-configurator' ), admin_url( 'nav-menus.php' ), 'ghost' ), AHNS_Admin_UI::allowed_html() );
 		}
 		echo '</div>';
 	}
@@ -726,6 +727,20 @@ class AHNS_Onboarding {
 	// -----------------------------------------------------------------------
 	// Styles
 	// -----------------------------------------------------------------------
+
+	/**
+	 * La feuille de l'assistant, dans l'en-tête de SON écran seulement : elle
+	 * masque l'habillage de l'administration, elle doit donc précéder le contenu.
+	 *
+	 * @param string $hook Écran courant.
+	 * @return void
+	 */
+	public function enqueue( $hook ) {
+		if ( false === strpos( (string) $hook, self::PAGE_SLUG ) ) {
+			return;
+		}
+		AHNS_Admin_UI::inline_css( 'ahns-setup', self::css() );
+	}
 
 	private static function css() {
 		$accent = AHNS_Appearance::accent();

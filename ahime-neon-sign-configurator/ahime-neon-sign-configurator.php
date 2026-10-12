@@ -3,7 +3,7 @@
  * Plugin Name:       Ahime Neon Sign Configurator for WooCommerce
  * Plugin URI:        https://github.com/nahim-salami/ahime-neon-sign-configurator
  * Description:       Customers design their LED neon sign in 2D or 3D and see the price instantly. Your store calculates it, without any external service.
- * Version:           1.3.1
+ * Version:           1.3.2
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Requires Plugins:  woocommerce
@@ -25,7 +25,7 @@ if ( defined( 'NLC_VERSION' ) ) {
 	return;
 }
 
-define( 'AHNS_VERSION', '1.3.1' );
+define( 'AHNS_VERSION', '1.3.2' );
 define( 'AHNS_PLUGIN_FILE', __FILE__ );
 define( 'AHNS_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'AHNS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );

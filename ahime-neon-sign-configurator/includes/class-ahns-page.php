@@ -22,6 +22,26 @@ class AHNS_Page {
 	public function hooks() {
 		add_filter( 'template_include', array( $this, 'canvas_template' ), 999 );
 		add_action( 'wp_enqueue_scripts', array( $this, 'strip_theme_assets' ), PHP_INT_MAX );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_canvas_css' ) );
+	}
+
+	/**
+	 * La feuille du gabarit « toile vierge » (templates/canvas.php), par la
+	 * file de WordPress : le gabarit appelle wp_head(), qui l'imprime.
+	 *
+	 * @return void
+	 */
+	public function enqueue_canvas_css() {
+		if ( ! $this->is_clean_page() ) {
+			return;
+		}
+		AHNS_Admin_UI::inline_css(
+			'ahns-canvas',
+			'html,body{margin:0 !important;padding:0 !important;width:100%;min-height:100dvh;background:#fff;overflow-x:hidden;}'
+			// Laisse la place à la barre d'admin quand le marchand est connecté.
+			. '.ahns-canvas__main{width:100%;height:calc(100dvh - var(--wp-admin--admin-bar--height,0px));min-height:520px;}'
+			. '.ahns-canvas__main ahns-config{display:block !important;width:100% !important;height:100% !important;min-height:0 !important;}'
+		);
 	}
 
 	/**

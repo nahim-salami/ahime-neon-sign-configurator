@@ -211,7 +211,7 @@ class AHNS_Pricing {
 	);
 
 	public function __construct( array $overrides = array() ) {
-		$json            = @file_get_contents( AHNS_PLUGIN_DIR . 'assets/font-metrics.json' ); // phpcs:ignore
+		$json            = file_get_contents( dirname( __DIR__ ) . '/assets/font-metrics.json' );
 		$this->manifests = is_string( $json ) ? (array) json_decode( $json, true ) : array();
 		// Les polices TÉLÉVERSÉES par le marchand doivent être tarifables comme
 		// celles du pack : leurs métriques rejoignent le manifeste. (Absent hors

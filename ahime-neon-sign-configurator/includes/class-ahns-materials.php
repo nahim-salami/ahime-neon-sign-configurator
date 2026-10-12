@@ -183,7 +183,7 @@ class AHNS_Materials {
 			__( 'The prices of your panels and light boxes. What you set here is shown to the customer AND billed by your server - never one without the other.', 'ahime-neon-sign-configurator' )
 		);
 
-		if ( isset( $_GET['saved'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( isset( $_GET['saved'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- lecture d'un paramètre d'affichage ou de navigation, aucune écriture.
 			echo '<div class="notice notice-success" style="margin:0 0 14px;"><p>' . esc_html__( 'Prices saved.', 'ahime-neon-sign-configurator' ) . '</p></div>';
 		}
 

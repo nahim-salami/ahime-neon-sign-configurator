@@ -244,10 +244,10 @@ class AHNS_Appearance {
 	public static function galerie_des_peaux( $choisie, $champ = 'theme' ) {
 		echo '<fieldset class="ahns-peaux">';
 		foreach ( self::THEMES as $id => $def ) {
-			echo self::carte_de_peau( $id, $def, $choisie === $id, true, $champ ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- assemblé et échappé dans la méthode.
+			echo wp_kses( self::carte_de_peau( $id, $def, $choisie === $id, true, $champ ), AHNS_Admin_UI::allowed_html() );
 		}
 		foreach ( self::THEMES_A_VENIR as $id => $def ) {
-			echo self::carte_de_peau( $id, $def, false, false, $champ ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- idem.
+			echo wp_kses( self::carte_de_peau( $id, $def, false, false, $champ ), AHNS_Admin_UI::allowed_html() );
 		}
 		echo '</fieldset>';
 
@@ -263,7 +263,9 @@ class AHNS_Appearance {
 		// 2. LA BORDURE DU CHOIX. Sans elle, on coche une interface et c'est
 		//    l'ANCIENNE qui reste encadrée jusqu'à l'enregistrement : de quoi
 		//    croire que le clic n'a pas pris.
-		echo '<script>(function(){'
+		AHNS_Admin_UI::inline_js(
+			'ahns-appearance-peaux',
+			'(function(){'
 			. 'var f=document.querySelector(".ahns-peaux");if(!f)return;'
 			. 'var LARGE=1280;'
 			. 'function poser(){f.querySelectorAll(".ahns-peau__vue").forEach(function(v){'
@@ -273,7 +275,8 @@ class AHNS_Appearance {
 			. 'if(!e.target.classList.contains("ahns-peau__radio"))return;'
 			. 'f.querySelectorAll(".ahns-peau").forEach(function(l){'
 			. 'l.classList.toggle("is-active",l.contains(e.target));});});'
-			. '})();</script>';
+			. '})();'
+		);
 	}
 
 	/**
@@ -345,7 +348,7 @@ class AHNS_Appearance {
 		$s = self::settings();
 
 		AHNS_Admin_UI::open( __( 'Appearance', 'ahime-neon-sign-configurator' ), __( 'Your colour, your words, your logo - and the language of this admin.', 'ahime-neon-sign-configurator' ) );
-		if ( isset( $_GET['saved'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( isset( $_GET['saved'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- lecture d'un paramètre d'affichage ou de navigation, aucune écriture.
 			echo '<div class="notice notice-success"><p>' . esc_html__( 'Appearance saved.', 'ahime-neon-sign-configurator' ) . '</p></div>';
 		}
 
@@ -385,7 +388,7 @@ class AHNS_Appearance {
 				admin_url( 'admin.php?page=' . AHNS_Admin_Configurateurs::PAGE_SLUG ),
 				'primary'
 			);
-			printf( '<p>%s</p>', $bouton ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- assemblé et échappé par AHNS_Admin_UI::button().
+			printf( '<p>%s</p>', wp_kses( $bouton, AHNS_Admin_UI::allowed_html() ) );
 		}
 		AHNS_Admin_UI::card_close();
 
@@ -441,12 +444,6 @@ class AHNS_Appearance {
 		// --- Langue et atelier ---------------------------------------------------
 		AHNS_Admin_UI::card_open( __( 'Language and notifications', 'ahime-neon-sign-configurator' ) );
 		echo '<table class="form-table">';
-		echo '<tr><th scope="row"><label for="ahns-language">' . esc_html__( 'Language of this admin', 'ahime-neon-sign-configurator' ) . '</label></th><td><select id="ahns-language" name="language">';
-		foreach ( self::LANGUAGES as $code => $label ) {
-			printf( '<option value="%s"%s>%s</option>', esc_attr( $code ), selected( $s['language'], $code, false ), esc_html( '' === $code ? __( 'Follow the site language', 'ahime-neon-sign-configurator' ) : $label ) );
-		}
-		echo '</select><p class="ahns-hint" style="margin:6px 0 0;">' . esc_html__( 'Independent of your site\'s language and of what your customers see.', 'ahime-neon-sign-configurator' ) . '</p></td></tr>';
-
 		/*
 		 * LA LANGUE DU CONFIGURATEUR — celle que le CLIENT lit.
 		 *
@@ -475,36 +472,39 @@ class AHNS_Appearance {
 		echo '</form>';
 
 		// Sélecteur de logo (médiathèque WordPress).
-		?>
-		<script>
-		(function(){
-			var pick = document.getElementById('ahns-logo-pick');
-			var clear = document.getElementById('ahns-logo-clear');
-			var url = document.getElementById('ahns-logo-url');
-			var preview = document.getElementById('ahns-logo-preview');
+		AHNS_Admin_UI::inline_js(
+			'ahns-appearance-logo',
+			'		(function(){
+			var pick = document.getElementById(\'ahns-logo-pick\');
+			var clear = document.getElementById(\'ahns-logo-clear\');
+			var url = document.getElementById(\'ahns-logo-url\');
+			var preview = document.getElementById(\'ahns-logo-preview\');
 			if (!pick || !url) { return; }
 			function sync() {
-				var has = url.value !== '';
+				var has = url.value !== \'\';
 				preview.src = url.value;
-				preview.style.display = has ? '' : 'none';
-				clear.style.display = has ? '' : 'none';
+				preview.style.display = has ? \'\' : \'none\';
+				clear.style.display = has ? \'\' : \'none\';
 			}
 			var frame = null;
-			pick.addEventListener('click', function () {
+			pick.addEventListener(\'click\', function () {
 				if (!window.wp || !wp.media) { return; }
 				if (!frame) {
-					frame = wp.media({ title: 'Choisir le logo', button: { text: 'Utiliser ce logo' }, library: { type: 'image' }, multiple: false });
-					frame.on('select', function () {
-						url.value = frame.state().get('selection').first().toJSON().url || '';
+					frame = wp.media({ title: '
+			. wp_json_encode( __( 'Choose the logo', 'ahime-neon-sign-configurator' ) )
+			. ', button: { text: '
+			. wp_json_encode( __( 'Use this logo', 'ahime-neon-sign-configurator' ) )
+			. ' }, library: { type: \'image\' }, multiple: false });
+					frame.on(\'select\', function () {
+						url.value = frame.state().get(\'selection\').first().toJSON().url || \'\';
 						sync();
 					});
 				}
 				frame.open();
 			});
-			clear.addEventListener('click', function () { url.value = ''; sync(); });
-		}());
-		</script>
-		<?php
+			clear.addEventListener(\'click\', function () { url.value = \'\'; sync(); });
+		}());'
+		);
 		AHNS_Admin_UI::close();
 	}
 }

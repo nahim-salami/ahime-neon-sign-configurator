@@ -76,7 +76,7 @@ class AHNS_Ar {
 		// Pas d'index de dossier : la liste des modèles déposés dirait qui
 		// configure quoi, en ce moment, sur cette boutique.
 		if ( ! file_exists( $dir . '/index.html' ) ) {
-			file_put_contents( $dir . '/index.html', '' ); // phpcs:ignore
+			self::ecrire( $dir . '/index.html', '' );
 		}
 		return array( $dir, trailingslashit( $up['baseurl'] ) . self::DOSSIER );
 	}
@@ -158,8 +158,8 @@ class AHNS_Ar {
 		// l'extension décidée d'après le contenu reconnu plus haut.
 		$nom     = wp_generate_password( 32, false, false ) . '.' . $type[0];
 		$chemin  = $dir . '/' . $nom;
-		$ecrit   = file_put_contents( $chemin, $octets ); // phpcs:ignore
-		if ( false === $ecrit ) {
+		$ecrit   = self::ecrire( $chemin, $octets );
+		if ( ! $ecrit ) {
 			wp_send_json_error( __( 'The model could not be saved.', 'ahime-neon-sign-configurator' ), 500 );
 		}
 
@@ -171,6 +171,22 @@ class AHNS_Ar {
 		);
 	}
 
+	/**
+	 * Écrit un fichier du dossier de dépôt par l'API de fichiers de WordPress.
+	 *
+	 * @param string $chemin  Fichier, dans le dossier de dépôt (uploads).
+	 * @param string $contenu Octets.
+	 * @return bool
+	 */
+	private static function ecrire( $chemin, $contenu ) {
+		global $wp_filesystem;
+		if ( ! $wp_filesystem ) {
+			require_once ABSPATH . 'wp-admin/includes/file.php';
+			WP_Filesystem();
+		}
+		return $wp_filesystem ? (bool) $wp_filesystem->put_contents( $chemin, $contenu, FS_CHMOD_FILE ) : false;
+	}
+
 	/** Efface les dépôts dépassés. Silencieux : rien ici ne doit casser une page. */
 	public static function purger() {
 		$d = self::dossier();
@@ -180,7 +196,7 @@ class AHNS_Ar {
 		$limite = time() - self::DUREE_S;
 		foreach ( (array) glob( $d[0] . '/*.{usdz,glb}', GLOB_BRACE ) as $f ) {
 			if ( is_file( $f ) && filemtime( $f ) < $limite ) {
-				@unlink( $f ); // phpcs:ignore
+				wp_delete_file( $f );
 			}
 		}
 	}

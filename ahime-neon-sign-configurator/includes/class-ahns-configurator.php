@@ -109,11 +109,11 @@ class AHNS_Configurator {
 
 		$features = array();
 		foreach ( array_keys( self::FEATURES ) as $key ) {
-			$features[ $key ] = ! empty( $_POST['features'][ $key ] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+			$features[ $key ] = ! empty( $_POST['features'][ $key ] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput -- lu comme un booléen (! empty).
 		}
 		$backgrounds = array();
 		foreach ( array_keys( self::BACKGROUNDS ) as $key ) {
-			$backgrounds[ $key ] = ! empty( $_POST['backgrounds'][ $key ] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+			$backgrounds[ $key ] = ! empty( $_POST['backgrounds'][ $key ] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput -- lu comme un booléen (! empty).
 		}
 
 		update_option(
@@ -149,7 +149,7 @@ class AHNS_Configurator {
 			__( 'Where your configurator lives, which product it bills, and what it offers your customers.', 'ahime-neon-sign-configurator' ),
 			$page_ok ? AHNS_Admin_UI::button( __( 'View page', 'ahime-neon-sign-configurator' ), (string) get_permalink( $page_id ), 'on-accent', array( 'target' => '_blank', 'rel' => 'noopener' ) ) : ''
 		);
-		if ( isset( $_GET['saved'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( isset( $_GET['saved'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- lecture d'un paramètre d'affichage ou de navigation, aucune écriture.
 			echo '<div class="notice notice-success"><p>' . esc_html__( 'Settings saved.', 'ahime-neon-sign-configurator' ) . '</p></div>';
 		}
 
@@ -163,13 +163,13 @@ class AHNS_Configurator {
 		if ( $page_ok ) {
 			printf(
 				'<p>%s <a href="%s" target="_blank" rel="noopener">%s</a> &nbsp; <a class="button" href="%s">' . esc_html__( 'Edit page', 'ahime-neon-sign-configurator' ) . '</a></p>',
-				AHNS_Admin_UI::badge( __( 'Created', 'ahime-neon-sign-configurator' ), 'ok' ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				wp_kses( AHNS_Admin_UI::badge( __( 'Created', 'ahime-neon-sign-configurator' ), 'ok' ), AHNS_Admin_UI::allowed_html() ),
 				esc_url( (string) get_permalink( $page_id ) ),
 				esc_html( (string) get_permalink( $page_id ) ),
 				esc_url( (string) get_edit_post_link( $page_id ) )
 			);
 		} else {
-			printf( '<p>' . /* translators: %s: status badge ("To do"). */ esc_html__( '%s No dedicated page yet.', 'ahime-neon-sign-configurator' ) . '</p>', AHNS_Admin_UI::badge( __( 'To do', 'ahime-neon-sign-configurator' ), 'todo' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			printf( '<p>' . /* translators: %s: status badge ("To do"). */ esc_html__( '%s No dedicated page yet.', 'ahime-neon-sign-configurator' ) . '</p>', wp_kses( AHNS_Admin_UI::badge( __( 'To do', 'ahime-neon-sign-configurator' ), 'todo' ), AHNS_Admin_UI::allowed_html() ) );
 			echo '<p><label><input type="checkbox" name="create_page" value="1" checked /> ' . esc_html__( 'Create the page when saving', 'ahime-neon-sign-configurator' ) . '</label></p>';
 		}
 		AHNS_Admin_UI::card_close();

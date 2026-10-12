@@ -149,7 +149,9 @@ class AHNS_Embed {
 		if ( false !== strpos( $tag, " type='module'" ) || false !== strpos( $tag, ' type="module"' ) ) {
 			return $tag;
 		}
-		return str_replace( '<script ', '<script type="module" ', $tag );
+		// Seule la balise du fichier (celle qui porte src) devient un module ; le
+		// contexte en ligne qui la précède reste un script classique, exécuté avant.
+		return preg_replace( '/\ssrc=/', ' type="module" src=', $tag, 1 );
 	}
 
 	private static function edit_context() {

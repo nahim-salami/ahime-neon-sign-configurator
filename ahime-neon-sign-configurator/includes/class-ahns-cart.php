@@ -55,7 +55,7 @@ class AHNS_Cart {
 		if ( ! is_string( $brut ) || '' === $brut || strlen( $brut ) > 500000 ) {
 			return '';
 		}
-		if ( preg_match( '#<script|javascript:|\son[a-z]+\s*=#i', $brut ) || false === stripos( $brut, '<svg' ) ) {
+		if ( preg_match( '#<\s*script|javascript:|\son[a-z]+\s*=#i', $brut ) || false === stripos( $brut, '<svg' ) ) {
 			return '';
 		}
 		$propre = trim( wp_kses( $brut, self::SVG_PERMIS, array() ) );
@@ -444,7 +444,7 @@ class AHNS_Cart {
 		$client_cents = isset( $_POST['priceCents'] ) ? absint( wp_unslash( $_POST['priceCents'] ) ) : 0;
 		// Journalisé seulement quand le site est en mode débogage.
 		if ( $client_cents && abs( $client_cents - $price['displayTotalCents'] ) > 1 && defined( 'WP_DEBUG' ) && WP_DEBUG && defined( 'WP_DEBUG_LOG' ) && WP_DEBUG_LOG ) {
-			error_log( sprintf( '[AHNS] Client/server price mismatch: %d vs %d', $client_cents, $price['displayTotalCents'] ) ); // phpcs:ignore
+			error_log( sprintf( '[AHNS] Client/server price mismatch: %d vs %d', $client_cents, $price['displayTotalCents'] ) ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log -- seulement quand WP_DEBUG_LOG est actif (condition ci-dessus).
 		}
 
 		// Captures du design (fidèles à l'aperçu) — optionnelles, bornées à
@@ -452,8 +452,8 @@ class AHNS_Cart {
 		// plus clair de sa vie ainsi, et ne l'avoir jamais montré est la
 		// déception la plus courante du métier (écart E03).
 		// capture_valide() n'accepte qu'une data-URL PNG ou JPEG en base64 strict : c'est l'assainissement.
-		$preview     = isset( $_POST['preview'] ) ? self::capture_valide( wp_unslash( $_POST['preview'] ) ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-		$preview_off = isset( $_POST['previewOff'] ) ? self::capture_valide( wp_unslash( $_POST['previewOff'] ) ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		$preview     = isset( $_POST['preview'] ) ? self::capture_valide( wp_unslash( $_POST['preview'] ) ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- validé par capture_valide() : data-URL PNG ou JPEG en base64 strict.
+		$preview_off = isset( $_POST['previewOff'] ) ? self::capture_valide( wp_unslash( $_POST['previewOff'] ) ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- validé par capture_valide() : data-URL PNG ou JPEG en base64 strict.
 		// La vue 3D sur son décor, quand le client l'a ouverte. Elle n'est JAMAIS
 		// construite pour la capture : voir `capture3d` côté widget. Elle est donc
 		// absente pour une bonne part des commandes, et c'est voulu.
@@ -465,7 +465,7 @@ class AHNS_Cart {
 		if ( ! is_finite( $masse_kg ) || $masse_kg <= 0 || $masse_kg > 500 ) {
 			$masse_kg = 0.0;
 		}
-		$preview_3d  = isset( $_POST['preview3d'] ) ? self::capture_valide( wp_unslash( $_POST['preview3d'] ) ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		$preview_3d  = isset( $_POST['preview3d'] ) ? self::capture_valide( wp_unslash( $_POST['preview3d'] ) ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- validé par capture_valide() : data-URL PNG ou JPEG en base64 strict.
 
 		// SVG source du logo — vérification atelier avant fabrication. Refusé si
 		// suspect (script, javascript:, gestionnaire d'évènement) ou trop lourd,
@@ -475,7 +475,7 @@ class AHNS_Cart {
 		$geometry = null;
 		if ( isset( $_POST['geometry'] ) ) {
 			// Reconstruite nombre par nombre par sanitize_geometry() : rien d'autre n'en sort.
-			$geometry_json = wp_unslash( $_POST['geometry'] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+			$geometry_json = wp_unslash( $_POST['geometry'] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- reconstruit nombre par nombre par sanitize_geometry().
 			if ( is_string( $geometry_json ) && strlen( $geometry_json ) <= 800000 ) {
 				$geometry = self::sanitize_geometry( json_decode( $geometry_json, true ) );
 			}
@@ -762,11 +762,11 @@ class AHNS_Cart {
 	 * Sert l'image de capture depuis la session panier (endpoint signé).
 	 */
 	public function serve_preview_image() {
-		if ( empty( $_GET['ahns_preview_key'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( empty( $_GET['ahns_preview_key'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- lecture d'un paramètre d'affichage ou de navigation, aucune écriture.
 			return;
 		}
-		$key = sanitize_text_field( wp_unslash( $_GET['ahns_preview_key'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		$sig = isset( $_GET['ahns_preview_sig'] ) ? sanitize_text_field( wp_unslash( $_GET['ahns_preview_sig'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$key = sanitize_text_field( wp_unslash( $_GET['ahns_preview_key'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- lecture d'un paramètre d'affichage ou de navigation, aucune écriture.
+		$sig = isset( $_GET['ahns_preview_sig'] ) ? sanitize_text_field( wp_unslash( $_GET['ahns_preview_sig'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- lecture d'un paramètre d'affichage ou de navigation, aucune écriture.
 		if ( ! $key || ! wp_verify_nonce( $sig, 'ahns_preview_' . $key ) ) {
 			status_header( 403 );
 			exit;
@@ -780,14 +780,28 @@ class AHNS_Cart {
 			status_header( 404 );
 			exit;
 		}
-		$binary = base64_decode( $m[2], true ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_decode
-		if ( false === $binary ) {
+		// Décodé seulement pour lire les dimensions de l'image (getimagesizefromstring).
+		$binary = base64_decode( $m[2], true ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_decode -- capture PNG/JPEG du configurateur, validée par le motif ci-dessus.
+		$taille = false !== $binary ? getimagesizefromstring( $binary ) : false;
+		if ( ! $taille ) {
 			status_header( 404 );
 			exit;
 		}
-		header( 'Content-Type: image/' . ( 'jpeg' === $m[1] ? 'jpeg' : 'png' ) );
+		/*
+		 * UNE IMAGE SVG QUI ENVELOPPE LA CAPTURE. Le navigateur affiche le même
+		 * dessin, et la réponse n'est plus un binaire écrit tel quel : la
+		 * capture y entre par esc_attr(), dans l'attribut href d'un <image>
+		 * (une image SVG chargée par <img> n'exécute rien et ne charge que
+		 * les données qu'elle contient).
+		 */
+		header( 'Content-Type: image/svg+xml; charset=utf-8' );
 		header( 'Cache-Control: private, max-age=300' );
-		echo $binary; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		printf(
+			'<svg xmlns="http://www.w3.org/2000/svg" width="%1$d" height="%2$d" viewBox="0 0 %1$d %2$d"><image width="%1$d" height="%2$d" href="%3$s"/></svg>',
+			(int) $taille[0],
+			(int) $taille[1],
+			esc_attr( $preview )
+		);
 		exit;
 	}
 
@@ -837,19 +851,29 @@ class AHNS_Cart {
 			return;
 		}
 		$accent = self::accent_color();
-		?>
-		<style id="ahns-cart-actions-css">
-			/* Un détail par ligne (les blocs WooCommerce les mettent en enfilade). */
+		AHNS_Admin_UI::inline_css(
+			'ahns-cart-actions',
+			'			/* Un détail par ligne (les blocs WooCommerce les mettent en enfilade). */
 			.wc-block-components-product-details>span{display:block;margin:0 0 2px;}
 			.wc-block-components-product-details>span>span[aria-hidden="true"]{display:none;}
 			.wc-block-components-product-details>span:has(.ahns-cart-actions){display:block;margin-top:10px;}
 			/* Actions : de VRAIS boutons, à la couleur de marque. */
 			.ahns-cart-actions{display:inline-flex;gap:8px;align-items:center;flex-wrap:wrap;}
 			.ahns-cart-actions a{white-space:nowrap;display:inline-flex;align-items:center;padding:7px 16px;border-radius:999px;font-size:12.5px;font-weight:600;line-height:1.2;text-decoration:none;box-shadow:none;transition:filter .15s ease;}
-			.ahns-cart-actions a.ahns-cart-preview{background:#fff;color:<?php echo esc_attr( $accent ); ?>;border:1.5px solid <?php echo esc_attr( $accent ); ?>;}
-			.ahns-cart-actions a.ahns-cart-edit{background:<?php echo esc_attr( $accent ); ?>;color:#fff;border:1.5px solid <?php echo esc_attr( $accent ); ?>;}
+			.ahns-cart-actions a.ahns-cart-preview{background:#fff;color:'
+			. esc_attr( $accent )
+			. ';border:1.5px solid '
+			. esc_attr( $accent )
+			. ';}
+			.ahns-cart-actions a.ahns-cart-edit{background:'
+			. esc_attr( $accent )
+			. ';color:#fff;border:1.5px solid '
+			. esc_attr( $accent )
+			. ';}
 			.ahns-cart-actions a:hover{filter:brightness(.94);}
-			.ahns-cart-actions a.ahns-cart-preview:hover{color:<?php echo esc_attr( $accent ); ?>;}
+			.ahns-cart-actions a.ahns-cart-preview:hover{color:'
+			. esc_attr( $accent )
+			. ';}
 			.ahns-cart-actions a.ahns-cart-edit:hover{color:#fff;}
 			/* Fenêtre « Aperçu ». */
 			.ahns-preview-modal{position:fixed;inset:0;z-index:99999;display:none;align-items:center;justify-content:center;background:rgba(12,14,18,.72);padding:24px}
@@ -858,8 +882,9 @@ class AHNS_Cart {
 			.ahns-preview-modal__close{position:absolute;right:10px;top:10px;box-sizing:border-box;width:36px;height:36px;min-width:36px;padding:0;margin:0;border:0;outline:0;box-shadow:none;border-radius:999px;background:#fff;color:#111827;font-size:20px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
 			.ahns-preview-modal__close:focus,.ahns-preview-modal__close:focus-visible{outline:0;box-shadow:0 0 0 3px rgba(255,255,255,.35)}
 			.ahns-preview-modal__title{margin:0 44px 12px 0;font-size:15px;font-weight:700;color:#fff}
-			.ahns-preview-modal__image{display:block;max-width:100%;max-height:72vh;border-radius:8px;object-fit:contain}
-		</style>
+			.ahns-preview-modal__image{display:block;max-width:100%;max-height:72vh;border-radius:8px;object-fit:contain}'
+		);
+?>
 		<div class="ahns-preview-modal" id="ahns-preview-modal" aria-hidden="true">
 			<div class="ahns-preview-modal__dialog" role="dialog" aria-modal="true">
 				<button type="button" class="ahns-preview-modal__close" aria-label="<?php echo esc_attr__( 'Close', 'ahime-neon-sign-configurator' ); ?>">&times;</button>
@@ -867,68 +892,73 @@ class AHNS_Cart {
 				<img class="ahns-preview-modal__image" alt="<?php echo esc_attr__( 'Preview of your neon', 'ahime-neon-sign-configurator' ); ?>" />
 			</div>
 		</div>
-		<script id="ahns-preview-modal-js">
-		(function(){
-			var modal=document.getElementById('ahns-preview-modal');
+		<?php
+		AHNS_Admin_UI::inline_js(
+			'ahns-preview-modal',
+			'		(function(){
+			var modal=document.getElementById(\'ahns-preview-modal\');
 			if(!modal){return;}
-			var img=modal.querySelector('.ahns-preview-modal__image');
-			var close=modal.querySelector('.ahns-preview-modal__close');
-			function open(url){img.src=url;modal.classList.add('is-open');modal.setAttribute('aria-hidden','false');close.focus();}
-			function shut(){modal.classList.remove('is-open');modal.setAttribute('aria-hidden','true');img.removeAttribute('src');}
-			document.addEventListener('click',function(e){
-				var trigger=e.target.closest&&e.target.closest('.ahns-cart-preview');
-				if(trigger){e.preventDefault();open(trigger.getAttribute('data-ahns-preview')||trigger.href);return;}
+			var img=modal.querySelector(\'.ahns-preview-modal__image\');
+			var close=modal.querySelector(\'.ahns-preview-modal__close\');
+			function open(url){img.src=url;modal.classList.add(\'is-open\');modal.setAttribute(\'aria-hidden\',\'false\');close.focus();}
+			function shut(){modal.classList.remove(\'is-open\');modal.setAttribute(\'aria-hidden\',\'true\');img.removeAttribute(\'src\');}
+			document.addEventListener(\'click\',function(e){
+				var trigger=e.target.closest&&e.target.closest(\'.ahns-cart-preview\');
+				if(trigger){e.preventDefault();open(trigger.getAttribute(\'data-ahns-preview\')||trigger.href);return;}
 				if(e.target===modal||e.target===close){e.preventDefault();shut();}
 			});
-			document.addEventListener('keydown',function(e){if(e.key==='Escape'&&modal.classList.contains('is-open')){shut();}});
-		}());
-		</script>
-		<style id="ahns-hover-zoom-css">
-			img[src*="ahns_preview_key"]{cursor:zoom-in}
+			document.addEventListener(\'keydown\',function(e){if(e.key===\'Escape\'&&modal.classList.contains(\'is-open\')){shut();}});
+		}());'
+		);
+		AHNS_Admin_UI::inline_css(
+			'ahns-hover-zoom',
+			'			img[src*="ahns_preview_key"]{cursor:zoom-in}
 			.ahns-hover-zoom{position:fixed;left:0;top:0;z-index:100000;display:none;pointer-events:none;background:#101216;border-radius:12px;padding:8px;box-shadow:0 12px 40px rgba(0,0,0,.35)}
 			.ahns-hover-zoom.is-visible{display:block}
-			.ahns-hover-zoom img{display:block;width:min(440px,60vw);height:auto;border-radius:8px}
-		</style>
+			.ahns-hover-zoom img{display:block;width:min(440px,60vw);height:auto;border-radius:8px}'
+		);
+?>
 		<div class="ahns-hover-zoom" id="ahns-hover-zoom" aria-hidden="true"><img alt="" /></div>
-		<script>
-		(function(){
-			if(!window.matchMedia || !window.matchMedia('(hover: hover) and (pointer: fine)').matches){return;}
-			var zoomEl=document.getElementById('ahns-hover-zoom');
+		<?php
+		AHNS_Admin_UI::inline_js(
+			'ahns-hover-zoom',
+			'		(function(){
+			if(!window.matchMedia || !window.matchMedia(\'(hover: hover) and (pointer: fine)\').matches){return;}
+			var zoomEl=document.getElementById(\'ahns-hover-zoom\');
 			if(!zoomEl){return;}
-			var zoomImg=zoomEl.querySelector('img');
+			var zoomImg=zoomEl.querySelector(\'img\');
 			var OFFSET=18;
 			function targetImg(node){
-				var img=node && node.closest ? node.closest('img[src*="ahns_preview_key"]') : null;
-				return img && !img.closest('.ahns-hover-zoom') ? img : null;
+				var img=node && node.closest ? node.closest(\'img[src*="ahns_preview_key"]\') : null;
+				return img && !img.closest(\'.ahns-hover-zoom\') ? img : null;
 			}
-			function hide(){zoomEl.classList.remove('is-visible');zoomImg.removeAttribute('src');}
+			function hide(){zoomEl.classList.remove(\'is-visible\');zoomImg.removeAttribute(\'src\');}
 			function place(event){
 				var w=zoomEl.offsetWidth,h=zoomEl.offsetHeight;
 				var x=event.clientX+OFFSET,y=event.clientY+OFFSET;
 				if(x+w>window.innerWidth-8){x=event.clientX-w-OFFSET;}
 				if(y+h>window.innerHeight-8){y=event.clientY-h-OFFSET;}
-				zoomEl.style.left=Math.max(8,x)+'px';
-				zoomEl.style.top=Math.max(8,y)+'px';
+				zoomEl.style.left=Math.max(8,x)+\'px\';
+				zoomEl.style.top=Math.max(8,y)+\'px\';
 			}
-			document.addEventListener('mouseover',function(event){
+			document.addEventListener(\'mouseover\',function(event){
 				var img=targetImg(event.target);
 				if(!img){return;}
 				zoomImg.src=img.src;
-				zoomEl.classList.add('is-visible');
+				zoomEl.classList.add(\'is-visible\');
 				place(event);
 			});
-			document.addEventListener('mousemove',function(event){
-				if(!zoomEl.classList.contains('is-visible')){return;}
+			document.addEventListener(\'mousemove\',function(event){
+				if(!zoomEl.classList.contains(\'is-visible\')){return;}
 				if(!targetImg(event.target)){return;}
 				place(event);
 			});
-			document.addEventListener('mouseout',function(event){
+			document.addEventListener(\'mouseout\',function(event){
 				if(targetImg(event.target) && !targetImg(event.relatedTarget)){hide();}
 			});
-			document.addEventListener('click',hide);
-		})();
-		</script>
-		<?php
+			document.addEventListener(\'click\',hide);
+		})();'
+		);
 	}
 
 	/**

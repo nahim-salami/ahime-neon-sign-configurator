@@ -258,7 +258,7 @@ class AHNS_Catalogue_Produit {
 					esc_attr( $cle ),
 					esc_attr( $id ),
 					checked( isset( $retenus[ $id ] ), true, false ),
-					$pastille, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- construit et échappé ci-dessus.
+					wp_kses( $pastille, AHNS_Admin_UI::allowed_html() ),
 					esc_html( $nom )
 				);
 			}

@@ -4,7 +4,7 @@ Tags: woocommerce, product configurator, neon sign, led neon, custom sign
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.1
+Stable tag: 1.3.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -98,6 +98,12 @@ The build is deterministic: with the versions pinned in `package-lock.json`, it 
 
 == Changelog ==
 
+= 1.3.2 =
+* Every script and style goes through the WordPress enqueue functions (wp_add_inline_script, wp_add_inline_style); no inline tag is printed by hand.
+* Late escaping everywhere: HTML fragments are output through wp_kses with an explicit list of allowed elements.
+* Translations are no longer bundled: they come from translate.wordpress.org. The admin language is the one set in each user's profile.
+* The cart preview image is served as an escaped SVG wrapper.
+
 = 1.3.1 =
 * Translator comments for every string with placeholders.
 * Checked with the Plugin Check plugin: no errors.
@@ -124,6 +130,9 @@ The build is deterministic: with the versions pinned in `package-lock.json`, it 
 * First version prepared for WordPress.org.
 
 == Upgrade Notice ==
+
+= 1.3.2 =
+Enqueued scripts and styles, late escaping, translations from translate.wordpress.org.
 
 = 1.3.1 =
 Translator comments; no functional change.

@@ -173,7 +173,7 @@ class AHNS_Catalog {
 		$saved   = (array) get_option( self::COLORS_OPTION, array() );
 
 		AHNS_Admin_UI::open( __( 'Colours', 'ahime-neon-sign-configurator' ), __( 'The tube palette you offer. Every colour is shown lit and unlit, just like the finished product.', 'ahime-neon-sign-configurator' ) );
-		if ( isset( $_GET['saved'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( isset( $_GET['saved'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- lecture d'un paramètre d'affichage ou de navigation, aucune écriture.
 			echo '<div class="notice notice-success"><p>' . esc_html__( 'Palette saved.', 'ahime-neon-sign-configurator' ) . '</p></div>';
 		}
 
@@ -217,8 +217,9 @@ class AHNS_Catalog {
 		echo '<p class="ahns-hint">' . esc_html__( 'A row with no name is ignored: clear the name to remove a colour.', 'ahime-neon-sign-configurator' ) . '</p>';
 		AHNS_Admin_UI::card_close();
 
-		echo '<style>'
-			. '.ahns-colors{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px;}'
+		AHNS_Admin_UI::inline_css(
+			'ahns-colors',
+			'.ahns-colors{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px;}'
 			. '.ahns-color{display:grid;grid-template-columns:auto auto auto 1fr;grid-template-rows:auto auto;gap:6px 8px;align-items:center;'
 			. 'border:1.5px solid #dcdcde;border-radius:10px;padding:10px 12px;background:#fff;cursor:pointer;}'
 			. '.ahns-color.on{border-color:var(--ahns-accent);background:#fdf2f8;}'
@@ -226,8 +227,8 @@ class AHNS_Catalog {
 			. '.ahns-color__off{filter:grayscale(.65) brightness(1.25);opacity:.85;}'
 			. '.ahns-color__name{font-size:12.5px;font-weight:600;}'
 			. '.ahns-color__def{grid-column:1/-1;font-size:11px;color:#6b7280;}'
-			. '</style>';
-		echo '<script>document.addEventListener("change",function(e){var c=e.target.closest(".ahns-color");if(c&&e.target.type==="checkbox"){c.classList.toggle("on",e.target.checked);}});</script>';
+		);
+		AHNS_Admin_UI::inline_js( 'ahns-colors', 'document.addEventListener("change",function(e){var c=e.target.closest(".ahns-color");if(c&&e.target.type==="checkbox"){c.classList.toggle("on",e.target.checked);}});' );
 
 		submit_button( __( 'Save palette', 'ahime-neon-sign-configurator' ) );
 		echo '</form>';
@@ -318,7 +319,7 @@ class AHNS_Catalog {
 		$finishes = self::enabled_finishes();
 
 		AHNS_Admin_UI::open( __( 'Backings', 'ahime-neon-sign-configurator' ), __( 'The cuts and finishes your workshop can actually make.', 'ahime-neon-sign-configurator' ) );
-		if ( isset( $_GET['saved'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( isset( $_GET['saved'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- lecture d'un paramètre d'affichage ou de navigation, aucune écriture.
 			echo '<div class="notice notice-success"><p>' . esc_html__( 'Backings saved.', 'ahime-neon-sign-configurator' ) . '</p></div>';
 		}
 

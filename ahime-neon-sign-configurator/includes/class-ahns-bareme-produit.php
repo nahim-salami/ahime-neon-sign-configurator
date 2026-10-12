@@ -196,12 +196,15 @@ class AHNS_Bareme_Produit {
 
 		// Le bloc n'apparaît que si le produit s'écarte : deux lignes suffisent,
 		// et elles évitent un rechargement de page pour voir ses champs.
-		echo '<script>(function(){'
+		AHNS_Admin_UI::inline_js(
+			'ahns-bareme-produit',
+			'(function(){'
 			. 'var b=document.getElementById("ahns-bareme");if(!b)return;'
 			. 'b.addEventListener("change",function(e){'
 			. 'if("ahns_bareme_mode"!==e.target.name)return;'
 			. 'document.getElementById("ahns-bareme-champs").hidden="propre"!==e.target.value;});'
-			. '})();</script>';
+			. '})();'
+		);
 	}
 
 	/**

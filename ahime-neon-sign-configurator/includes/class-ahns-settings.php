@@ -432,35 +432,38 @@ class AHNS_Settings {
 		 * des lignes au vol demanderait de recopier ici le gabarit du tableau
 		 * — deux gabarits qui divergeraient au premier changement de colonne.
 		 */
-		?>
-		<script>
-		(function () {
-			var b = document.getElementById('ahns-psu-depart');
+		AHNS_Admin_UI::inline_js(
+			'ahns-psu-depart',
+			'		(function () {
+			var b = document.getElementById(\'ahns-psu-depart\');
 			if (!b) { return; }
-			b.addEventListener('click', function () {
-				var liste = JSON.parse(b.dataset.psu || '[]');
-				var refs = document.querySelectorAll('input[name="psu_sku[]"]');
+			b.addEventListener(\'click\', function () {
+				var liste = JSON.parse(b.dataset.psu || \'[]\');
+				var refs = document.querySelectorAll(\'input[name="psu_sku[]"]\');
 				var pose = 0;
 				for (var i = 0; i < refs.length && pose < liste.length; i++) {
-					if ('' !== refs[i].value.trim()) { continue; }
-					var tr = refs[i].closest('tr');
+					if (\'\' !== refs[i].value.trim()) { continue; }
+					var tr = refs[i].closest(\'tr\');
 					var a = liste[pose];
 					refs[i].value = a.sku;
-					var champ = function (n) { return tr.querySelector('[name="' + n + '[]"]'); };
-					if (champ('psu_label')) { champ('psu_label').value = a.label; }
-					if (champ('psu_watts')) { champ('psu_watts').value = a.wattsNominal; }
-					if (champ('psu_volt')) { champ('psu_volt').value = String(a.voltage); }
-					if (champ('psu_ip')) { champ('psu_ip').value = a.ip; }
+					var champ = function (n) { return tr.querySelector(\'[name="\' + n + \'[]"]\'); };
+					if (champ(\'psu_label\')) { champ(\'psu_label\').value = a.label; }
+					if (champ(\'psu_watts\')) { champ(\'psu_watts\').value = a.wattsNominal; }
+					if (champ(\'psu_volt\')) { champ(\'psu_volt\').value = String(a.voltage); }
+					if (champ(\'psu_ip\')) { champ(\'psu_ip\').value = a.ip; }
 					pose++;
 				}
 				b.disabled = true;
 				b.textContent = pose < liste.length
-					? <?php echo wp_json_encode( __( 'Rows filled in: add more, then click again for the rest', 'ahime-neon-sign-configurator' ) ); ?>
-					: <?php echo wp_json_encode( __( 'Part numbers loaded: read them over, add your prices, then save', 'ahime-neon-sign-configurator' ) ); ?>;
+					? '
+			. wp_json_encode( __( 'Rows filled in: add more, then click again for the rest', 'ahime-neon-sign-configurator' ) )
+			. '
+					: '
+			. wp_json_encode( __( 'Part numbers loaded: read them over, add your prices, then save', 'ahime-neon-sign-configurator' ) )
+			. ';
 			});
-		}());
-		</script>
-		<?php
+		}());'
+		);
 
 		// --- Programmateurs d'extinction (chantier A2) -----------------------
 		//
@@ -774,7 +777,7 @@ class AHNS_Settings {
 			__( 'Pricing', 'ahime-neon-sign-configurator' ),
 			__( 'Your coefficients, your sizes and your price tiers. The configurator shows the customer EXACTLY what the server will charge.', 'ahime-neon-sign-configurator' )
 		);
-		if ( isset( $_GET['saved'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( isset( $_GET['saved'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- lecture d'un paramètre d'affichage ou de navigation, aucune écriture.
 			echo '<div class="notice notice-success"><p>' . esc_html__( 'Settings saved - the simulator below reflects the new pricing.', 'ahime-neon-sign-configurator' ) . '</p></div>';
 		}
 		AHNS_Admin_UI::card_open( '', 'padding:0 20px 4px;' );
@@ -1175,18 +1178,18 @@ class AHNS_Settings {
 		 * et enregistrable. C'est le meme garde-fou que pour la coque de
 		 * l'espace marchand.
 		 */
-		?>
-		<style>
-		.ahns-onglets { margin: 18px 0 0; border-bottom: 0; }
+		AHNS_Admin_UI::inline_css(
+			'ahns-onglets',
+			'		.ahns-onglets { margin: 18px 0 0; border-bottom: 0; }
 		.ahns-onglets .nav-tab { border-radius: 10px 10px 0 0; font-weight: 600; }
 
 		/*
-		 * DES CHAMPS QU'ON PEUT LIRE.
+		 * DES CHAMPS QU\'ON PEUT LIRE.
 		 *
 		 * Ils faisaient 65 px de large — cinq fois moins que les 350 px de
-		 * l'ecran Apparence — parce que `small-text` de WordPress vise des
+		 * l\'ecran Apparence — parce que `small-text` de WordPress vise des
 		 * codes postaux, pas des prix a quatre chiffres. Un prix de 1 250,50
-		 * n'y tenait pas : le marchand voyait « 1 250 » et devait deviner la
+		 * n\'y tenait pas : le marchand voyait « 1 250 » et devait deviner la
 		 * fin.
 		 */
 		.ahns-panneau input[type="number"],
@@ -1202,7 +1205,7 @@ class AHNS_Settings {
 		 * Le catalogue de tubes porte ONZE champs sur une ligne. Les faire
 		 * tenir dans la largeur ecrasait chacun a 65 px ; on leur rend une
 		 * largeur utile et on laisse le tableau defiler lateralement, ce qui
-		 * est le comportement que tout le monde connait d'un tableur.
+		 * est le comportement que tout le monde connait d\'un tableur.
 		 */
 		.ahns-panneau .widefat { display: block; overflow-x: auto; max-width: 100%; }
 		.ahns-panneau .widefat input,
@@ -1256,52 +1259,53 @@ class AHNS_Settings {
 		   sur « Colis — longueur maxi », qui n etait plus visible du tout. */
 		.ahns-panneau { padding-bottom: 76px; }
 		.js .ahns-panneau { display: none; }
-		.js .ahns-panneau.est-ouvert { display: block; }
-		</style>
-		<script>
-		(function () {
-			var racine = document.querySelector('.ahns-onglets');
+		.js .ahns-panneau.est-ouvert { display: block; }'
+		);
+		AHNS_Admin_UI::inline_js(
+			'ahns-onglets',
+			'		(function () {
+			var racine = document.querySelector(\'.ahns-onglets\');
 			if (!racine) { return; }
-			// La classe `js` n'est posee QUE si le script tourne : sans elle,
-			// aucun panneau n'est cache.
-			document.body.classList.add('js');
+			// La classe `js` n\'est posee QUE si le script tourne : sans elle,
+			// aucun panneau n\'est cache.
+			document.body.classList.add(\'js\');
 
-			var onglets = Array.prototype.slice.call(racine.querySelectorAll('.nav-tab'));
-			var panneaux = Array.prototype.slice.call(document.querySelectorAll('.ahns-panneau'));
+			var onglets = Array.prototype.slice.call(racine.querySelectorAll(\'.nav-tab\'));
+			var panneaux = Array.prototype.slice.call(document.querySelectorAll(\'.ahns-panneau\'));
 
 			function montrer(cle) {
 				var connu = false;
 				panneaux.forEach(function (pan) {
 					var ok = pan.dataset.onglet === cle;
-					pan.classList.toggle('est-ouvert', ok);
+					pan.classList.toggle(\'est-ouvert\', ok);
 					if (ok) { connu = true; }
 				});
 				onglets.forEach(function (o) {
-					o.classList.toggle('nav-tab-active', o.dataset.onglet === cle);
+					o.classList.toggle(\'nav-tab-active\', o.dataset.onglet === cle);
 				});
 				return connu;
 			}
 
 			onglets.forEach(function (o) {
-				o.addEventListener('click', function (ev) {
+				o.addEventListener(\'click\', function (ev) {
 					ev.preventDefault();
 					montrer(o.dataset.onglet);
-					// L'onglet courant vit dans l'adresse : apres
+					// L\'onglet courant vit dans l\'adresse : apres
 					// enregistrement, WordPress revient ici et le marchand
-					// retrouve l'onglet ou il travaillait.
-					try { history.replaceState(null, '', '#ahns-onglet-' + o.dataset.onglet); } catch (e) {}
+					// retrouve l\'onglet ou il travaillait.
+					try { history.replaceState(null, \'\', \'#ahns-onglet-\' + o.dataset.onglet); } catch (e) {}
 					// ET DANS LE STOCKAGE LOCAL, parce que le fragment ne
 					// survit PAS a l enregistrement : WordPress repond par une
 					// redirection qui le laisse tomber. Mesure : on repartait
 					// toujours sur le premier onglet apres avoir enregistre,
 					// alors que le commentaire d en haut promettait l inverse.
-					try { localStorage.setItem('ahns_onglet_tarifs', o.dataset.onglet); } catch (e) {}
+					try { localStorage.setItem(\'ahns_onglet_tarifs\', o.dataset.onglet); } catch (e) {}
 				});
 			});
 
-			var memoire = '';
-			try { memoire = localStorage.getItem('ahns_onglet_tarifs') || ''; } catch (e) {}
-			var depuisUrl = (location.hash || '').replace('#ahns-onglet-', '');
+			var memoire = \'\';
+			try { memoire = localStorage.getItem(\'ahns_onglet_tarifs\') || \'\'; } catch (e) {}
+			var depuisUrl = (location.hash || \'\').replace(\'#ahns-onglet-\', \'\');
 			// L adresse d abord — un lien partage doit mener ou il dit —, la
 			// memoire ensuite, le premier onglet en dernier recours.
 			if (!(depuisUrl && montrer(depuisUrl)) && !(memoire && montrer(memoire))) {
@@ -1311,20 +1315,19 @@ class AHNS_Settings {
 			/*
 			 * UN CHAMP INVALIDE PEUT ETRE DANS UN ONGLET FERME.
 			 *
-			 * Le navigateur refuse alors d'envoyer le formulaire et tente de
-			 * pointer un champ que personne ne voit : l'ecran ne bouge pas, et
-			 * rien n'explique pourquoi. On ouvre donc l'onglet qui le contient.
+			 * Le navigateur refuse alors d\'envoyer le formulaire et tente de
+			 * pointer un champ que personne ne voit : l\'ecran ne bouge pas, et
+			 * rien n\'explique pourquoi. On ouvre donc l\'onglet qui le contient.
 			 */
-			var form = racine.closest('form');
+			var form = racine.closest(\'form\');
 			if (form) {
-				form.addEventListener('invalid', function (ev) {
-					var pan = ev.target.closest('.ahns-panneau');
+				form.addEventListener(\'invalid\', function (ev) {
+					var pan = ev.target.closest(\'.ahns-panneau\');
 					if (pan) { montrer(pan.dataset.onglet); }
 				}, true);
 			}
-		}());
-		</script>
-		<?php
+		}());'
+		);
 
 		// --- Page dédiée ------------------------------------------------------
 		if ( current_user_can( 'publish_pages' ) ) {

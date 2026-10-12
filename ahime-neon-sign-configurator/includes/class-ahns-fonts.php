@@ -135,7 +135,7 @@ class AHNS_Fonts {
 	/** Manifeste complet du pack (identifiant → métriques). */
 	public static function manifest() {
 		if ( null === self::$manifest ) {
-			$json           = @file_get_contents( AHNS_PLUGIN_DIR . 'assets/font-metrics.json' ); // phpcs:ignore
+			$json           = file_get_contents( dirname( __DIR__ ) . '/assets/font-metrics.json' );
 			$pack           = is_string( $json ) ? (array) json_decode( $json, true ) : array();
 			// Les polices du marchand rejoignent le manifeste : le PRIX doit
 			// pouvoir être calculé pour elles aussi.
@@ -326,10 +326,10 @@ class AHNS_Fonts {
 				count( $available )
 			)
 		);
-		if ( isset( $_GET['saved'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( isset( $_GET['saved'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- lecture d'un paramètre d'affichage ou de navigation, aucune écriture.
 			echo '<div class="notice notice-success"><p>' . esc_html__( 'Selection saved - the configurator now offers these fonts only.', 'ahime-neon-sign-configurator' ) . '</p></div>';
 		}
-		if ( isset( $_GET['deleted'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( isset( $_GET['deleted'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- lecture d'un paramètre d'affichage ou de navigation, aucune écriture.
 			echo '<div class="notice notice-success"><p>' . esc_html__( 'Font deleted.', 'ahime-neon-sign-configurator' ) . '</p></div>';
 		}
 		AHNS_Admin_UI::card_open();
@@ -353,21 +353,24 @@ class AHNS_Fonts {
 		);
 
 		// Aperçus : les polices du pack, servies par le plugin.
-		echo '<style>';
+		$css = '';
 		foreach ( $available as $id => $m ) {
-			printf(
+			$css .= sprintf(
 				"@font-face{font-family:'AHNSPrev_%s';src:url('%s') format('woff2');font-display:swap;}",
 				esc_attr( str_replace( '-', '_', $id ) ),
 				esc_url( AHNS_PLUGIN_URL . 'assets/fonts/' . $id . '.woff2' )
 			);
 		}
-		echo '.ahnsf-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin:16px 0;max-width:1100px;}'
+		AHNS_Admin_UI::inline_css(
+			'ahns-fonts',
+			$css
+			. '.ahnsf-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin:16px 0;max-width:1100px;}'
 			. '.ahnsf-card{border:1.5px solid #dcdcde;border-radius:10px;padding:12px 14px;background:#fff;}'
 			. '.ahnsf-card.on{border-color:#ec4899;background:#fdf2f8;}'
 			. '.ahnsf-prev{display:block;font-size:26px;line-height:1.3;color:#111;margin:6px 0 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}'
 			. '.ahnsf-meta{font-size:11.5px;color:#666;}'
 			. '.ahnsf-head{display:flex;align-items:center;gap:8px;font-weight:600;font-size:13px;}'
-			. '</style>';
+		);
 
 		echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '">';
 		echo '<input type="hidden" name="action" value="ahns_save_fonts" />';
@@ -402,7 +405,7 @@ class AHNS_Fonts {
 		submit_button( __( 'Save fonts', 'ahime-neon-sign-configurator' ) );
 		echo '</form>';
 
-		echo '<script>document.addEventListener("change",function(e){var c=e.target.closest(".ahnsf-card");if(c&&e.target.type==="checkbox"){c.classList.toggle("on",e.target.checked);}});</script>';
+		AHNS_Admin_UI::inline_js( 'ahns-fonts', 'document.addEventListener("change",function(e){var c=e.target.closest(".ahnsf-card");if(c&&e.target.type==="checkbox"){c.classList.toggle("on",e.target.checked);}});' );
 
 		AHNS_Admin_UI::card_close();
 		AHNS_Admin_UI::close();

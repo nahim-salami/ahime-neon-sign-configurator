@@ -343,7 +343,7 @@ class AHNS_Order {
 					echo '<div style="margin-top:4px;padding:6px 10px;background:#fff7ed;border:1px solid #fed7aa;border-radius:6px;color:#9a3412;">' . esc_html__( 'Customer logo: tube length reported by the browser: CHECK it before production.', 'ahime-neon-sign-configurator' );
 					$svg = (string) $item->get_meta( '_ahns_logo_svg' );
 					if ( '' !== $svg ) {
-						printf( ' <a href="data:image/svg+xml;base64,%s" download="logo-commande-%d.svg">' . esc_html__( 'Download the SVG', 'ahime-neon-sign-configurator' ) . '</a>', esc_attr( base64_encode( $svg ) ), (int) $item_id ); // phpcs:ignore
+						printf( ' <a href="data:image/svg+xml;base64,%s" download="logo-commande-%d.svg">' . esc_html__( 'Download the SVG', 'ahime-neon-sign-configurator' ) . '</a>', esc_attr( base64_encode( $svg ) ), (int) $item_id ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode -- lien de téléchargement du SVG du client, aucun code exécuté.
 					}
 					echo '</div>';
 				}
@@ -403,7 +403,7 @@ class AHNS_Order {
 		printf(
 			'<a href="#" class="ahns-order-preview" data-ahns-order-preview="%1$s" aria-label="%2$s"><img src="%1$s" alt="%2$s" /></a>',
 			esc_attr( $preview ),
-			$alt // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- déjà échappé.
+			wp_kses( $alt, AHNS_Admin_UI::allowed_html() )
 		);
 		echo '<span class="ahns-order-actions">';
 		printf(
@@ -433,9 +433,9 @@ class AHNS_Order {
 		if ( ! self::is_customer_order_page() ) {
 			return;
 		}
-		?>
-		<style id="ahns-order-css">
-			.ahns-order-design{margin:8px 0 2px;display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+		AHNS_Admin_UI::inline_css(
+			'ahns-order',
+			'			.ahns-order-design{margin:8px 0 2px;display:flex;flex-direction:column;align-items:flex-start;gap:8px}
 			.ahns-order-design img{display:block;width:130px;max-width:100%;height:auto;border-radius:8px;border:1px solid rgba(125,125,125,.25);background:#101216;padding:4px;cursor:zoom-in}
 			.ahns-order-actions{display:inline-flex;gap:8px;flex-wrap:wrap}
 			.ahns-btn{display:inline-flex;align-items:center;padding:7px 16px;border-radius:999px;font-size:12.5px;font-weight:600;line-height:1.2;text-decoration:none;border-width:1.5px;border-style:solid;box-shadow:none}
@@ -449,49 +449,51 @@ class AHNS_Order {
 			.ahns-omodal.is-open{display:flex}
 			.ahns-omodal__dialog{position:relative;max-width:min(900px,94vw);border-radius:14px;background:#101216;padding:18px;box-shadow:0 24px 80px rgba(0,0,0,.4)}
 			.ahns-omodal__close{position:absolute;right:10px;top:10px;box-sizing:border-box;width:36px;height:36px;min-width:36px;padding:0;margin:0;border:0;outline:0;border-radius:999px;background:#fff;color:#111827;font-size:20px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
-			.ahns-omodal img{display:block;max-width:100%;max-height:74vh;border-radius:8px;object-fit:contain}
-		</style>
+			.ahns-omodal img{display:block;max-width:100%;max-height:74vh;border-radius:8px;object-fit:contain}'
+		);
+?>
 		<div class="ahns-order-zoom" id="ahns-order-zoom" aria-hidden="true"><img alt="" /></div>
 		<div class="ahns-omodal" id="ahns-omodal" aria-hidden="true"><div class="ahns-omodal__dialog" role="dialog" aria-modal="true">
 			<button type="button" class="ahns-omodal__close" aria-label="<?php echo esc_attr__( 'Close', 'ahime-neon-sign-configurator' ); ?>">&times;</button>
 			<img alt="<?php echo esc_attr__( 'Preview of your neon', 'ahime-neon-sign-configurator' ); ?>" />
 		</div></div>
-		<script id="ahns-order-js">
-		(function(){
-			var modal=document.getElementById('ahns-omodal');
-			var zoom=document.getElementById('ahns-order-zoom');
+		<?php
+		AHNS_Admin_UI::inline_js(
+			'ahns-order',
+			'		(function(){
+			var modal=document.getElementById(\'ahns-omodal\');
+			var zoom=document.getElementById(\'ahns-order-zoom\');
 			if(!modal||!zoom){return;}
-			var mImg=modal.querySelector('img'), zImg=zoom.querySelector('img'), close=modal.querySelector('.ahns-omodal__close');
-			function open(src){mImg.src=src;modal.classList.add('is-open');modal.setAttribute('aria-hidden','false');close.focus();hideZoom();}
-			function shut(){modal.classList.remove('is-open');modal.setAttribute('aria-hidden','true');mImg.removeAttribute('src');}
-			function hideZoom(){zoom.classList.remove('is-visible');zImg.removeAttribute('src');}
-			document.addEventListener('click',function(e){
-				var t=e.target.closest&&e.target.closest('[data-ahns-order-preview]');
-				if(t){e.preventDefault();open(t.getAttribute('data-ahns-order-preview'));return;}
+			var mImg=modal.querySelector(\'img\'), zImg=zoom.querySelector(\'img\'), close=modal.querySelector(\'.ahns-omodal__close\');
+			function open(src){mImg.src=src;modal.classList.add(\'is-open\');modal.setAttribute(\'aria-hidden\',\'false\');close.focus();hideZoom();}
+			function shut(){modal.classList.remove(\'is-open\');modal.setAttribute(\'aria-hidden\',\'true\');mImg.removeAttribute(\'src\');}
+			function hideZoom(){zoom.classList.remove(\'is-visible\');zImg.removeAttribute(\'src\');}
+			document.addEventListener(\'click\',function(e){
+				var t=e.target.closest&&e.target.closest(\'[data-ahns-order-preview]\');
+				if(t){e.preventDefault();open(t.getAttribute(\'data-ahns-order-preview\'));return;}
 				if(e.target===modal||e.target===close){e.preventDefault();shut();return;}
 				hideZoom();
 			});
-			document.addEventListener('keydown',function(e){if(e.key==='Escape'){shut();}});
+			document.addEventListener(\'keydown\',function(e){if(e.key===\'Escape\'){shut();}});
 			// Zoom au survol de la vignette (souris uniquement, jamais si la
 			// fenêtre est ouverte).
-			if(!window.matchMedia||!window.matchMedia('(hover: hover) and (pointer: fine)').matches){return;}
+			if(!window.matchMedia||!window.matchMedia(\'(hover: hover) and (pointer: fine)\').matches){return;}
 			function target(node){
-				if(modal.classList.contains('is-open')){return null;}
-				var img=node&&node.closest?node.closest('.ahns-order-design img'):null;
-				return img&&!img.closest('.ahns-order-zoom')?img:null;
+				if(modal.classList.contains(\'is-open\')){return null;}
+				var img=node&&node.closest?node.closest(\'.ahns-order-design img\'):null;
+				return img&&!img.closest(\'.ahns-order-zoom\')?img:null;
 			}
 			function place(ev){
 				var w=zoom.offsetWidth,h=zoom.offsetHeight,x=ev.clientX+18,y=ev.clientY+18;
 				if(x+w>window.innerWidth-8){x=ev.clientX-w-18;}
 				if(y+h>window.innerHeight-8){y=ev.clientY-h-18;}
-				zoom.style.left=Math.max(8,x)+'px';zoom.style.top=Math.max(8,y)+'px';
+				zoom.style.left=Math.max(8,x)+\'px\';zoom.style.top=Math.max(8,y)+\'px\';
 			}
-			document.addEventListener('mouseover',function(e){var i=target(e.target);if(!i){return;}zImg.src=i.src;zoom.classList.add('is-visible');place(e);});
-			document.addEventListener('mousemove',function(e){if(!zoom.classList.contains('is-visible')){return;}if(!target(e.target)){return;}place(e);});
-			document.addEventListener('mouseout',function(e){if(target(e.target)&&!target(e.relatedTarget)){hideZoom();}});
-		}());
-		</script>
-		<?php
+			document.addEventListener(\'mouseover\',function(e){var i=target(e.target);if(!i){return;}zImg.src=i.src;zoom.classList.add(\'is-visible\');place(e);});
+			document.addEventListener(\'mousemove\',function(e){if(!zoom.classList.contains(\'is-visible\')){return;}if(!target(e.target)){return;}place(e);});
+			document.addEventListener(\'mouseout\',function(e){if(target(e.target)&&!target(e.relatedTarget)){hideZoom();}});
+		}());'
+		);
 	}
 
 	/**

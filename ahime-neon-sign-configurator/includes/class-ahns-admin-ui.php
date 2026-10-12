@@ -37,9 +37,133 @@ class AHNS_Admin_UI {
 		if ( ! self::is_our_screen( $hook ) ) {
 			return;
 		}
-		wp_register_style( 'ahns-admin', false, array(), AHNS_VERSION ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
+		wp_register_style( 'ahns-admin', false, array(), AHNS_VERSION );
 		wp_enqueue_style( 'ahns-admin' );
 		wp_add_inline_style( 'ahns-admin', self::css() );
+	}
+
+	/**
+	 * Une feuille de style en ligne, PAR LA FILE DE WORDPRESS.
+	 *
+	 * Aucune balise style écrite à la main (règle de l'annuaire « Use
+	 * wp_enqueue commands ») : une poignée sans fichier, puis
+	 * wp_add_inline_style(). Appelée pendant l'affichage d'un écran, la
+	 * feuille part avec les styles tardifs du pied de page ; appelée sur
+	 * `wp_enqueue_scripts` / `admin_enqueue_scripts`, dans l'en-tête.
+	 *
+	 * @param string $handle Poignée (préfixée).
+	 * @param string $css    Règles CSS, écrites par le plugin.
+	 * @return void
+	 */
+	public static function inline_css( $handle, $css ) {
+		if ( ! wp_style_is( $handle, 'registered' ) ) {
+			wp_register_style( $handle, false, array(), AHNS_VERSION );
+		}
+		wp_enqueue_style( $handle );
+		wp_add_inline_style( $handle, $css );
+	}
+
+	/**
+	 * Un script en ligne, par la file de WordPress, en pied de page.
+	 *
+	 * @param string $handle Poignée (préfixée).
+	 * @param string $js     Code, écrit par le plugin ; les données y entrent par wp_json_encode().
+	 * @param array  $deps   Dépendances.
+	 * @return void
+	 */
+	public static function inline_js( $handle, $js, $deps = array() ) {
+		if ( ! wp_script_is( $handle, 'registered' ) ) {
+			wp_register_script( $handle, false, $deps, AHNS_VERSION, true );
+		}
+		wp_enqueue_script( $handle );
+		wp_add_inline_script( $handle, $js );
+	}
+
+	/**
+	 * Les éléments et attributs que nos briques d'administration produisent,
+	 * pour wp_kses() : boutons, pastilles, icônes SVG, cartes, champs de
+	 * formulaire, vignettes. Une seule liste, employée à chaque sortie d'un
+	 * fragment construit ailleurs (échappement tardif).
+	 *
+	 * @return array<string, array<string, bool>>
+	 */
+	public static function allowed_html() {
+		static $permis = null;
+		if ( null !== $permis ) {
+			return $permis;
+		}
+		$communs = array(
+			'class'         => true,
+			'id'            => true,
+			'style'         => true,
+			'title'         => true,
+			'role'          => true,
+			'tabindex'      => true,
+			'aria-hidden'   => true,
+			'aria-label'    => true,
+			'aria-current'  => true,
+			'aria-expanded' => true,
+			'aria-controls' => true,
+			'aria-modal'    => true,
+			'aria-pressed'  => true,
+			'hidden'        => true,
+			'lang'          => true,
+			'dir'           => true,
+			'data-*'        => true,
+		);
+		$svg     = array(
+			'fill'            => true,
+			'stroke'          => true,
+			'stroke-width'    => true,
+			'stroke-linecap'  => true,
+			'stroke-linejoin' => true,
+			'opacity'         => true,
+			'transform'       => true,
+		);
+		$permis = array(
+			'a'        => $communs + array( 'href' => true, 'target' => true, 'rel' => true, 'download' => true ),
+			'span'     => $communs,
+			'strong'   => $communs,
+			'em'       => $communs,
+			'b'        => $communs,
+			'i'        => $communs,
+			'small'    => $communs,
+			'code'     => $communs,
+			'br'       => array(),
+			'p'        => $communs,
+			'div'      => $communs,
+			'ul'       => $communs,
+			'ol'       => $communs,
+			'li'       => $communs,
+			'h2'       => $communs,
+			'h3'       => $communs,
+			'h4'       => $communs,
+			'img'      => $communs + array( 'src' => true, 'alt' => true, 'width' => true, 'height' => true, 'loading' => true, 'decoding' => true ),
+			'iframe'   => $communs + array( 'src' => true, 'loading' => true, 'scrolling' => true, 'width' => true, 'height' => true ),
+			'label'    => $communs + array( 'for' => true ),
+			'input'    => $communs + array( 'type' => true, 'name' => true, 'value' => true, 'checked' => true, 'disabled' => true, 'min' => true, 'max' => true, 'step' => true, 'placeholder' => true, 'size' => true, 'readonly' => true, 'required' => true, 'maxlength' => true, 'pattern' => true, 'inputmode' => true, 'autocomplete' => true ),
+			'select'   => $communs + array( 'name' => true, 'disabled' => true, 'multiple' => true ),
+			'option'   => array( 'value' => true, 'selected' => true, 'disabled' => true ),
+			'textarea' => $communs + array( 'name' => true, 'rows' => true, 'cols' => true, 'placeholder' => true ),
+			'button'   => $communs + array( 'type' => true, 'name' => true, 'value' => true, 'disabled' => true ),
+			'table'    => $communs,
+			'thead'    => $communs,
+			'tbody'    => $communs,
+			'tr'       => $communs,
+			'th'       => $communs + array( 'scope' => true, 'colspan' => true ),
+			'td'       => $communs + array( 'colspan' => true ),
+			'details'  => $communs + array( 'open' => true ),
+			'summary'  => $communs,
+			'svg'      => $communs + $svg + array( 'viewbox' => true, 'xmlns' => true, 'width' => true, 'height' => true, 'focusable' => true ),
+			'g'        => $svg,
+			'path'     => $svg + array( 'd' => true ),
+			'circle'   => $svg + array( 'cx' => true, 'cy' => true, 'r' => true ),
+			'rect'     => $svg + array( 'x' => true, 'y' => true, 'width' => true, 'height' => true, 'rx' => true, 'ry' => true ),
+			'line'     => $svg + array( 'x1' => true, 'y1' => true, 'x2' => true, 'y2' => true ),
+			'polyline' => $svg + array( 'points' => true ),
+			'polygon'  => $svg + array( 'points' => true ),
+		);
+		return $permis;
 	}
 
 	/** Couleur de marque du marchand (une seule variable pilote les accents). */
@@ -152,8 +276,7 @@ class AHNS_Admin_UI {
 		}
 		echo '</div>';
 		if ( '' !== $actions ) {
-			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- HTML construit par l'appelant.
-			echo '<div class="ahns-hero__actions">' . $actions . '</div>';
+			echo '<div class="ahns-hero__actions">' . wp_kses( $actions, self::allowed_html() ) . '</div>';
 		}
 		echo '</div>';
 	}
@@ -255,7 +378,7 @@ class AHNS_Admin_UI {
 	 * barre. Elle vaudra pour le prochain écran qui sortira du menu.
 	 */
 	public static function nav() {
-		$current = isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$current = isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- lecture d'un paramètre d'affichage ou de navigation, aucune écriture.
 
 		$visibles = array();
 		foreach ( self::nav_items() as $slug => $item ) {
@@ -277,7 +400,7 @@ class AHNS_Admin_UI {
 				esc_attr( $class ),
 				esc_url( admin_url( 'admin.php?page=' . $slug ) ),
 				$current === $slug ? ' aria-current="page"' : '',
-				self::icon( $item[0] ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- SVG interne.
+				wp_kses( self::icon( $item[0] ), self::allowed_html() ),
 				esc_html( $item[1] )
 			);
 		}
@@ -321,13 +444,8 @@ class AHNS_Admin_UI {
 		foreach ( $attrs as $key => $value ) {
 			$extra .= sprintf( ' %s="%s"', esc_attr( $key ), esc_attr( $value ) );
 		}
-		return sprintf(
-			'<a class="ahns-btn ahns-btn--%s" href="%s"%s>%s</a>',
-			esc_attr( $variant ),
-			esc_url( $url ),
-			$extra, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- attributs échappés ci-dessus.
-			esc_html( $label )
-		);
+		// Une CHAÎNE rendue, jamais affichée ici : l'appelant la sort par wp_kses( …, allowed_html() ).
+		return '<a class="ahns-btn ahns-btn--' . esc_attr( $variant ) . '" href="' . esc_url( $url ) . '"' . $extra . '>' . esc_html( $label ) . '</a>';
 	}
 
 	/**

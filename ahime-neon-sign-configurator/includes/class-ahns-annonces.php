@@ -64,7 +64,6 @@ class AHNS_Annonces {
 		add_action( 'admin_menu', array( $this, 'add_menu' ), 15 );
 		add_action( 'admin_post_ahns_annonces_enregistrer', array( $this, 'handle_save' ) );
 		add_action( 'admin_post_ahns_annonces_action', array( $this, 'handle_action' ) );
-		add_action( 'wp_head', array( $this, 'print_styles' ), 20 );
 		add_action( 'wp_body_open', array( $this, 'render_bandeaux' ) );
 		add_action( 'wp_footer', array( $this, 'render_popups' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_front' ) );
@@ -302,7 +301,7 @@ class AHNS_Annonces {
 		$items = self::items();
 
 		// L'annonce en cours de modification, s'il y en a une.
-		$modifier = isset( $_GET['modifier'] ) ? sanitize_key( wp_unslash( $_GET['modifier'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$modifier = isset( $_GET['modifier'] ) ? sanitize_key( wp_unslash( $_GET['modifier'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- lecture d'un paramètre d'affichage ou de navigation, aucune écriture.
 		$en_cours = self::defauts();
 		foreach ( $items as $item ) {
 			if ( $item['id'] === $modifier ) {
@@ -316,7 +315,7 @@ class AHNS_Annonces {
 			__( 'Banners, popups and countdowns - on your shop, whatever the theme.', 'ahime-neon-sign-configurator' )
 		);
 
-		if ( isset( $_GET['saved'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( isset( $_GET['saved'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- lecture d'un paramètre d'affichage ou de navigation, aucune écriture.
 			echo '<div class="notice notice-success"><p>' . esc_html__( 'Announcement saved.', 'ahime-neon-sign-configurator' ) . '</p></div>';
 		}
 
@@ -340,11 +339,11 @@ class AHNS_Annonces {
 				echo '<td>' . esc_html( '' === $item['date_fin'] ? __( 'No end date', 'ahime-neon-sign-configurator' ) : wp_date( 'j F Y · H\hi', ( new DateTimeImmutable( $item['date_fin'], wp_timezone() ) )->getTimestamp() ) ) . '</td>';
 				echo '<td>';
 				if ( $echue ) {
-					echo AHNS_Admin_UI::badge( __( 'Expired', 'ahime-neon-sign-configurator' ), 'locked' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- brique interne.
+					echo wp_kses( AHNS_Admin_UI::badge( __( 'Expired', 'ahime-neon-sign-configurator' ), 'locked' ), AHNS_Admin_UI::allowed_html() );
 				} elseif ( 'allume' === $item['etat'] ) {
-					echo AHNS_Admin_UI::badge( __( 'On', 'ahime-neon-sign-configurator' ), 'ok' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo wp_kses( AHNS_Admin_UI::badge( __( 'On', 'ahime-neon-sign-configurator' ), 'ok' ), AHNS_Admin_UI::allowed_html() );
 				} else {
-					echo AHNS_Admin_UI::badge( __( 'Off', 'ahime-neon-sign-configurator' ), 'todo' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo wp_kses( AHNS_Admin_UI::badge( __( 'Off', 'ahime-neon-sign-configurator' ), 'todo' ), AHNS_Admin_UI::allowed_html() );
 				}
 				echo '</td>';
 				echo '<td style="text-align:right;white-space:nowrap">';
@@ -554,10 +553,11 @@ class AHNS_Annonces {
 			return;
 		}
 		wp_enqueue_script( 'ahns-annonces', AHNS_PLUGIN_URL . 'assets/annonces.js', array(), AHNS_VERSION, true );
+		$this->print_styles();
 	}
 
 	/**
-	 * La feuille du module, imprimée seulement quand une annonce s'affiche.
+	 * La feuille du module, mise en file (wp_add_inline_style) seulement quand une annonce s'affiche.
 	 *
 	 * Les couleurs LISENT LES PRESETS DU PACK avec un repli neutre : un pack
 	 * qui déclare « marque » et « sur-marque » habille l'annonce sans une
@@ -568,8 +568,9 @@ class AHNS_Annonces {
 		if ( ! self::a_montrer() ) {
 			return;
 		}
-		echo '<style id="ahns-annonces-css">'
-			. '.ahns-annonce--bandeau{margin-top:var(--entete-h,0px);background:var(--wp--preset--color--marque,#171923);color:var(--wp--preset--color--sur-marque,#fff);font-size:14px;line-height:1.45;position:relative;z-index:35}'
+		AHNS_Admin_UI::inline_css(
+			'ahns-annonces',
+			'.ahns-annonce--bandeau{margin-top:var(--entete-h,0px);background:var(--wp--preset--color--marque,#171923);color:var(--wp--preset--color--sur-marque,#fff);font-size:14px;line-height:1.45;position:relative;z-index:35}'
 			. '.ahns-annonce--bandeau .ahns-annonce__ligne{max-width:1116px;margin-inline:auto;padding:10px 44px 10px 20px;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px 18px;text-align:center}'
 			. '.ahns-annonce--bandeau a{color:inherit;font-weight:700;text-decoration:underline}'
 			. '.ahns-annonce__fermer{position:absolute;inset-inline-end:10px;top:50%;transform:translateY(-50%);width:30px;height:30px;border:0;border-radius:999px;background:none;color:inherit;opacity:.7;cursor:pointer;font-size:14px}'
@@ -587,7 +588,7 @@ class AHNS_Annonces {
 			. '.ahns-annonce__carte .ahns-annonce__fermer{inset-inline-end:8px;top:8px;transform:none;color:inherit}'
 			. '.ahns-annonce__carte .ahns-annonce__fermer:hover,.ahns-annonce__carte .ahns-annonce__fermer:focus-visible{background:rgba(10,10,16,.08)}'
 			. '@media (prefers-reduced-motion: no-preference){.ahns-annonce__carte{animation:ahns-annonce-entree .25s ease-out}@keyframes ahns-annonce-entree{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}}'
-			. '</style>';
+		);
 	}
 
 	/**
@@ -626,7 +627,7 @@ class AHNS_Annonces {
 			echo '<div class="ahns-annonce ahns-annonce--bandeau" data-ahns-annonce="' . esc_attr( $item['id'] ) . '">';
 			echo '<div class="ahns-annonce__ligne">';
 			echo '<span class="ahns-annonce__message">' . wp_kses_post( $item['message'] ) . '</span>';
-			echo self::compteur_html( $item ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- échappé à la construction.
+			echo wp_kses( self::compteur_html( $item ), AHNS_Admin_UI::allowed_html() );
 			if ( '' !== $item['lien'] ) {
 				echo '<a class="ahns-annonce__lien" href="' . esc_url( $item['lien'] ) . '">' . esc_html( '' !== $item['libelle_lien'] ? $item['libelle_lien'] : __( 'Count me in', 'ahime-neon-sign-configurator' ) ) . '</a>';
 			}
@@ -648,7 +649,7 @@ class AHNS_Annonces {
 			echo '<div class="ahns-annonce__carte">';
 			echo '<button type="button" class="ahns-annonce__fermer" data-ahns-fermer aria-label="' . esc_attr__( 'Close', 'ahime-neon-sign-configurator' ) . '">✕</button>';
 			echo '<span class="ahns-annonce__message">' . wp_kses_post( $item['message'] ) . '</span>';
-			echo self::compteur_html( $item ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- échappé à la construction.
+			echo wp_kses( self::compteur_html( $item ), AHNS_Admin_UI::allowed_html() );
 			if ( '' !== $item['lien'] ) {
 				echo '<a class="ahns-annonce__lien" href="' . esc_url( $item['lien'] ) . '">' . esc_html( '' !== $item['libelle_lien'] ? $item['libelle_lien'] : __( 'Count me in', 'ahime-neon-sign-configurator' ) ) . '</a>';
 			}

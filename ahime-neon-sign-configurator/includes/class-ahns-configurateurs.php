@@ -147,7 +147,7 @@ class AHNS_Configurateurs {
 				'posts_per_page' => 1,
 				'fields'         => 'ids',
 				'no_found_rows'  => false,
-				'meta_query'     => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+				'meta_query'     => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- recherche, en administration, des produits liés à un configurateur.
 					array(
 						'key'   => self::META,
 						'value' => (string) $id,
