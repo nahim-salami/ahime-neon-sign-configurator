@@ -37,7 +37,7 @@ class AHNS_Page {
 		}
 		AHNS_Admin_UI::inline_css(
 			'ahns-canvas',
-			'html,body{margin:0 !important;padding:0 !important;width:100%;min-height:100dvh;background:#fff;overflow-x:hidden;}'
+			'body.ahns-canvas{margin:0 !important;padding:0 !important;width:100%;min-height:100dvh;background:#fff;overflow-x:hidden;}'
 			// Laisse la place à la barre d'admin quand le marchand est connecté.
 			. '.ahns-canvas__main{width:100%;height:calc(100dvh - var(--wp-admin--admin-bar--height,0px));min-height:520px;}'
 			. '.ahns-canvas__main ahns-config{display:block !important;width:100% !important;height:100% !important;min-height:0 !important;}'

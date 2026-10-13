@@ -58,6 +58,23 @@ class AHNS_Ar {
 		add_action( 'wp_ajax_ahns_ar_model', array( $this, 'handle_depot' ) );
 		add_action( 'wp_ajax_nopriv_ahns_ar_model', array( $this, 'handle_depot' ) );
 		add_action( self::CRON, array( __CLASS__, 'purger' ) );
+		/*
+		 * PAS SUR plugins_loaded. Programmer un rendez-vous appelle
+		 * wp_get_schedules(), donc le filtre `cron_schedules`, où d'autres
+		 * extensions (WooCommerce) traduisent leurs libellés : avant `init`,
+		 * WordPress 6.7+ signale un chargement de traductions trop précoce.
+		 * Le rendez-vous se pose à l'activation ; ce rattrapage, après `init`,
+		 * ne sert qu'à une mise à jour faite sans réactivation.
+		 */
+		add_action( 'admin_init', array( __CLASS__, 'programmer' ) );
+	}
+
+	/**
+	 * Pose la purge quotidienne si elle n'existe pas (activation, rattrapage).
+	 *
+	 * @return void
+	 */
+	public static function programmer() {
 		if ( ! wp_next_scheduled( self::CRON ) ) {
 			wp_schedule_event( time() + HOUR_IN_SECONDS, 'daily', self::CRON );
 		}
@@ -203,9 +220,6 @@ class AHNS_Ar {
 
 	/** À la désactivation : le rendez-vous s'annule avec le greffon. */
 	public static function desactiver() {
-		$t = wp_next_scheduled( self::CRON );
-		if ( $t ) {
-			wp_unschedule_event( $t, self::CRON );
-		}
+		wp_clear_scheduled_hook( self::CRON );
 	}
 }

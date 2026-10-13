@@ -29,7 +29,10 @@ class AHNS_Embed {
 	 */
 	private $pricing;
 
-	public function __construct( AHNS_Pricing $pricing ) {
+	/**
+	 * @param AHNS_Pricing|null $pricing Tarificateur (facultatif : chaque calcul construit celui de son produit).
+	 */
+	public function __construct( $pricing = null ) {
 		$this->pricing = $pricing;
 	}
 

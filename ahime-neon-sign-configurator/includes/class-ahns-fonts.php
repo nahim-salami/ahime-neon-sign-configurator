@@ -135,7 +135,7 @@ class AHNS_Fonts {
 	/** Manifeste complet du pack (identifiant → métriques). */
 	public static function manifest() {
 		if ( null === self::$manifest ) {
-			$json           = file_get_contents( dirname( __DIR__ ) . '/assets/font-metrics.json' );
+			$json           = file_get_contents( plugin_dir_path( __DIR__ ) . 'assets/font-metrics.json' );
 			$pack           = is_string( $json ) ? (array) json_decode( $json, true ) : array();
 			// Les polices du marchand rejoignent le manifeste : le PRIX doit
 			// pouvoir être calculé pour elles aussi.

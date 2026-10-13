@@ -1,10 +1,10 @@
 === Ahime Neon Sign Configurator for WooCommerce ===
 Contributors: ahime
 Tags: woocommerce, product configurator, neon sign, led neon, custom sign
-Requires at least: 6.0
+Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.2
+Stable tag: 1.3.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -98,6 +98,12 @@ The build is deterministic: with the versions pinned in `package-lock.json`, it 
 
 == Changelog ==
 
+= 1.3.3 =
+* Activation is clean: nothing runs before `init` any more. The daily clean-up of augmented reality models is scheduled on activation and removed on deactivation.
+* Dependencies are checked before anything is hooked: without WooCommerce or the mbstring PHP extension, a clear notice is shown on the Plugins screen.
+* Styles and scripts load only on the plugin's own screens and on pages that show a configured sign; no CSS rule touches the WordPress interface.
+* Requires WordPress 6.5 or later (the Requires Plugins header).
+
 = 1.3.2 =
 * Every script and style goes through the WordPress enqueue functions (wp_add_inline_script, wp_add_inline_style); no inline tag is printed by hand.
 * Late escaping everywhere: HTML fragments are output through wp_kses with an explicit list of allowed elements.
@@ -130,6 +136,9 @@ The build is deterministic: with the versions pinned in `package-lock.json`, it 
 * First version prepared for WordPress.org.
 
 == Upgrade Notice ==
+
+= 1.3.3 =
+Clean activation (no early translation loading), assets limited to the plugin's own screens.
 
 = 1.3.2 =
 Enqueued scripts and styles, late escaping, translations from translate.wordpress.org.

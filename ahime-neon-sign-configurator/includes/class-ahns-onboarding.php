@@ -745,12 +745,7 @@ class AHNS_Onboarding {
 	private static function css() {
 		$accent = AHNS_Appearance::accent();
 		return "
-/* L'assistant occupe l'écran : rien de l'administration ne vient distraire. */
-#adminmenumain,#wpfooter,#wpadminbar,.update-nag,#wpbody-content>.notice,#wpbody-content>.updated,#wpbody-content>.error{display:none!important;}
-html.wp-toolbar{padding-top:0!important;}
-#wpcontent{margin-left:0!important;padding-left:0!important;}
-#wpbody-content{padding-bottom:0!important;}
-body{background:#f0f1f3;}
+/* L'assistant reste un écran de l'administration : aucune règle ne touche l'interface de WordPress. */
 .ahns-setup{max-width:840px;margin:0 auto;padding:38px 20px 60px;}
 .ahns-setup h1{font-size:26px;font-weight:800;margin:0 0 6px;letter-spacing:-.3px;}
 .ahns-setup h2{font-size:15px;font-weight:700;margin:0 0 10px;}

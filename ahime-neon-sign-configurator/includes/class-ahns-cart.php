@@ -67,7 +67,10 @@ class AHNS_Cart {
 	 */
 	private $pricing;
 
-	public function __construct( AHNS_Pricing $pricing ) {
+	/**
+	 * @param AHNS_Pricing|null $pricing Tarificateur (facultatif : chaque calcul construit celui de son produit).
+	 */
+	public function __construct( $pricing = null ) {
 		$this->pricing = $pricing;
 	}
 
@@ -850,13 +853,16 @@ class AHNS_Cart {
 		if ( function_exists( 'is_cart' ) && ! is_cart() && function_exists( 'is_checkout' ) && ! is_checkout() ) {
 			return;
 		}
+		if ( ! self::panier_avec_enseigne() ) {
+			return;
+		}
 		$accent = self::accent_color();
 		AHNS_Admin_UI::inline_css(
 			'ahns-cart-actions',
 			'			/* Un détail par ligne (les blocs WooCommerce les mettent en enfilade). */
-			.wc-block-components-product-details>span{display:block;margin:0 0 2px;}
-			.wc-block-components-product-details>span>span[aria-hidden="true"]{display:none;}
-			.wc-block-components-product-details>span:has(.ahns-cart-actions){display:block;margin-top:10px;}
+			.wc-block-components-product-details:has(.ahns-cart-actions)>span{display:block;margin:0 0 2px;}
+			.wc-block-components-product-details:has(.ahns-cart-actions)>span>span[aria-hidden="true"]{display:none;}
+			.wc-block-components-product-details:has(.ahns-cart-actions)>span:has(.ahns-cart-actions){display:block;margin-top:10px;}
 			/* Actions : de VRAIS boutons, à la couleur de marque. */
 			.ahns-cart-actions{display:inline-flex;gap:8px;align-items:center;flex-wrap:wrap;}
 			.ahns-cart-actions a{white-space:nowrap;display:inline-flex;align-items:center;padding:7px 16px;border-radius:999px;font-size:12.5px;font-weight:600;line-height:1.2;text-decoration:none;box-shadow:none;transition:filter .15s ease;}
@@ -959,6 +965,23 @@ class AHNS_Cart {
 			document.addEventListener(\'click\',hide);
 		})();'
 		);
+	}
+
+	/**
+	 * Le panier contient-il au moins une enseigne composée dans le configurateur ?
+	 *
+	 * @return bool
+	 */
+	private static function panier_avec_enseigne() {
+		if ( ! function_exists( 'WC' ) || ! WC()->cart ) {
+			return false;
+		}
+		foreach ( WC()->cart->get_cart() as $item ) {
+			if ( isset( $item[ self::CART_KEY ] ) ) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**

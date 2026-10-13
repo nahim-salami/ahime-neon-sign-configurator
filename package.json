@@ -1,6 +1,6 @@
 {
   "name": "ahime-neon-sign-configurator",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "private": true,
   "description": "Source code of the Ahime Neon Sign Configurator for WooCommerce plugin: the TypeScript engine, the web component and the WordPress plugin.",
   "license": "GPL-2.0-or-later",

@@ -19,6 +19,9 @@ class AHNS_Order {
 		return class_exists( 'AHNS_Appearance' ) ? (string) AHNS_Appearance::settings()['production_email'] : '';
 	}
 
+	/** Une page client a affiché le bloc d'une enseigne : ses fichiers sont utiles. */
+	private static $bloc_client = false;
+
 	public function hooks() {
 		// Bloc admin sous chaque ligne de commande personnalisée.
 		add_action( 'woocommerce_after_order_itemmeta', array( $this, 'render_admin_block' ), 10, 2 );
@@ -399,6 +402,7 @@ class AHNS_Order {
 		$accent = class_exists( 'AHNS_Cart' ) ? AHNS_Cart::accent_color() : '#ec4899';
 		$alt    = esc_attr__( 'Preview of your neon', 'ahime-neon-sign-configurator' );
 
+		self::$bloc_client = true;
 		echo '<div class="ahns-order-design">';
 		printf(
 			'<a href="#" class="ahns-order-preview" data-ahns-order-preview="%1$s" aria-label="%2$s"><img src="%1$s" alt="%2$s" /></a>',
@@ -430,7 +434,8 @@ class AHNS_Order {
 	 * @return void
 	 */
 	public function render_customer_assets() {
-		if ( ! self::is_customer_order_page() ) {
+		// Seulement sur une page qui a VRAIMENT affiché une enseigne du configurateur.
+		if ( ! self::$bloc_client || ! self::is_customer_order_page() ) {
 			return;
 		}
 		AHNS_Admin_UI::inline_css(

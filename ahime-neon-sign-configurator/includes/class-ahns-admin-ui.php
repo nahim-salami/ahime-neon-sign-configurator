@@ -495,7 +495,7 @@ class AHNS_Admin_UI {
 	private static function css() {
 		$accent = self::accent();
 		return "
-:root{--ahns-accent:{$accent};}
+.ahns-page,.ahns-btn,.ahns-badge{--ahns-accent:{$accent};}
 .ahns-page{margin-right:20px;}
 .ahns-page .ahns-icon{width:20px;height:20px;flex:none;}
 

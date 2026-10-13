@@ -211,7 +211,8 @@ class AHNS_Pricing {
 	);
 
 	public function __construct( array $overrides = array() ) {
-		$json            = file_get_contents( dirname( __DIR__ ) . '/assets/font-metrics.json' );
+		// Le fichier du plugin ; hors de WordPress (contrôle de parité), le dossier parent de ce fichier.
+		$json            = file_get_contents( ( function_exists( 'plugin_dir_path' ) ? plugin_dir_path( __DIR__ ) : dirname( __DIR__ ) . '/' ) . 'assets/font-metrics.json' );
 		$this->manifests = is_string( $json ) ? (array) json_decode( $json, true ) : array();
 		// Les polices TÉLÉVERSÉES par le marchand doivent être tarifables comme
 		// celles du pack : leurs métriques rejoignent le manifeste. (Absent hors

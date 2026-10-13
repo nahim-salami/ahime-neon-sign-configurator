@@ -2,13 +2,21 @@
 # Copyright (C) Ahime. This file is distributed under the GPL-2.0-or-later license.
 msgid ""
 msgstr ""
-"Project-Id-Version: Ahime Neon Sign Configurator for WooCommerce 1.3.2\n"
+"Project-Id-Version: Ahime Neon Sign Configurator for WooCommerce 1.3.3\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/ahime-neon-sign-configurator\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Domain: ahime-neon-sign-configurator\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: ahime-neon-sign-configurator.php:125
+msgid "Ahime Neon Sign Configurator for WooCommerce needs the mbstring PHP extension: ask your host to enable it."
+msgstr ""
+
+#: ahime-neon-sign-configurator.php:126
+msgid "Ahime Neon Sign Configurator for WooCommerce needs WooCommerce: install and activate WooCommerce."
+msgstr ""
 
 #: includes/class-ahns-admin-configurateurs.php:35
 msgid "Configurators - Ahime Neon"
@@ -430,7 +438,7 @@ msgstr ""
 msgid "Close the banner"
 msgstr ""
 
-#: includes/class-ahns-annonces.php:650, includes/class-ahns-cart.php:890, includes/class-ahns-order.php:457
+#: includes/class-ahns-annonces.php:650, includes/class-ahns-cart.php:896, includes/class-ahns-order.php:462
 msgid "Close"
 msgstr ""
 
@@ -602,23 +610,23 @@ msgstr ""
 msgid "Make another"
 msgstr ""
 
-#: includes/class-ahns-ar.php:122, includes/class-ahns-cart.php:411
+#: includes/class-ahns-ar.php:139, includes/class-ahns-cart.php:414
 msgid "Invalid security token. Reload the page."
 msgstr ""
 
-#: includes/class-ahns-ar.php:134, includes/class-ahns-ar.php:138
+#: includes/class-ahns-ar.php:151, includes/class-ahns-ar.php:155
 msgid "Model missing or too large."
 msgstr ""
 
-#: includes/class-ahns-ar.php:143
+#: includes/class-ahns-ar.php:160
 msgid "Unrecognised model format."
 msgstr ""
 
-#: includes/class-ahns-ar.php:148
+#: includes/class-ahns-ar.php:165
 msgid "The upload folder is not accessible."
 msgstr ""
 
-#: includes/class-ahns-ar.php:163
+#: includes/class-ahns-ar.php:180
 msgid "The model could not be saved."
 msgstr ""
 
@@ -674,7 +682,7 @@ msgstr ""
 msgid "The price of one metre of installed tube."
 msgstr ""
 
-#: includes/class-ahns-bareme-produit.php (const LIGNES), includes/class-ahns-configurator.php (const FEATURES), includes/class-ahns-order.php:553
+#: includes/class-ahns-bareme-produit.php (const LIGNES), includes/class-ahns-configurator.php (const FEATURES), includes/class-ahns-order.php:558
 msgid "Remote + dimmer"
 msgstr ""
 
@@ -682,7 +690,7 @@ msgstr ""
 msgid "Added when the customer takes the option."
 msgstr ""
 
-#: includes/class-ahns-bareme-produit.php (const LIGNES), includes/class-ahns-pricing.php:1655, includes/class-ahns-settings.php:161
+#: includes/class-ahns-bareme-produit.php (const LIGNES), includes/class-ahns-pricing.php:1656, includes/class-ahns-settings.php:161
 msgid "Night timer"
 msgstr ""
 
@@ -770,75 +778,75 @@ msgstr ""
 msgid "Express lead time: maximum"
 msgstr ""
 
-#: includes/class-ahns-cart.php:419, includes/class-ahns-cart.php:521
+#: includes/class-ahns-cart.php:422, includes/class-ahns-cart.php:524
 msgid "Product unavailable."
 msgstr ""
 
-#: includes/class-ahns-cart.php:430
+#: includes/class-ahns-cart.php:433
 msgid "Invalid configuration."
 msgstr ""
 
-#: includes/class-ahns-cart.php:486, includes/class-ahns-order.php:178, includes/class-ahns-profiles.php (const FAMILIES)
+#: includes/class-ahns-cart.php:489, includes/class-ahns-order.php:181, includes/class-ahns-profiles.php (const FAMILIES)
 msgid "Panel"
 msgstr ""
 
-#: includes/class-ahns-cart.php:487, includes/class-ahns-order.php:178, includes/class-ahns-profiles.php (const FAMILIES)
+#: includes/class-ahns-cart.php:490, includes/class-ahns-order.php:181, includes/class-ahns-profiles.php (const FAMILIES)
 msgid "Light box"
 msgstr ""
 
-#: includes/class-ahns-cart.php:488, includes/class-ahns-dashboard.php:261
+#: includes/class-ahns-cart.php:491, includes/class-ahns-dashboard.php:261
 msgid "Custom logo"
 msgstr ""
 
-#: includes/class-ahns-cart.php:547
+#: includes/class-ahns-cart.php:550
 msgid "Could not add to cart."
 msgstr ""
 
-#: includes/class-ahns-cart.php:620, includes/class-ahns-cart.php:740, includes/class-ahns-order.php:275
+#: includes/class-ahns-cart.php:623, includes/class-ahns-cart.php:743, includes/class-ahns-order.php:278
 msgid "Text"
 msgstr ""
 
-#: includes/class-ahns-cart.php:622, includes/class-ahns-cart.php:741, includes/class-ahns-order.php:276
+#: includes/class-ahns-cart.php:625, includes/class-ahns-cart.php:744, includes/class-ahns-order.php:279
 msgid "Dimensions"
 msgstr ""
 
-#: includes/class-ahns-cart.php:627, includes/class-ahns-order.php:279, includes/class-ahns-order.php:575
+#: includes/class-ahns-cart.php:630, includes/class-ahns-order.php:282, includes/class-ahns-order.php:580
 msgid "Backing"
 msgstr ""
 
-#: includes/class-ahns-cart.php:633, includes/class-ahns-order.php:69
+#: includes/class-ahns-cart.php:636, includes/class-ahns-order.php:72
 msgid "RGB"
 msgstr ""
 
-#: includes/class-ahns-cart.php:639
+#: includes/class-ahns-cart.php:642
 msgid "Outdoor (drained IP65 box, IP67 tube and driver)"
 msgstr ""
 
-#: includes/class-ahns-cart.php:642, includes/class-ahns-order.php:75, includes/class-ahns-order.php:291
+#: includes/class-ahns-cart.php:645, includes/class-ahns-order.php:78, includes/class-ahns-order.php:294
 msgid "Dimmer"
 msgstr ""
 
-#: includes/class-ahns-cart.php:645
+#: includes/class-ahns-cart.php:648
 msgid "Express"
 msgstr ""
 
-#: includes/class-ahns-cart.php:648, includes/class-ahns-order.php:297, includes/class-ahns-order.php:579
+#: includes/class-ahns-cart.php:651, includes/class-ahns-order.php:300, includes/class-ahns-order.php:584
 msgid "Options"
 msgstr ""
 
-#: includes/class-ahns-cart.php:661, includes/class-ahns-order.php:414
+#: includes/class-ahns-cart.php:664, includes/class-ahns-order.php:418
 msgid "Preview"
 msgstr ""
 
-#: includes/class-ahns-cart.php:669
+#: includes/class-ahns-cart.php:672
 msgid "Edit design"
 msgstr ""
 
-#: includes/class-ahns-cart.php:819, includes/class-ahns-cart.php:838, includes/class-ahns-cart.php:839
+#: includes/class-ahns-cart.php:822, includes/class-ahns-cart.php:841, includes/class-ahns-cart.php:842
 msgid "Neon preview"
 msgstr ""
 
-#: includes/class-ahns-cart.php:891, includes/class-ahns-cart.php:892, includes/class-ahns-order.php:400
+#: includes/class-ahns-cart.php:897, includes/class-ahns-cart.php:898, includes/class-ahns-order.php:403
 msgid "Preview of your neon"
 msgstr ""
 
@@ -986,11 +994,11 @@ msgstr ""
 msgid "Cut to letter"
 msgstr ""
 
-#: includes/class-ahns-catalog.php (const SUPPORT_TYPES), includes/class-ahns-pricing.php:1589
+#: includes/class-ahns-catalog.php (const SUPPORT_TYPES), includes/class-ahns-pricing.php:1590
 msgid "Box"
 msgstr ""
 
-#: includes/class-ahns-catalog.php (const SUPPORT_TYPES), includes/class-ahns-pricing.php:1601
+#: includes/class-ahns-catalog.php (const SUPPORT_TYPES), includes/class-ahns-pricing.php:1602
 msgid "Free-standing base"
 msgstr ""
 
@@ -1186,7 +1194,7 @@ msgstr ""
 msgid "The settings your customer sees their neon against."
 msgstr ""
 
-#: includes/class-ahns-configurator.php (const FEATURES), includes/class-ahns-order.php:284, includes/class-ahns-order.php:547
+#: includes/class-ahns-configurator.php (const FEATURES), includes/class-ahns-order.php:287, includes/class-ahns-order.php:552
 msgid "RGB colour-changing"
 msgstr ""
 
@@ -1206,7 +1214,7 @@ msgstr ""
 msgid "Brightness and modes."
 msgstr ""
 
-#: includes/class-ahns-configurator.php (const FEATURES), includes/class-ahns-order.php:556, includes/class-ahns-pricing.php:1716
+#: includes/class-ahns-configurator.php (const FEATURES), includes/class-ahns-order.php:561, includes/class-ahns-pricing.php:1717
 msgid "Rush production"
 msgstr ""
 
@@ -1822,7 +1830,7 @@ msgstr ""
 msgid "Engraving"
 msgstr ""
 
-#: includes/class-ahns-materials.php:256, includes/class-ahns-pricing.php:1404, includes/class-ahns-pricing.php:1502
+#: includes/class-ahns-materials.php:256, includes/class-ahns-pricing.php:1405, includes/class-ahns-pricing.php:1503
 msgid "Drilling and fixings"
 msgstr ""
 
@@ -1834,7 +1842,7 @@ msgstr ""
 msgid "Diffusing face"
 msgstr ""
 
-#: includes/class-ahns-materials.php:261, includes/class-ahns-pricing.php:1491
+#: includes/class-ahns-materials.php:261, includes/class-ahns-pricing.php:1492
 msgid "Internal lighting"
 msgstr ""
 
@@ -2034,7 +2042,7 @@ msgstr ""
 msgid "Two coefficients are enough to frame your prices. The three examples below use your current values."
 msgstr ""
 
-#: includes/class-ahns-onboarding.php:601, includes/class-ahns-pricing.php:1375, includes/class-ahns-settings.php (const FIELDS)
+#: includes/class-ahns-onboarding.php:601, includes/class-ahns-pricing.php:1376, includes/class-ahns-settings.php (const FIELDS)
 msgid "Setup fee"
 msgstr ""
 
@@ -2042,7 +2050,7 @@ msgstr ""
 msgid "What every piece costs whatever its size: cutting, wiring, testing, packing."
 msgstr ""
 
-#: includes/class-ahns-onboarding.php:607, includes/class-ahns-order.php:277, includes/class-ahns-order.php:588
+#: includes/class-ahns-onboarding.php:607, includes/class-ahns-order.php:280, includes/class-ahns-order.php:593
 msgid "LED tube"
 msgstr ""
 
@@ -2114,127 +2122,127 @@ msgstr ""
 msgid "Done"
 msgstr ""
 
-#: includes/class-ahns-order.php:72, includes/class-ahns-order.php:550
+#: includes/class-ahns-order.php:75, includes/class-ahns-order.php:555
 msgid "Outdoor (drained box, IP67 tube and driver)"
 msgstr ""
 
-#: includes/class-ahns-order.php:78, includes/class-ahns-order.php:294
+#: includes/class-ahns-order.php:81, includes/class-ahns-order.php:297
 msgid "EXPRESS"
 msgstr ""
 
-#: includes/class-ahns-order.php:184
+#: includes/class-ahns-order.php:187
 msgid "straight cut"
 msgstr ""
 
-#: includes/class-ahns-order.php:185
+#: includes/class-ahns-order.php:188
 msgid "rounded corners"
 msgstr ""
 
-#: includes/class-ahns-order.php:186
+#: includes/class-ahns-order.php:189
 msgid "free shape (path following)"
 msgstr ""
 
-#: includes/class-ahns-order.php:189
+#: includes/class-ahns-order.php:192
 msgid "bare"
 msgstr ""
 
-#: includes/class-ahns-order.php:190
+#: includes/class-ahns-order.php:193
 msgid "digital printing"
 msgstr ""
 
-#: includes/class-ahns-order.php:191
+#: includes/class-ahns-order.php:194
 msgid "printing + anti-UV lamination"
 msgstr ""
 
-#: includes/class-ahns-order.php:192
+#: includes/class-ahns-order.php:195
 msgid "raised cut-out letters"
 msgstr ""
 
-#: includes/class-ahns-order.php:193
+#: includes/class-ahns-order.php:196
 msgid "engraving"
 msgstr ""
 
-#: includes/class-ahns-order.php:206
+#: includes/class-ahns-order.php:209
 msgid "unlit"
 msgstr ""
 
-#: includes/class-ahns-order.php:207
+#: includes/class-ahns-order.php:210
 msgid "front lighting"
 msgstr ""
 
-#: includes/class-ahns-order.php:208
+#: includes/class-ahns-order.php:211
 msgid "back lighting"
 msgstr ""
 
-#: includes/class-ahns-order.php:209
+#: includes/class-ahns-order.php:212
 msgid "front + back lighting"
 msgstr ""
 
-#: includes/class-ahns-order.php:267
+#: includes/class-ahns-order.php:270
 msgid "Custom neon sign: workshop specification"
 msgstr ""
 
-#: includes/class-ahns-order.php:279, includes/class-ahns-order.php:608, includes/class-ahns-settings.php:830
+#: includes/class-ahns-order.php:282, includes/class-ahns-order.php:613, includes/class-ahns-settings.php:830
 msgid "Letter height"
 msgstr ""
 
-#: includes/class-ahns-order.php:288
+#: includes/class-ahns-order.php:291
 msgid "Outdoor (drained IP65 box, IP67 tube and power supply)"
 msgstr ""
 
-#: includes/class-ahns-order.php:314
+#: includes/class-ahns-order.php:317
 msgid "depth"
 msgstr ""
 
-#: includes/class-ahns-order.php:321
+#: includes/class-ahns-order.php:324
 msgid "Electrical: %1$s W drawn → %2$s W power supply · %3$s branch(es) at %4$s V"
 msgstr ""
 
-#: includes/class-ahns-order.php:335
+#: includes/class-ahns-order.php:338
 msgid "Cable: %1$s V lost in the supplied cable, i.e. %2$s %% · above the 3 %% allowed, the end of the tube gets darker. Use %3$s mm² or switch to 24 V."
 msgstr ""
 
-#: includes/class-ahns-order.php:343
+#: includes/class-ahns-order.php:346
 msgid "Customer logo: tube length reported by the browser: CHECK it before production."
 msgstr ""
 
-#: includes/class-ahns-order.php:346
+#: includes/class-ahns-order.php:349
 msgid "Download the SVG"
 msgstr ""
 
-#: includes/class-ahns-order.php:355
+#: includes/class-ahns-order.php:358
 msgid "Price breakdown"
 msgstr ""
 
-#: includes/class-ahns-order.php:422
+#: includes/class-ahns-order.php:426
 msgid "Download"
 msgstr ""
 
-#: includes/class-ahns-order.php:526
+#: includes/class-ahns-order.php:531
 msgid "manufacturing specification"
 msgstr ""
 
-#: includes/class-ahns-order.php:527
+#: includes/class-ahns-order.php:532
 msgid "your custom neon"
 msgstr ""
 
-#: includes/class-ahns-order.php:571
+#: includes/class-ahns-order.php:576
 msgid "%s cm deep"
 msgstr ""
 
-#: includes/class-ahns-order.php:597, includes/class-ahns-pricing.php:1618, includes/class-ahns-settings.php:175
+#: includes/class-ahns-order.php:602, includes/class-ahns-pricing.php:1619, includes/class-ahns-settings.php:175
 msgid "Power supply"
 msgstr ""
 
-#: includes/class-ahns-order.php:600
+#: includes/class-ahns-order.php:605
 msgid "%1$s W drawn → %2$s W rating · %3$s branch(es)"
 msgstr ""
 
-#: includes/class-ahns-order.php:612
+#: includes/class-ahns-order.php:617
 msgid "Lines"
 msgstr ""
 
-#: includes/class-ahns-order.php:629
+#: includes/class-ahns-order.php:634
 msgid "Customer logo: tube length reported by the browser - check before manufacturing."
 msgstr ""
 
@@ -2242,147 +2250,147 @@ msgstr ""
 msgid "Neon builder"
 msgstr ""
 
-#: includes/class-ahns-pricing.php:1025
+#: includes/class-ahns-pricing.php:1026
 msgid "Enter the width and the height."
 msgstr ""
 
-#: includes/class-ahns-pricing.php:1029
+#: includes/class-ahns-pricing.php:1030
 msgid "Maximum dimension %d cm: beyond that, the panel no longer fits standard shipping."
 msgstr ""
 
-#: includes/class-ahns-pricing.php:1032
+#: includes/class-ahns-pricing.php:1033
 msgid "Minimum dimensions: 10 × 10 cm."
 msgstr ""
 
-#: includes/class-ahns-pricing.php:1043
+#: includes/class-ahns-pricing.php:1044
 msgid "%s is not suitable outdoors without treatment."
 msgstr ""
 
-#: includes/class-ahns-pricing.php:1050
+#: includes/class-ahns-pricing.php:1051
 msgid "Minimum light box depth: %s cm. Below that, no module spreads light wide enough to light the face without visible hot spots."
 msgstr ""
 
-#: includes/class-ahns-pricing.php:1069
+#: includes/class-ahns-pricing.php:1070
 msgid "Logo without a tube measurement."
 msgstr ""
 
-#: includes/class-ahns-pricing.php:1075, includes/class-ahns-pricing.php:1151
+#: includes/class-ahns-pricing.php:1076, includes/class-ahns-pricing.php:1152
 msgid "Maximum width: %d cm."
 msgstr ""
 
-#: includes/class-ahns-pricing.php:1078, includes/class-ahns-pricing.php:1154
+#: includes/class-ahns-pricing.php:1079, includes/class-ahns-pricing.php:1155
 msgid "Maximum tube length: %d m."
 msgstr ""
 
-#: includes/class-ahns-pricing.php:1101
+#: includes/class-ahns-pricing.php:1102
 msgid "%s: this tube only exists in one colour. Choose an RGB tube, or go back to a fixed colour."
 msgstr ""
 
-#: includes/class-ahns-pricing.php:1113
+#: includes/class-ahns-pricing.php:1114
 msgid "%d characters maximum per line."
 msgstr ""
 
-#: includes/class-ahns-pricing.php:1117
+#: includes/class-ahns-pricing.php:1118
 msgid "Unknown font."
 msgstr ""
 
-#: includes/class-ahns-pricing.php:1122
+#: includes/class-ahns-pricing.php:1123
 msgid "Minimum letter height: %d cm for this font."
 msgstr ""
 
-#: includes/class-ahns-pricing.php:1126
+#: includes/class-ahns-pricing.php:1127
 msgid "Character not available in this font: %s"
 msgstr ""
 
-#: includes/class-ahns-pricing.php:1138
+#: includes/class-ahns-pricing.php:1139
 msgid "At this size, the tube (Ø %1$s mm) is wider than the stroke of the letter “%2$s”: the counters would close up. Minimum letter height for this font: %3$s cm."
 msgstr ""
 
-#: includes/class-ahns-pricing.php:1145
+#: includes/class-ahns-pricing.php:1146
 msgid "Type a text for your neon sign."
 msgstr ""
 
-#: includes/class-ahns-pricing.php:1148
+#: includes/class-ahns-pricing.php:1149
 msgid "%d lines maximum."
 msgstr ""
 
-#: includes/class-ahns-pricing.php:1388
+#: includes/class-ahns-pricing.php:1389
 msgid "%1$s %2$s mm · %3$s m²"
 msgstr ""
 
-#: includes/class-ahns-pricing.php:1394
+#: includes/class-ahns-pricing.php:1395
 msgid "Cutting %s linear m"
 msgstr ""
 
-#: includes/class-ahns-pricing.php:1400
+#: includes/class-ahns-pricing.php:1401
 msgid "Finish %1$s%2$s"
 msgstr ""
 
-#: includes/class-ahns-pricing.php:1400
+#: includes/class-ahns-pricing.php:1401
 msgid " (double-sided)"
 msgstr ""
 
-#: includes/class-ahns-pricing.php:1446
+#: includes/class-ahns-pricing.php:1447
 msgid "3D letters %1$s · %2$d letter(s) of %3$s cm"
 msgstr ""
 
-#: includes/class-ahns-pricing.php:1451
+#: includes/class-ahns-pricing.php:1452
 msgid "3D letters %1$s · %2$s mm"
 msgstr ""
 
-#: includes/class-ahns-pricing.php:1454
+#: includes/class-ahns-pricing.php:1455
 msgid "Lighting"
 msgstr ""
 
-#: includes/class-ahns-pricing.php:1459
+#: includes/class-ahns-pricing.php:1460
 msgid "Backing layer %1$d · %2$s %3$s mm"
 msgstr ""
 
-#: includes/class-ahns-pricing.php:1476
+#: includes/class-ahns-pricing.php:1477
 msgid "Body %1$s · %2$s m²"
 msgstr ""
 
-#: includes/class-ahns-pricing.php:1481
+#: includes/class-ahns-pricing.php:1482
 msgid "Diffusing face%1$s · %3$s m²"
 msgstr ""
 
-#: includes/class-ahns-pricing.php:1487
+#: includes/class-ahns-pricing.php:1488
 msgid "Face printing"
 msgstr ""
 
-#: includes/class-ahns-pricing.php:1498
+#: includes/class-ahns-pricing.php:1499
 msgid "Power supply %d W"
 msgstr ""
 
-#: includes/class-ahns-pricing.php:1501
+#: includes/class-ahns-pricing.php:1502
 msgid "Box assembly"
 msgstr ""
 
-#: includes/class-ahns-pricing.php:1580
+#: includes/class-ahns-pricing.php:1581
 msgid "LED tube %s m"
 msgstr ""
 
-#: includes/class-ahns-pricing.php:1597
+#: includes/class-ahns-pricing.php:1598
 msgid "Backing %1$s (%2$s)"
 msgstr ""
 
-#: includes/class-ahns-pricing.php:1633
+#: includes/class-ahns-pricing.php:1634
 msgid "RGB colour-changing (controller included)"
 msgstr ""
 
-#: includes/class-ahns-pricing.php:1662
+#: includes/class-ahns-pricing.php:1663
 msgid "Fixings"
 msgstr ""
 
-#: includes/class-ahns-pricing.php:1701
+#: includes/class-ahns-pricing.php:1702
 msgid "Size surcharge"
 msgstr ""
 
-#: includes/class-ahns-pricing.php:1701
+#: includes/class-ahns-pricing.php:1702
 msgid "Minimum price (size)"
 msgstr ""
 
-#: includes/class-ahns-pricing.php:1711
+#: includes/class-ahns-pricing.php:1712
 msgid "Outdoor (drained box, IP67 tube and power supply, UV-proof)"
 msgstr ""
 

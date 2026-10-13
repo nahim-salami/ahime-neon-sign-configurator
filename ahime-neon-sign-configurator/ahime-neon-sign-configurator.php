@@ -3,8 +3,8 @@
  * Plugin Name:       Ahime Neon Sign Configurator for WooCommerce
  * Plugin URI:        https://github.com/nahim-salami/ahime-neon-sign-configurator
  * Description:       Customers design their LED neon sign in 2D or 3D and see the price instantly. Your store calculates it, without any external service.
- * Version:           1.3.2
- * Requires at least: 6.0
+ * Version:           1.3.3
+ * Requires at least: 6.5
  * Requires PHP:      7.4
  * Requires Plugins:  woocommerce
  * Author:            Ahime
@@ -25,7 +25,7 @@ if ( defined( 'NLC_VERSION' ) ) {
 	return;
 }
 
-define( 'AHNS_VERSION', '1.3.2' );
+define( 'AHNS_VERSION', '1.3.3' );
 define( 'AHNS_PLUGIN_FILE', __FILE__ );
 define( 'AHNS_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'AHNS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
@@ -67,13 +67,17 @@ add_action( 'plugins_loaded', function () {
 	if ( defined( 'NLC_VERSION' ) ) {
 		return;
 	}
+	// Dépendances absentes : un avis clair sur l'écran des extensions, et rien d'autre.
+	if ( ! class_exists( 'WooCommerce' ) || ! function_exists( 'mb_str_split' ) ) {
+		add_action( 'admin_notices', 'ahns_dependances_absentes' );
+		return;
+	}
 	( new AHNS_I18n() )->hooks();
 	( new AHNS_Upgrade() )->hooks();
 	( new AHNS_Admin_UI() )->hooks();
-	$pricing = new AHNS_Pricing();
-	$embed = new AHNS_Embed( $pricing );
+	$embed = new AHNS_Embed();
 	$embed->hooks();
-	( new AHNS_Cart( $pricing ) )->hooks();
+	( new AHNS_Cart() )->hooks();
 	( new AHNS_Settings() )->hooks();
 	( new AHNS_Identite() )->hooks();
 	( new AHNS_Order() )->hooks();
@@ -98,6 +102,31 @@ add_action( 'plugins_loaded', function () {
 	( new AHNS_Onboarding() )->hooks();
 	( new AHNS_Schema() )->hooks();
 } );
+
+register_activation_hook( __FILE__, function () {
+	require_once AHNS_PLUGIN_DIR . 'includes/class-ahns-ar.php';
+	AHNS_Ar::programmer();
+} );
+
+/**
+ * Avis d'administration quand une dépendance manque (WooCommerce, extension PHP mbstring).
+ *
+ * @return void
+ */
+function ahns_dependances_absentes() {
+	$ecran = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
+	if ( ! current_user_can( 'activate_plugins' ) || ! $ecran || 'plugins' !== $ecran->id ) {
+		return;
+	}
+	printf(
+		'<div class="notice notice-error"><p>%s</p></div>',
+		esc_html(
+			class_exists( 'WooCommerce' )
+				? __( 'Ahime Neon Sign Configurator for WooCommerce needs the mbstring PHP extension: ask your host to enable it.', 'ahime-neon-sign-configurator' )
+				: __( 'Ahime Neon Sign Configurator for WooCommerce needs WooCommerce: install and activate WooCommerce.', 'ahime-neon-sign-configurator' )
+		)
+	);
+}
 
 // La purge des modeles de RA est un rendez-vous WP-Cron : il survivrait a la
 // desactivation du greffon et reveillerait une classe absente.
